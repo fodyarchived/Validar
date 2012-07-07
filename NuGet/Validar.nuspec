@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Validar.Fody</id>
+    <version>$version$</version>
+    <title>Validar.Fody</title>
+    <authors>Simon Cropp</authors>
+    <owners>Simon Cropp</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/validar/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fody add-in for validation in XAML bindings.</description>
+    <summary />
+    <language>en-AU</language>
+    <tags>Validation, ILWeaving, Fody, Cecil</tags>
+  </metadata>
+</package>
