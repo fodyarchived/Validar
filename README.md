@@ -20,7 +20,7 @@ Injects [IDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componen
 
 ###Your validation template code
 
-See [FluentValidationTemplate](Validar/wiki/FluentValidationTemplate) for an example ValidationTemplate implementation.
+See [FluentValidationTemplate](https://github.com/SimonCropp/Validar/wiki/FluentValidationTemplate) for an example ValidationTemplate implementation.
 
 
     public class ValidationTemplate : IDataErrorInfo
