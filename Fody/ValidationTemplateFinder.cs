@@ -1,16 +1,18 @@
+using System.Collections.Generic;
 using System.Linq;
 using Mono.Cecil;
 
 public class ValidationTemplateFinder
 {
     public TypeDefinition TypeDefinition;
-    public AllTypesFinder AllTypesFinder;
-
+    
     public MethodDefinition TemplateConstructor;
+
+    public List<TypeDefinition> AllTypes;
 
     public void Execute()
     {
-        TypeDefinition = AllTypesFinder.AllTypes.First(x => x.Name == "ValidationTemplate");
+        TypeDefinition = AllTypes.First(x => x.Name == "ValidationTemplate");
         if (TypeDefinition== null)
         {
             throw new WeavingException("Could not find a type named ValidationTemplate");

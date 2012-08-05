@@ -3,7 +3,9 @@
 [InjectValidationAttribute]
 public class PersonWithStaticConstructor : INotifyPropertyChanged
 {
+// ReSharper disable EmptyConstructor
     static PersonWithStaticConstructor() { }
+// ReSharper restore EmptyConstructor
 
     string givenNames;
     public string GivenNames

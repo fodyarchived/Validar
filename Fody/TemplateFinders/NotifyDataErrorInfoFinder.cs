@@ -4,7 +4,6 @@ using Mono.Cecil;
 public class NotifyDataErrorInfoFinder
 {
     public TypeReference InterfaceRef;
-    public AllTypesFinder AllTypesFinder;
     public bool Found = true;
     public MethodReference ErrorsChangedAddMethod;
     public MethodReference ErrorsChangedRemoveMethod;

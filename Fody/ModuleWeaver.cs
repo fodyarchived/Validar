@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Mono.Cecil;
 
 public class ModuleWeaver
 {
-    AllTypesFinder allTypesFinder;
     NotifyDataErrorInfoFinder notifyDataErrorInfoFinder;
     DataErrorInfoFinder dataErrorInfoFinder;
     ValidationTemplateFinder templateFinder;
@@ -18,15 +19,11 @@ public class ModuleWeaver
 
     public void Execute()
     {
-        allTypesFinder = new AllTypesFinder
-                             {
-                                 ModuleDefinition = ModuleDefinition
-                             };
-        allTypesFinder.Execute();
-
+        var allTypes = ModuleDefinition.GetTypes().Where(x => x.IsClass).ToList();
+        
         templateFinder = new ValidationTemplateFinder
                              {
-                                 AllTypesFinder = allTypesFinder
+                                 AllTypes= allTypes
                              };
         templateFinder.Execute();
         dataErrorInfoFinder = new DataErrorInfoFinder
@@ -47,12 +44,12 @@ public class ModuleWeaver
         {
             throw new WeavingException("Found ValidationTemplate but it did not implement INotifyDataErrorInfo or IDataErrorInfo");
         }
-        ProcessTypes();
+        ProcessTypes(allTypes);
     }
 
-    public void ProcessTypes()
+    public void ProcessTypes(List<TypeDefinition> allTypes)
     {
-        foreach (var type in allTypesFinder.AllTypes)
+        foreach (var type in allTypes)
         {
             if (!type.ImplementsINotify())
             {

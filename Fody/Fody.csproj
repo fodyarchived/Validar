@@ -58,7 +58,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllTypesFinder.cs" />
     <Compile Include="CecilExtensions.cs" />
     <Compile Include="ImplementsInterface.cs" />
     <Compile Include="Injectors\DataErrorInfoInjector.cs" />
