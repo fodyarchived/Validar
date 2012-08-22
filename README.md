@@ -57,7 +57,7 @@ See [FluentValidationTemplate](https://github.com/SimonCropp/Validar/wiki/Fluent
         public string GivenNames { get; set; }
         public string FamilyName { get; set; }
 
-        public PersonTemplate()
+        public Person()
         {
             validationTemplate = new ValidationTemplate(this);
         }
