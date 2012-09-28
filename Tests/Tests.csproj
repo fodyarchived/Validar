@@ -70,7 +70,6 @@
     <Compile Include="Verifier.cs" />
     <Compile Include="Net4WeavingTaskTests.cs" />
     <Compile Include="BaseTaskTests.cs" />
-    <Compile Include="PhoneWeavingTaskTests.cs" />
     <Compile Include="PropertyFinderTests.cs" />
     <Compile Include="DefinitionFinder.cs" />
     <Compile Include="SL5WeavingTaskTests.cs" />
@@ -93,8 +92,5 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="$(SolutionDir)Tools\PepitaGet.dll" />
-  <Target Name="BeforeBuild">
-    <PepitaGet.RestorePackagesTask />
-  </Target>
+  <Import Project="$(ProjectPath)\..\..\Tools\Pepita\PepitaGet.targets" />
 </Project>
