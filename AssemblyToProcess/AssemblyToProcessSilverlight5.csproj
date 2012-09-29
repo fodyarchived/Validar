@@ -50,7 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentValidation">
-      <HintPath>..\..\packages\FluentValidation.3.3.1.0\lib\SL4\FluentValidation.dll</HintPath>
+      <HintPath>..\..\packages\FluentValidation.3.4.6.0\lib\SL4\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>$(SolutionDir)\lib\Silverlight\mscorlib.dll</HintPath>
