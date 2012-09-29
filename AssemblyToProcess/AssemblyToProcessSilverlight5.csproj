@@ -33,8 +33,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile></DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -64,6 +63,7 @@
     <Reference Include="System.Windows">
       <HintPath>$(SolutionDir)\lib\Silverlight\system.windows.dll</HintPath>
     </Reference>
+    <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InjectValidationAttribute.cs" />
@@ -82,4 +82,5 @@
   </ItemGroup>
   <Import Project="$(SolutionDir)Tools\Silverlight\Microsoft.Silverlight.CSharp.targets" />
   <Import Project="$(SolutionDir)\Tools\Pepita\PepitaGet.targets" />
+  <Import Project="$(ProjectPath)\..\..\Tools\Fody\Fody.targets" />
 </Project>
