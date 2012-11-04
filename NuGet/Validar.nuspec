@@ -12,6 +12,6 @@
     <description>Fody add-in for validation in XAML bindings.</description>
     <summary />
     <language>en-AU</language>
-    <tags>Validation, ILWeaving, Fody, Cecil</tags>
+    <tags>Validation, ILWeaving, Fody, Cecil, IDataErrorInfo, INotifyDataErrorInfo, WPF, XAML</tags>
   </metadata>
 </package>
