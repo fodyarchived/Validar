@@ -55,6 +55,9 @@
     <Reference Include="mscorlib">
       <HintPath>$(SolutionDir)\lib\Silverlight\mscorlib.dll</HintPath>
     </Reference>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\packages\PropertyChanged.Fody.1.32.0.0\lib\SL\PropertyChanged.dll</HintPath>
+    </Reference>
     <Reference Include="system">
       <HintPath>$(SolutionDir)\lib\Silverlight\system.dll</HintPath>
     </Reference>
@@ -64,6 +67,7 @@
     <Reference Include="System.Windows">
       <HintPath>$(SolutionDir)\lib\Silverlight\system.windows.dll</HintPath>
     </Reference>
+    <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InjectValidationAttribute.cs" />
@@ -82,4 +86,5 @@
   </ItemGroup>
   <Import Project="$(SolutionDir)Tools\Silverlight\Microsoft.Silverlight.CSharp.targets" />
   <Import Project="$(SolutionDir)\Tools\Pepita\PepitaGet.targets" />
+  <Import Project="$(ProjectDir)\..\Tools\Fody\Fody.targets" />
 </Project>

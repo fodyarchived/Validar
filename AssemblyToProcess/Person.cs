@@ -4,41 +4,8 @@
 public class Person : INotifyPropertyChanged
 {
 
-    string givenNames;
-    public string GivenNames
-    {
-        get { return givenNames; }
-        set
-        {
-            if (value != givenNames)
-            {
-                givenNames = value;
-                OnPropertyChanged("GivenNames");
-            }
-        }
-    }
-    string familyName;
-    public string FamilyName
-    {
-        get { return familyName; }
-        set
-        {
-            if (value != familyName)
-            {
-                familyName = value;
-                OnPropertyChanged("FamilyName");
-            }
-        }
-    }
-
-    public virtual void OnPropertyChanged(string propertyName)
-    {
-        var propertyChanged = PropertyChanged;
-        if (propertyChanged != null)
-        {
-            propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
+	public string GivenNames;
+	public string FamilyName;
 
     public event PropertyChangedEventHandler PropertyChanged;
 }
