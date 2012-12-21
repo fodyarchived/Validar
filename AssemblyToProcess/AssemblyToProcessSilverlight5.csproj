@@ -82,7 +82,9 @@
     <Compile Include="NotifyDataErrorInfo\ValidationTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(SolutionDir)Tools\Silverlight\Microsoft.Silverlight.CSharp.targets" />
   <Import Project="$(SolutionDir)\Tools\Pepita\PepitaGet.targets" />
