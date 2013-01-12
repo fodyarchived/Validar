@@ -1,10 +1,10 @@
-## This is an add-in for [Fody](https://github.com/SimonCropp/Fody/) 
+## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
 Provides validation for XAML binding models.
 
 Injects [IDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componentmodel.IDataErrorInfo.aspx) or [INotifyDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componentmodel.INotifyDataErrorInfo.aspx) code into a class at compile time.
 
-[Introduction to Fody](http://github.com/SimonCropp/Fody/wiki/SampleUsage)
+[Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
 ## Nuget package http://nuget.org/packages/Validar.Fody 
 
@@ -20,7 +20,7 @@ Injects [IDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componen
 
 ###Your validation template code
 
-See [FluentValidationTemplate](https://github.com/SimonCropp/Validar/wiki/FluentValidationTemplate) for an example ValidationTemplate implementation.
+See [FluentValidationTemplate](https://github.com/Fody/Validar/wiki/FluentValidationTemplate) for an example ValidationTemplate implementation.
 
 
     public class ValidationTemplate : IDataErrorInfo
