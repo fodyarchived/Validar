@@ -1,10 +1,10 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using FluentValidation;
 
 public static class ValidationFactory
 {
-    static Dictionary<RuntimeTypeHandle, IValidator> validators = new Dictionary<RuntimeTypeHandle, IValidator>();
+    static ConcurrentDictionary<RuntimeTypeHandle, IValidator> validators = new ConcurrentDictionary<RuntimeTypeHandle, IValidator>();
 
     public static IValidator GetValidator(Type modelType)
     {
@@ -13,7 +13,7 @@ public static class ValidationFactory
         {
             var typeName = modelType.Name + "Validator";
             var type = Type.GetType(modelType.Namespace + "." + typeName, true);
-            validator = (IValidator) Activator.CreateInstance(type);
+            validators[modelType.TypeHandle] = validator = (IValidator)Activator.CreateInstance(type);
         }
 
         return validator;
