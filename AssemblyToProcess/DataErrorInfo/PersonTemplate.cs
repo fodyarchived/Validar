@@ -9,7 +9,7 @@ public class PersonTemplate : IDataErrorInfo , INotifyPropertyChanged
 
     public PersonTemplate()
     {
-        validationTemplate = (IDataErrorInfo)new ValidationTemplate(this);
+        validationTemplate = new ValidationTemplate(this);
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

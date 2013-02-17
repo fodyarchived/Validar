@@ -7,7 +7,7 @@ public class PersonWithImplementation : INotifyPropertyChanged, IDataErrorInfo
     IDataErrorInfo validationTemplate;
     public PersonWithImplementation()
     {
-        validationTemplate = (IDataErrorInfo) new ValidationTemplate(this);
+        validationTemplate = new ValidationTemplate(this);
     }
 
     public string this[string columnName]
