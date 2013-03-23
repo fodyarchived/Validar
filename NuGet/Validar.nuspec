@@ -13,5 +13,8 @@
     <summary />
     <language>en-AU</language>
     <tags>Validation, ILWeaving, Fody, Cecil, IDataErrorInfo, INotifyDataErrorInfo, WPF, XAML</tags>
+    <dependencies>
+      <dependency id="Fody"/>
+    </dependencies>
   </metadata>
 </package>
