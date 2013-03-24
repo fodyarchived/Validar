@@ -6,7 +6,9 @@ Injects [IDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componen
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
-## Nuget package http://nuget.org/packages/Validar.Fody 
+## Nuget package
+
+http://nuget.org/packages/Validar.Fody 
 
 ### Your Model Code
 (INotifyPropertyChanged implementation excluded for brevity)
