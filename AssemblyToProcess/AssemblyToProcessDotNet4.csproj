@@ -41,7 +41,7 @@
       <HintPath>..\packages\FluentValidation.3.4.6.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.33.1.0\lib\NET40\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.36.1.0\lib\NET40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -62,5 +62,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ProjectPath)\..\..\Tools\Pepita\PepitaGet.targets" />
-  <Import Project="..\packages\Fody.1.13.0.0\Fody.targets" Condition="Exists('..\packages\Fody.1.13.0.0\Fody.targets')" />
+  <Import Project="..\packages\Fody.1.13.3.0\Fody.targets" Condition="Exists('..\packages\Fody.1.13.3.0\Fody.targets')" />
+  <Target Name="FodyTargetsCheck" BeforeTargets="BeforeCompile">
+    <Error Condition="!Exists('..\packages\Fody.1.13.3.0\Fody.targets')" Text="Could not find Fody.targets. You either forget to check in the package or forgot to enable package restore." />
+  </Target>
 </Project>
