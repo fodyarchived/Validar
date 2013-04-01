@@ -77,3 +77,9 @@ See [FluentValidationTemplate](https://github.com/Fody/Validar/wiki/FluentValida
         }
     }
 
+
+## Icon
+
+Icon courtesy of [The Noun Project](http://thenounproject.com)
+
+
