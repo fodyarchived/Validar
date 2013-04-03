@@ -80,6 +80,5 @@ See [FluentValidationTemplate](https://github.com/Fody/Validar/wiki/FluentValida
 
 ## Icon
 
-Icon courtesy of [The Noun Project](http://thenounproject.com)
-
+<a href="http://thenounproject.com/noun/check-mark/#icon-No6407" target="_blank">Check Mark</a> designed by <a href="http://thenounproject.com/mateozlatar" target="_blank">Mateo Zlatar</a> from The Noun Project
 
