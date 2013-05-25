@@ -2,8 +2,9 @@
 using System.Collections;
 using System.ComponentModel;
 using NotifyDataErrorInfo;
+using Validar;
 
-[InjectValidationAttribute]
+[InjectValidation]
 public class PersonWithImplementation : INotifyPropertyChanged, INotifyDataErrorInfo
 {
     

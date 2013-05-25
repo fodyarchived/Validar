@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel;
 using DataErrorInfo;
+using Validar;
 
-[InjectValidationAttribute]
+[InjectValidation]
 public class PersonWithImplementation : INotifyPropertyChanged, IDataErrorInfo
 {
     IDataErrorInfo validationTemplate;

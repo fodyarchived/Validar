@@ -18,6 +18,7 @@
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <SignManifests>false</SignManifests>
+    <FodyPath>..\packages\Fody.1.13.8.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -46,14 +47,16 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentValidation">
-      <HintPath>..\packages\FluentValidation.3.4.6.0\lib\SL4\FluentValidation.dll</HintPath>
+    <Reference Include="FluentValidation, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentValidation.4.0.0.0\lib\portable-wp8+sl5+win8\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>$(SolutionDir)\lib\Silverlight\mscorlib.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.32.0.0\lib\SL\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.38.2.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="system">
       <HintPath>$(SolutionDir)\lib\Silverlight\system.dll</HintPath>
@@ -64,10 +67,10 @@
     <Reference Include="System.Windows">
       <HintPath>$(SolutionDir)\lib\Silverlight\system.windows.dll</HintPath>
     </Reference>
+    <None Include="Fody.targets" />
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InjectValidationAttribute.cs" />
     <Compile Include="NotifyDataErrorInfo\PersonWithImplementation.cs" />
     <Compile Include="NotifyDataErrorInfo\PersonTemplate.cs" />
     <Compile Include="NotifyDataErrorInfo\ValidationFactory.cs" />
@@ -83,7 +86,13 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReferenceAssembly\ReferenceAssembly.csproj">
+      <Project>{B5AEB0E8-28F4-4955-A055-9C200F7113F0}</Project>
+      <Name>ReferenceAssembly</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(SolutionDir)Tools\Silverlight\Microsoft.Silverlight.CSharp.targets" />
   <Import Project="$(SolutionDir)\Tools\Pepita\PepitaGet.targets" />
-  <Import Project="..\packages\Fody.1.13.0.0\Fody.targets" Condition="Exists('..\packages\Fody.1.13.0.0\Fody.targets')" />
+  <Import Project="Fody.targets" />
 </Project>

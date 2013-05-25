@@ -1,13 +1,19 @@
-using System.Collections.Generic;
 using System.Linq;
 using Mono.Cecil;
+using Mono.Collections.Generic;
 
 public static class CecilExtensions
 {
 
-    public static bool ContainsAttribute(this IEnumerable<CustomAttribute> attributes, string attributeName)
+    public static bool ContainsValidationAttribute(this Collection<CustomAttribute> attributes)
     {
-        return attributes.Any(x => x.Constructor.DeclaringType.Name == attributeName);
+        var firstOrDefault = attributes.FirstOrDefault(x => x.Constructor.DeclaringType.Name == "InjectValidationAttribute");
+        if (firstOrDefault != null)
+        {
+            attributes.Remove(firstOrDefault);
+            return true;
+        }
+        return false;
     }
 
     public static void ValidateIsOfType(this FieldReference targetReference, TypeReference expectedType)

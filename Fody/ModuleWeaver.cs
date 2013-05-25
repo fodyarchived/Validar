@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Mono.Cecil;
 
-public class ModuleWeaver
+public partial class ModuleWeaver
 {
     NotifyDataErrorInfoFinder notifyDataErrorInfoFinder;
     DataErrorInfoFinder dataErrorInfoFinder;
@@ -45,6 +45,7 @@ public class ModuleWeaver
             throw new WeavingException("Found ValidationTemplate but it did not implement INotifyDataErrorInfo or IDataErrorInfo");
         }
         ProcessTypes(allTypes);
+        RemoveReference();
     }
 
     public void ProcessTypes(List<TypeDefinition> allTypes)
@@ -61,7 +62,7 @@ public class ModuleWeaver
     }
     public void ProcessType(TypeDefinition typeDefinition)
     {
-        if (!typeDefinition.CustomAttributes.ContainsAttribute("InjectValidationAttribute"))
+        if (!typeDefinition.CustomAttributes.ContainsValidationAttribute())
         {
             //TODO:log
             return;
