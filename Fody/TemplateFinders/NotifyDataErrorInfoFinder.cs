@@ -14,7 +14,6 @@ public class NotifyDataErrorInfoFinder
     public ModuleDefinition ModuleDefinition;
     public MethodDefinition GetErrorsMethodDef;
     public MethodReference GetHasErrorsMethod;
-    public PropertyDefinition HasErrorsProperty;
 
     public void Execute()
     {
@@ -26,16 +25,15 @@ public class NotifyDataErrorInfoFinder
             return;
         }
         var interfaceType = InterfaceRef.Resolve();
+        InterfaceRef = ModuleDefinition.Import(InterfaceRef);
 
         GetErrorsMethodDef = interfaceType.Methods.First(x => x.Name == "GetErrors");
         GetErrorsMethodRef = ModuleDefinition.Import(GetErrorsMethodDef);
         ErrorsChangedEvent = interfaceType.Events.First(x => x.Name == "ErrorsChanged");
         ErrorsChangedEventType = ModuleDefinition.Import(ErrorsChangedEvent.EventType);
-//        NotifyDataErrorInfoFinder.ErrorsChangedAddMethod.Parameters.First().ParameterType
         ErrorsChangedAddMethod = ModuleDefinition.Import(ErrorsChangedEvent.AddMethod);
         ErrorsChangedRemoveMethod = ModuleDefinition.Import(ErrorsChangedEvent.RemoveMethod);
 
-        HasErrorsProperty = interfaceType.Properties.First(x => x.Name == "HasErrors");
         GetHasErrorsMethod = ModuleDefinition.Import(interfaceType.Methods.First(x => x.Name == "get_HasErrors"));
     }
 

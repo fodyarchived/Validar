@@ -1,11 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections;
+using System.ComponentModel;
 using DataErrorInfo;
 using Validar;
 
 [InjectValidation]
-public class PersonWithImplementation : INotifyPropertyChanged, IDataErrorInfo
+public class PersonWithImplementation : INotifyPropertyChanged, IDataErrorInfo, INotifyDataErrorInfo
 {
-    IDataErrorInfo validationTemplate;
+    ValidationTemplate validationTemplate;
     public PersonWithImplementation()
     {
         validationTemplate = new ValidationTemplate(this);
@@ -14,6 +16,20 @@ public class PersonWithImplementation : INotifyPropertyChanged, IDataErrorInfo
     public string this[string columnName]
     {
         get { return validationTemplate[columnName]; }
+    }
+    public IEnumerable GetErrors(string propertyName)
+    {
+        return validationTemplate.GetErrors(propertyName);
+    }
+    public bool HasErrors
+    {
+        get { return validationTemplate.HasErrors; }
+    }
+
+    public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged
+    {
+        add { validationTemplate.ErrorsChanged += value; }
+        remove { validationTemplate.ErrorsChanged -= value; }
     }
 
     public string Error

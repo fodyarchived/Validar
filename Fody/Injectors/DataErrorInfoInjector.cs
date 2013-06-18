@@ -1,17 +1,15 @@
 using System.Linq;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
-using Mono.Cecil.Rocks;
 
 public class DataErrorInfoInjector
 {
     public TypeDefinition TypeDefinition;
-    FieldDefinition validationTemplateField;
-    public ValidationTemplateFinder ValidationTemplateFinder;
     public TypeSystem TypeSystem;
     public DataErrorInfoFinder DataErrorInfoFinder;
     public ModuleWeaver ModuleWeaver;
     MethodAttributes MethodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Virtual;
+    public FieldDefinition ValidationTemplateField;
 
     public void Execute()
     {
@@ -22,8 +20,6 @@ public class DataErrorInfoInjector
             return;
         }
         AddInterface();
-        AddField();
-        AddConstructor();
         AddGetError();
         AddGetItem();
     }
@@ -43,7 +39,7 @@ public class DataErrorInfoInjector
         method.Overrides.Add(DataErrorInfoFinder.GetErrorMethod);
         method.Body.Instructions.Append(
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldfld, validationTemplateField),
+            Instruction.Create(OpCodes.Ldfld, ValidationTemplateField),
             Instruction.Create(OpCodes.Callvirt, DataErrorInfoFinder.GetErrorMethod),
             Instruction.Create(OpCodes.Ret)
             );
@@ -68,7 +64,7 @@ public class DataErrorInfoInjector
 
         method.Body.Instructions.Append(
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldfld, validationTemplateField),
+            Instruction.Create(OpCodes.Ldfld, ValidationTemplateField),
             Instruction.Create(OpCodes.Ldarg_1),
             Instruction.Create(OpCodes.Callvirt, DataErrorInfoFinder.GetItemMethod),
             Instruction.Create(OpCodes.Ret));
@@ -81,30 +77,5 @@ public class DataErrorInfoInjector
         TypeDefinition.Properties.Add(property);
     }
 
-    public void AddConstructor()
-    {
-        foreach (var constructor in TypeDefinition.GetConstructors().Where(c => !c.IsStatic))
-        {
-            ProcessConstructor(ValidationTemplateFinder.TemplateConstructor, constructor);
-        }
-    }
 
-    public void ProcessConstructor(MethodDefinition templateConstructor, MethodDefinition constructor)
-    {
-        var body = constructor.Body;
-        body.SimplifyMacros();
-        body.MakeLastStatementReturn();
-        body.Instructions.BeforeLast(
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Newobj, templateConstructor),
-            Instruction.Create(OpCodes.Stfld, validationTemplateField)
-            );
-        body.OptimizeMacros();
-    }
-
-    public void AddField()
-    {
-        validationTemplateField = TemplateFieldInjector.AddField(DataErrorInfoFinder.InterfaceRef, TypeDefinition);
-    }
 }

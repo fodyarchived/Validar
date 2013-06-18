@@ -1,5 +1,7 @@
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
+![Icon](https://raw.github.com/Fody/Validar/master/Icons/package_icon.png)
+
 Provides validation for XAML binding models.
 
 Injects [IDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componentmodel.IDataErrorInfo.aspx) or [INotifyDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componentmodel.INotifyDataErrorInfo.aspx) code into a class at compile time.

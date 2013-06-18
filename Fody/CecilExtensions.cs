@@ -18,10 +18,12 @@ public static class CecilExtensions
 
     public static void ValidateIsOfType(this FieldReference targetReference, TypeReference expectedType)
     {
-        if (targetReference.FieldType.Name != expectedType.Name)
+        if (targetReference.FieldType.FullName == expectedType.FullName)
         {
-            throw new WeavingException(string.Format("Field '{0}' could not be re-used because it is not the correct type. Expected '{1}'.", targetReference.Name, expectedType.Name));
+            return;
         }
+        var message = string.Format("Field '{0}' could not be re-used because it is not the correct type. Expected '{1}'.", targetReference.FullName, expectedType.FullName);
+        throw new WeavingException(message);
     }
 
 }

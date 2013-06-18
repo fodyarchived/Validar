@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Mono.Cecil;
 
@@ -8,6 +7,7 @@ public partial class ModuleWeaver
     NotifyDataErrorInfoFinder notifyDataErrorInfoFinder;
     DataErrorInfoFinder dataErrorInfoFinder;
     ValidationTemplateFinder templateFinder;
+    TemplateFieldInjector templateFieldInjector;
     public Action<string> LogInfo { get; set; }
     public ModuleDefinition ModuleDefinition { get; set; }
     public IAssemblyResolver AssemblyResolver { get; set; }
@@ -19,13 +19,19 @@ public partial class ModuleWeaver
 
     public void Execute()
     {
-        var allTypes = ModuleDefinition.GetTypes().Where(x => x.IsClass).ToList();
         
         templateFinder = new ValidationTemplateFinder
                              {
-                                 AllTypes= allTypes
+                                 LogInfo = LogInfo,
+                                 ModuleDefinition = ModuleDefinition,
                              };
         templateFinder.Execute();
+
+         templateFieldInjector = new TemplateFieldInjector
+                                 {
+                                     ValidationTemplateFinder = templateFinder
+                                 };
+
         dataErrorInfoFinder = new DataErrorInfoFinder
                                   {
                                       ValidationTemplateFinder = templateFinder,
@@ -44,13 +50,13 @@ public partial class ModuleWeaver
         {
             throw new WeavingException("Found ValidationTemplate but it did not implement INotifyDataErrorInfo or IDataErrorInfo");
         }
-        ProcessTypes(allTypes);
+        ProcessTypes();
         RemoveReference();
     }
 
-    public void ProcessTypes(List<TypeDefinition> allTypes)
+    public void ProcessTypes()
     {
-        foreach (var type in allTypes)
+        foreach (var type in ModuleDefinition.GetTypes().Where(x => x.IsClass))
         {
             if (!type.ImplementsINotify())
             {
@@ -64,9 +70,10 @@ public partial class ModuleWeaver
     {
         if (!typeDefinition.CustomAttributes.ContainsValidationAttribute())
         {
-            //TODO:log
             return;
         }
+
+        var validationTemplateField = templateFieldInjector.AddField(typeDefinition);
 
         if (dataErrorInfoFinder.Found)
         {
@@ -74,9 +81,9 @@ public partial class ModuleWeaver
             {
                 TypeDefinition = typeDefinition,
                 TypeSystem = ModuleDefinition.TypeSystem,
-                ValidationTemplateFinder = templateFinder,
                 DataErrorInfoFinder = dataErrorInfoFinder,
                 ModuleWeaver = this,
+                ValidationTemplateField = validationTemplateField
             };
             injector.Execute();
         }
@@ -87,9 +94,9 @@ public partial class ModuleWeaver
             {
                 TypeDefinition = typeDefinition,
                 NotifyDataErrorInfoFinder = notifyDataErrorInfoFinder,
-                ValidationTemplateFinder = templateFinder,
                 TypeSystem= ModuleDefinition.TypeSystem,
                 ModuleWeaver = this,
+                ValidationTemplateField = validationTemplateField
             };
             injector.Execute();
         }

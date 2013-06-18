@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Linq;
 using FluentValidation;
@@ -7,9 +8,11 @@ using FluentValidation.Results;
 namespace DataErrorInfo
 {
 
-    public class ValidationTemplate : IDataErrorInfo
+    public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
     {
         INotifyPropertyChanged target;
+        IValidator validator;
+        ValidationResult validationResult;
 
         public ValidationTemplate(INotifyPropertyChanged target)
         {
@@ -21,15 +24,25 @@ namespace DataErrorInfo
 
         void Validate(object sender, PropertyChangedEventArgs e)
         {
-            if (validator != null)
-            {
+   
                 validationResult = validator.Validate(target);
-            }
+                foreach (var error in validationResult.Errors)
+                {
+                    RaiseErrorsChanged(error.PropertyName);
+                }
         }
 
-        IValidator validator;
-        ValidationResult validationResult;
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return validationResult.Errors
+                .Where(x => x.PropertyName == propertyName)
+                .Select(x => x.ErrorMessage);
+        }
 
+        public bool HasErrors
+        {
+            get { return validationResult.Errors.Count > 0; }
+        }
         public string Error
         {
             get
@@ -48,6 +61,16 @@ namespace DataErrorInfo
                     .Select(x => x.ErrorMessage)
                     .ToArray();
                 return string.Join(Environment.NewLine, strings);
+            }
+        }  
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        void RaiseErrorsChanged(string propertyName)
+        {
+            var handler = ErrorsChanged;
+            if (handler != null)
+            {
+                handler(this, new DataErrorsChangedEventArgs(propertyName));
             }
         }
     }

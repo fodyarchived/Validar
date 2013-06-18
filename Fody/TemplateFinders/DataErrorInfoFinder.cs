@@ -4,14 +4,11 @@ using Mono.Cecil;
 public class DataErrorInfoFinder
 {
     public ValidationTemplateFinder ValidationTemplateFinder;
-    public MethodDefinition TemplateConstructor;
     public bool Found = true;
     public MethodReference GetErrorMethod;
     public ModuleDefinition ModuleDefinition;
     public MethodReference GetItemMethod;
     public TypeReference InterfaceRef;
-    public PropertyDefinition ErrorProperty;
-    public PropertyDefinition ItemProperty;
 
     public void Execute()
     {
@@ -23,9 +20,8 @@ public class DataErrorInfoFinder
             return;
         }
         var interfaceType = InterfaceRef.Resolve();
-
-        ErrorProperty = interfaceType.Properties.First(x => x.Name == "Error");
-        ItemProperty = interfaceType.Properties.First(x => x.Name == "Item");
+        InterfaceRef = ModuleDefinition.Import(InterfaceRef);
+        
         GetErrorMethod = ModuleDefinition.Import(interfaceType.Methods.First(x => x.Name == "get_Error"));
         GetItemMethod = ModuleDefinition.Import(interfaceType.Methods.First(x => x.Name == "get_Item"));
     }

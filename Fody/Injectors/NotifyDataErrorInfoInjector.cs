@@ -1,18 +1,16 @@
 using System.Linq;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
-using Mono.Cecil.Rocks;
 
 
 public class NotifyDataErrorInfoInjector
 {
     public TypeDefinition TypeDefinition;
-    FieldDefinition validationTemplateField;
-    public ValidationTemplateFinder ValidationTemplateFinder;
     public ModuleWeaver ModuleWeaver;
     public TypeSystem TypeSystem;
     public NotifyDataErrorInfoFinder NotifyDataErrorInfoFinder;
     MethodAttributes MethodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Virtual;
+    public FieldDefinition ValidationTemplateField;
 
     public void Execute()
     {
@@ -22,8 +20,6 @@ public class NotifyDataErrorInfoInjector
             return;
         }
         AddInterface();
-        AddField();
-        AddConstructor();
         AddErrorsChanged();
         AddHasErrors();
         AddGetErrors();
@@ -41,7 +37,7 @@ public class NotifyDataErrorInfoInjector
 
         method.Body.Instructions.Append(
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldfld, validationTemplateField),
+            Instruction.Create(OpCodes.Ldfld, ValidationTemplateField),
             Instruction.Create(OpCodes.Ldarg_1),
             Instruction.Create(OpCodes.Callvirt, NotifyDataErrorInfoFinder.GetErrorsMethodRef),
             Instruction.Create(OpCodes.Ret)
@@ -59,7 +55,7 @@ public class NotifyDataErrorInfoInjector
         method.Overrides.Add(NotifyDataErrorInfoFinder.GetHasErrorsMethod);
         method.Body.Instructions.Append(
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldfld, validationTemplateField),
+            Instruction.Create(OpCodes.Ldfld, ValidationTemplateField),
             Instruction.Create(OpCodes.Callvirt, NotifyDataErrorInfoFinder.GetHasErrorsMethod),
             Instruction.Create(OpCodes.Ret)
             );
@@ -94,7 +90,7 @@ public class NotifyDataErrorInfoInjector
         add.Parameters.Add(new ParameterDefinition(NotifyDataErrorInfoFinder.ErrorsChangedEventType));
         add.Body.Instructions.Append(
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldfld, validationTemplateField),
+            Instruction.Create(OpCodes.Ldfld, ValidationTemplateField),
             Instruction.Create(OpCodes.Ldarg_1),
             Instruction.Create(OpCodes.Callvirt, NotifyDataErrorInfoFinder.ErrorsChangedAddMethod),
             Instruction.Create(OpCodes.Ret));
@@ -113,7 +109,7 @@ public class NotifyDataErrorInfoInjector
         remove.Parameters.Add(new ParameterDefinition(NotifyDataErrorInfoFinder.ErrorsChangedEventType));
         remove.Body.Instructions.Append(
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldfld, validationTemplateField),
+            Instruction.Create(OpCodes.Ldfld, ValidationTemplateField),
             Instruction.Create(OpCodes.Ldarg_1),
             Instruction.Create(OpCodes.Callvirt, NotifyDataErrorInfoFinder.ErrorsChangedRemoveMethod),
             Instruction.Create(OpCodes.Ret));
@@ -126,30 +122,4 @@ public class NotifyDataErrorInfoInjector
         TypeDefinition.Interfaces.Add(NotifyDataErrorInfoFinder.InterfaceRef);
     }
 
-    void AddConstructor()
-    {
-        foreach (var constructor in TypeDefinition.GetConstructors().Where(c => !c.IsStatic))
-        {
-            ProcessConstructor(ValidationTemplateFinder.TemplateConstructor, constructor);
-        }
-    }
-
-    void ProcessConstructor(MethodDefinition templateConstructor, MethodDefinition constructor)
-    {
-        var body = constructor.Body;
-        body.SimplifyMacros();
-        body.MakeLastStatementReturn();
-        body.Instructions.BeforeLast(
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Newobj, templateConstructor),
-            Instruction.Create(OpCodes.Stfld, validationTemplateField)
-            );
-        body.OptimizeMacros();
-    }
-
-    void AddField()
-    {
-        validationTemplateField = TemplateFieldInjector.AddField(NotifyDataErrorInfoFinder.InterfaceRef, TypeDefinition);
-    }
 }
