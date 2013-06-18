@@ -70,7 +70,7 @@
     <Compile Include="TestAssemblyResolver.cs" />
     <Compile Include="ValidationTester.cs" />
     <Compile Include="Verifier.cs" />
-    <Compile Include="Net4WeavingTaskTests.cs" />
+    <Compile Include="WeavingTaskTests.cs" />
     <Compile Include="DefinitionFinder.cs" />
     <Compile Include="VersionReader.cs" />
     <Compile Include="WeaverHelper.cs" />
