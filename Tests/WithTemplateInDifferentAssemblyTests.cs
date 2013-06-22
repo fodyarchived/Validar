@@ -12,6 +12,8 @@ public class WithTemplateInDifferentAssemblyTests
 
     public WithTemplateInDifferentAssemblyTests()
     {
+        Assembly.Load("FluentValidation");
+        AppDomainAssemblyFinder.Attach();
         beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyWithNoValidationTemplate\bin\Debug\AssemblyWithNoValidationTemplate.dll");
 #if (!DEBUG)
         beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
