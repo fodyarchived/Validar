@@ -94,10 +94,6 @@
       <Project>{b18818a1-6442-46cb-b97a-33db9e463287}</Project>
       <Name>AssemblyWithNoValidationTemplate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AssemblyWithValidationTemplate\AssemblyWithValidationTemplate.csproj">
-      <Project>{d7b2da50-572f-43c0-ad95-33ecd4aeb8d3}</Project>
-      <Name>AssemblyWithValidationTemplate</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fody\Fody.csproj">
       <Project>{C3578A7B-09A6-4444-9383-0DEAFA4958BD}</Project>
       <Name>Fody</Name>

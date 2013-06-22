@@ -16,8 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceAssembly", "Refere
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyWithNoValidationTemplate", "AssemblyWithNoValidationTemplate\AssemblyWithNoValidationTemplate.csproj", "{B18818A1-6442-46CB-B97A-33DB9E463287}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyWithValidationTemplate", "AssemblyWithValidationTemplate\AssemblyWithValidationTemplate.csproj", "{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplatesFluentValidation", "TemplatesFluentValidation\TemplatesFluentValidation.csproj", "{75168C98-0881-4F13-9E83-561428C4C4FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplatesSandra", "TemplatesSandra\TemplatesSandra.csproj", "{A5F0084B-313F-46AA-B3AF-87019CCEB1EB}"
@@ -100,16 +98,6 @@ Global
 		{B18818A1-6442-46CB-B97A-33DB9E463287}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B18818A1-6442-46CB-B97A-33DB9E463287}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B18818A1-6442-46CB-B97A-33DB9E463287}.Release|x86.ActiveCfg = Release|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}.Release|x86.ActiveCfg = Release|Any CPU
 		{75168C98-0881-4F13-9E83-561428C4C4FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75168C98-0881-4F13-9E83-561428C4C4FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75168C98-0881-4F13-9E83-561428C4C4FC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

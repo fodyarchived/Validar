@@ -53,13 +53,13 @@
     <Compile Include="PersonValidator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssemblyWithValidationTemplate\AssemblyWithValidationTemplate.csproj">
-      <Project>{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}</Project>
-      <Name>AssemblyWithValidationTemplate</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ReferenceAssembly\ReferenceAssembly.csproj">
       <Project>{B5AEB0E8-28F4-4955-A055-9C200F7113F0}</Project>
       <Name>ReferenceAssembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplatesFluentValidation\TemplatesFluentValidation.csproj">
+      <Project>{75168C98-0881-4F13-9E83-561428C4C4FC}</Project>
+      <Name>TemplatesFluentValidation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
