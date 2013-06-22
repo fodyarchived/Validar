@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 
 [TestFixture]
-public class TemplateTests
+public class FluentTemplateTests
 {
 
     [Test]

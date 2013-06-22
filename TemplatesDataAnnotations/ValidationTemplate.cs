@@ -16,7 +16,7 @@
         {
             validationContext = GetValidator(target);
             validationResults = new List<ValidationResult>();
-            Validator.TryValidateObject(this, validationContext, validationResults, true);
+            Validator.TryValidateObject(target, validationContext, validationResults, true);
             target.PropertyChanged += Validate;
         }
         static ConcurrentDictionary<RuntimeTypeHandle, ValidationContext> validators = new ConcurrentDictionary<RuntimeTypeHandle, ValidationContext>();

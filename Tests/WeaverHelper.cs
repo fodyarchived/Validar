@@ -24,7 +24,9 @@ public static class WeaverHelper
             {
                 ReadSymbols = true,
                 SymbolStream = symbolStream,
-                SymbolReaderProvider = new PdbReaderProvider()
+                SymbolReaderProvider = new PdbReaderProvider(),
+                AssemblyResolver = assemblyResolver
+                    
             };
             var moduleDefinition = ModuleDefinition.ReadModule(newAssembly, readerParameters);
 

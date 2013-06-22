@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="Person.cs" />
     <Compile Include="PersonValidator.cs" />
-    <Compile Include="TemplateTests.cs" />
+    <Compile Include="DataAnnotationsTemplateTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplatesDataAnnotations\TemplatesDataAnnotations.csproj">

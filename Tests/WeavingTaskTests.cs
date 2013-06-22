@@ -11,6 +11,7 @@ public class WeavingTaskTests
 
     public WeavingTaskTests()
     {
+        AppDomainAssemblyFinder.Attach();
         beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll");
 #if (!DEBUG)
         beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");

@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppDomainAssemblyFinder.cs" />
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="MockAssemblyResolver.cs" />
     <Compile Include="WithTemplateInDifferentAssemblyTests.cs" />

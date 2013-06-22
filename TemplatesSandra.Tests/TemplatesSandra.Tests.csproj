@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="Person.cs" />
     <Compile Include="PersonValidator.cs" />
-    <Compile Include="TemplateTests.cs" />
+    <Compile Include="SandraTemplateTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Fody.targets" />

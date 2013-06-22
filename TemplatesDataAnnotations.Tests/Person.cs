@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 public class Person : IDataErrorInfo, INotifyPropertyChanged, INotifyDataErrorInfo
 {
     ValidationTemplate validationTemplate;
-    [Required]
+    [Required(ErrorMessage = "'Given Names' should not be empty.")]
     public string GivenNames;
-     [Required]
+     [Required(ErrorMessage = "'Family Name' should not be empty.")]
     public string FamilyName;
 
     public Person()
