@@ -19,6 +19,6 @@ public static class AppDomainAssemblyFinder
                 return assembly;
             }
         }
-        throw new Exception(args.Name);
+        return null;
     }
 }
