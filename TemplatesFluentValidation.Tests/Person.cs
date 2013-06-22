@@ -2,13 +2,13 @@
 using System.Collections;
 using System.ComponentModel;
 
-public class PersonTemplate : IDataErrorInfo, INotifyPropertyChanged, INotifyDataErrorInfo
+public class Person : IDataErrorInfo, INotifyPropertyChanged, INotifyDataErrorInfo
 {
     ValidationTemplate validationTemplate;
-    public string GivenNames { get; set; }
-    public string FamilyName { get; set; }
+    public string GivenNames;
+    public string FamilyName;
 
-    public PersonTemplate()
+    public Person()
     {
         validationTemplate = new ValidationTemplate(this);
     }
@@ -20,7 +20,7 @@ public class PersonTemplate : IDataErrorInfo, INotifyPropertyChanged, INotifyDat
         get { return validationTemplate[columnName]; }
     }
 
-    string IDataErrorInfo.Error
+    public string Error
     {
         get { return validationTemplate.Error; }
     }

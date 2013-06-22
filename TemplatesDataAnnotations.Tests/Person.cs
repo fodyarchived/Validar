@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-public class PersonTemplate : IDataErrorInfo, INotifyPropertyChanged, INotifyDataErrorInfo
+public class Person : IDataErrorInfo, INotifyPropertyChanged, INotifyDataErrorInfo
 {
     ValidationTemplate validationTemplate;
-    public string GivenNames { get; set; }
-    public string FamilyName { get; set; }
+    [Required]
+    public string GivenNames;
+     [Required]
+    public string FamilyName;
 
-    public PersonTemplate()
+    public Person()
     {
         validationTemplate = new ValidationTemplate(this);
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    string IDataErrorInfo.this[string columnName]
+    public string this[string columnName]
     {
         get { return validationTemplate[columnName]; }
     }
 
-    string IDataErrorInfo.Error
+    public string Error
     {
         get { return validationTemplate.Error; }
     }

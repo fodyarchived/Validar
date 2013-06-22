@@ -1,52 +1,51 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using FluentValidation;
-using FluentValidation.Results;
 
 
 public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
 {
-    INotifyPropertyChanged target;
-    IValidator validator;
-    ValidationResult validationResult;
+    ValidationContext validationContext;
+    List<ValidationResult> validationResults;
 
     public ValidationTemplate(INotifyPropertyChanged target)
     {
-        this.target = target;
-        validator = ValidationFactory.GetValidator(target.GetType());
-        validationResult = validator.Validate(target);
+        validationContext = ValidationFactory.GetValidator(target);
+        validationResults = new List<ValidationResult>();
+        Validator.TryValidateObject(this, validationContext, validationResults, true);
         target.PropertyChanged += Validate;
     }
 
     void Validate(object sender, PropertyChangedEventArgs e)
     {
-
-        validationResult = validator.Validate(target);
-        foreach (var error in validationResult.Errors)
+        validationResults.Clear();
+        Validator.TryValidateObject(this, validationContext, validationResults, true);
+        var hashSet = new HashSet<string>(validationResults.SelectMany(x => x.MemberNames));
+        foreach (var error in hashSet)
         {
-            RaiseErrorsChanged(error.PropertyName);
+            RaiseErrorsChanged(error);
         }
     }
 
     public IEnumerable GetErrors(string propertyName)
     {
-        return validationResult.Errors
-                               .Where(x => x.PropertyName == propertyName)
+        return validationResults.Where(x => x.MemberNames.Contains(propertyName))
                                .Select(x => x.ErrorMessage);
     }
 
     public bool HasErrors
     {
-        get { return validationResult.Errors.Count > 0; }
+        get { return validationResults.Count > 0; }
     }
 
     public string Error
     {
         get
         {
-            var strings = validationResult.Errors.Select(x => x.ErrorMessage)
+            var strings = validationResults.Select(x => x.ErrorMessage)
                                           .ToArray();
             return string.Join(Environment.NewLine, strings);
         }
@@ -56,7 +55,7 @@ public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
     {
         get
         {
-            var strings = validationResult.Errors.Where(x => x.PropertyName == propertyName)
+            var strings = validationResults.Where(x => x.MemberNames.Contains(propertyName))
                                           .Select(x => x.ErrorMessage)
                                           .ToArray();
             return string.Join(Environment.NewLine, strings);

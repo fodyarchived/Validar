@@ -12,7 +12,7 @@ public static class ValidationFactory
         if (!validators.TryGetValue(modelType.TypeHandle, out validator))
         {
             var typeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
-            var type = Type.GetType(typeName, true);
+            var type = modelType.Assembly.GetType(typeName, true);
             validators[modelType.TypeHandle] = validator = (IValidator)Activator.CreateInstance(type);
         }
 

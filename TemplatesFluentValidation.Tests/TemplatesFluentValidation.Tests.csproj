@@ -1,16 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <BaseIntermediateOutputPath>obj\DotNet</BaseIntermediateOutputPath>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7DEC4E2D-F872-434E-A267-0BAD65299950}</ProjectGuid>
+    <ProjectGuid>{82816EC8-DEF6-4937-B472-B5268CED5022}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AssemblyToProcess</RootNamespace>
-    <AssemblyName>AssemblyToProcess</AssemblyName>
+    <RootNamespace>TemplatesFluentValidation.Tests</RootNamespace>
+    <AssemblyName>TemplatesFluentValidation.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FodyPath>..\packages\Fody.1.13.8.0</FodyPath>
@@ -22,8 +20,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>3</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,14 +29,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Fody.targets" />
-    <None Include="packages.config" />
-    <Reference Include="FluentValidation, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="FluentValidation">
       <HintPath>..\packages\FluentValidation.4.0.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.38.7.0\Lib\NET35\PropertyChanged.dll</HintPath>
@@ -47,26 +43,35 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <None Include="FodyWeavers.xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersonWithImplementation.cs" />
-    <Compile Include="PersonTemplate.cs" />
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fody.targets" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Person.cs" />
-    <Compile Include="ValidationTemplate.cs" />
     <Compile Include="PersonValidator.cs" />
-    <Compile Include="PersonWithImplementationValidator.cs" />
-    <Compile Include="PersonWithStaticConstructor.cs" />
-    <Compile Include="PersonWithStaticConstructorValidator.cs" />
-    <Compile Include="ValidationFactory.cs" />
+    <Compile Include="TemplateTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReferenceAssembly\ReferenceAssembly.csproj">
-      <Project>{B5AEB0E8-28F4-4955-A055-9C200F7113F0}</Project>
-      <Name>ReferenceAssembly</Name>
+    <ProjectReference Include="..\TemplatesFluentValidation\TemplatesFluentValidation.csproj">
+      <Project>{75168C98-0881-4F13-9E83-561428C4C4FC}</Project>
+      <Name>TemplatesFluentValidation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tests\Tests.csproj">
+      <Project>{5A86453B-96FB-4B6E-A283-225BB9F753D3}</Project>
+      <Name>Tests</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(ProjectPath)\..\..\Tools\Pepita\PepitaGet.targets" />
   <Import Project="Fody.targets" />
+  <Import Project="$(SolutionDir)Tools\Pepita\PepitaGet.targets" />
 </Project>

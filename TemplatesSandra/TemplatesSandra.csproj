@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B18818A1-6442-46CB-B97A-33DB9E463287}</ProjectGuid>
+    <ProjectGuid>{A5F0084B-313F-46AA-B3AF-87019CCEB1EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AssemblyWithNoValidationTemplate</RootNamespace>
-    <AssemblyName>AssemblyWithNoValidationTemplate</AssemblyName>
+    <RootNamespace>TemplatesSandra</RootNamespace>
+    <AssemblyName>TemplatesSandra</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <FodyPath>..\packages\Fody.1.13.8.0</FodyPath>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,14 +30,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentValidation">
-      <HintPath>..\packages\FluentValidation.4.0.0.0\lib\Net40\FluentValidation.dll</HintPath>
-    </Reference>
-    <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.38.7.0\Lib\NET35\PropertyChanged.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sandra.SimpleValidator">
+      <HintPath>..\packages\Sandra.SimpleValidator.0.7.0\lib\net40\Sandra.SimpleValidator.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,28 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="PersonTemplate.cs" />
-    <Compile Include="PersonValidator.cs" />
+    <Compile Include="ValidationFactory.cs" />
+    <Compile Include="ValidationTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssemblyWithValidationTemplate\AssemblyWithValidationTemplate.csproj">
-      <Project>{D7B2DA50-572F-43C0-AD95-33ECD4AEB8D3}</Project>
-      <Name>AssemblyWithValidationTemplate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ReferenceAssembly\ReferenceAssembly.csproj">
-      <Project>{B5AEB0E8-28F4-4955-A055-9C200F7113F0}</Project>
-      <Name>ReferenceAssembly</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Fody.targets" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="Fody.targets" />
+  <Import Project="$(SolutionDir)Tools\Pepita\PepitaGet.targets" />
 </Project>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
-using DataErrorInfo;
 using Validar;
 
 [InjectValidation]
@@ -67,7 +66,7 @@ public class PersonWithImplementation : INotifyPropertyChanged, IDataErrorInfo, 
         }
     }
 
-    public virtual void OnPropertyChanged(string propertyName)
+    void OnPropertyChanged(string propertyName)
     {
         var propertyChanged = PropertyChanged;
         if (propertyChanged != null)
