@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-public class PersonValidator : AbstractValidator<Person>
-{
-    public PersonValidator()
+    public class PersonValidator : AbstractValidator<Person>
     {
-        RuleFor(x => x.FamilyName).NotEmpty();
-        RuleFor(x => x.GivenNames).NotEmpty();
+        public PersonValidator()
+        {
+            RuleFor(x => x.FamilyName).NotEmpty();
+            RuleFor(x => x.GivenNames).NotEmpty();
+        }
     }
-}
