@@ -102,6 +102,10 @@
       <Project>{b5aeb0e8-28f4-4955-a055-9c200f7113f0}</Project>
       <Name>ReferenceAssembly</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TemplatesFluentValidation\TemplatesFluentValidation.csproj">
+      <Project>{75168c98-0881-4f13-9e83-561428c4c4fc}</Project>
+      <Name>TemplatesFluentValidation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

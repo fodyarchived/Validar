@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using TemplatesFluentValidation;
 
 public class PersonTemplate : IDataErrorInfo, INotifyPropertyChanged, INotifyDataErrorInfo
 {

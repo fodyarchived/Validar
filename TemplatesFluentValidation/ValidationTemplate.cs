@@ -6,7 +6,8 @@
     using FluentValidation;
     using FluentValidation.Results;
 
-
+namespace TemplatesFluentValidation
+{
     public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
     {
         INotifyPropertyChanged target;
@@ -29,7 +30,7 @@
             {
                 var typeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
                 var type = modelType.Assembly.GetType(typeName, true);
-                validators[modelType.TypeHandle] = validator = (IValidator)Activator.CreateInstance(type);
+                validators[modelType.TypeHandle] = validator = (IValidator) Activator.CreateInstance(type);
             }
 
             return validator;
@@ -88,3 +89,4 @@
             }
         }
     }
+}
