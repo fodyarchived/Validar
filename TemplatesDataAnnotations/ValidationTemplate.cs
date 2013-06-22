@@ -9,11 +9,13 @@
 
     public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
     {
+        INotifyPropertyChanged target;
         ValidationContext validationContext;
         List<ValidationResult> validationResults;
 
         public ValidationTemplate(INotifyPropertyChanged target)
         {
+            this.target = target;
             validationContext = GetValidator(target);
             validationResults = new List<ValidationResult>();
             Validator.TryValidateObject(target, validationContext, validationResults, true);
@@ -36,7 +38,7 @@
         void Validate(object sender, PropertyChangedEventArgs e)
         {
             validationResults.Clear();
-            Validator.TryValidateObject(this, validationContext, validationResults, true);
+            Validator.TryValidateObject(target, validationContext, validationResults, true);
             var hashSet = new HashSet<string>(validationResults.SelectMany(x => x.MemberNames));
             foreach (var error in hashSet)
             {

@@ -8,6 +8,7 @@ public static class AssemblyExtensions
     {
         var type = assembly.GetType(className, true);
         //dynamic instance = FormatterServices.GetUninitializedObject(type);
+        
         return Activator.CreateInstance(type);
     }
 }
