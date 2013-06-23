@@ -3,15 +3,15 @@ using System.Reflection;
 using NUnit.Framework;
 
 [TestFixture]
-public class GenericTests 
+public class NonGenericExternalTests
 {
     string afterAssemblyPath;
     Assembly assembly;
 
-    public GenericTests()
+    public NonGenericExternalTests()
     {
         AppDomainAssemblyFinder.Attach();
-        var beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyToProcessWithGenericTemplate\bin\Debug\AssemblyToProcessWithGenericTemplate.dll");
+        var beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyToProcessWithExternal\bin\Debug\AssemblyToProcessWithExternal.dll");
 #if (!DEBUG)
         beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
 #endif

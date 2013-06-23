@@ -75,7 +75,7 @@ public partial class ModuleWeaver
                                                       {
                                                           ValidationTemplateFinder = templateFinder,
                                                           TargetType = typeDefinition,
-                                                          TypeSystem = ModuleDefinition.TypeSystem
+                                                          ModuleDefinition = ModuleDefinition
                                                       };
          templateFieldInjector.AddField();
 

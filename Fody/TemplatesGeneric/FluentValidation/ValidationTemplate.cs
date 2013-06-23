@@ -1,44 +1,31 @@
 using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Linq;
 using FluentValidation;
 using FluentValidation.Results;
 using Scalpel;
 
-namespace Templates.FluentValidation
+namespace TemplatesGeneric.FluentValidation
 {
     [Remove]
-    public class ValidationTemplate : 
+    public class ValidationTemplate<T> : 
         IDataErrorInfo, 
         INotifyDataErrorInfo
+            where T : INotifyPropertyChanged
     {
         INotifyPropertyChanged target;
         IValidator validator;
-        ValidationResult validationResult;
-        static ConcurrentDictionary<RuntimeTypeHandle, IValidator> validators = new ConcurrentDictionary<RuntimeTypeHandle, IValidator>();
+        ValidationResult validationResult; 
 
-        public ValidationTemplate(INotifyPropertyChanged target)
+        public ValidationTemplate(T target)
         {
             this.target = target;
-            validator = GetValidator(target.GetType());
+            validator = ValidationFactory.GetValidator<T>();
             validationResult = validator.Validate(target);
             target.PropertyChanged += Validate;
         }
 
-        static IValidator GetValidator(Type modelType)
-        {
-            IValidator validator;
-            if (!validators.TryGetValue(modelType.TypeHandle, out validator))
-            {
-                var typeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
-                var type = modelType.Assembly.GetType(typeName, true);
-                validators[modelType.TypeHandle] = validator = (IValidator) Activator.CreateInstance(type);
-            }
-
-            return validator;
-        }
 
         void Validate(object sender, PropertyChangedEventArgs e)
         {

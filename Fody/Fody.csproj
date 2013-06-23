@@ -8,7 +8,8 @@
     <ProjectGuid>{C3578A7B-09A6-4444-9383-0DEAFA4958BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Validar.Fody</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>Validar.Fody</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -90,13 +91,28 @@
     <Compile Include="AppDomainAssemblyFinder.cs" />
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="CecilExtensions.cs" />
+    <Compile Include="Copy of NonGenericExternalTests.cs" />
+    <Compile Include="NonGenericExternalTests.cs" />
+    <Compile Include="TemplatesGeneric\DataAnnotations\DataAnnotationsTemplateTests.cs" />
+    <Compile Include="TemplatesGeneric\DataAnnotations\Model.cs" />
+    <Compile Include="TemplatesGeneric\DataAnnotations\ValidationTemplate.cs" />
+    <Compile Include="TemplatesGeneric\FluentValidation\ValidationFactory.cs" />
+    <Compile Include="TemplatesGeneric\FluentValidation\FluentTemplateTests.cs" />
+    <Compile Include="TemplatesGeneric\FluentValidation\Model.cs" />
+    <Compile Include="TemplatesGeneric\FluentValidation\ModelValidator.cs" />
+    <Compile Include="TemplatesGeneric\FluentValidation\ValidationTemplate.cs" />
+    <Compile Include="TemplatesGeneric\Sandra\Model.cs" />
+    <Compile Include="TemplatesGeneric\Sandra\ModelValidator.cs" />
+    <Compile Include="TemplatesGeneric\Sandra\SandraTemplateTests.cs" />
+    <Compile Include="TemplatesGeneric\Sandra\ValidationFactory.cs" />
+    <Compile Include="TemplatesGeneric\Sandra\ValidationTemplate.cs" />
     <Compile Include="GenericTests.cs" />
     <Compile Include="ImplementsInterface.cs" />
     <Compile Include="Injectors\DataErrorInfoInjector.cs" />
     <Compile Include="MockAssemblyResolver.cs" />
     <Compile Include="ReferenceCleaner.cs" />
     <Compile Include="ReturnFixer.cs" />
-    <Compile Include="Injectors\TemplateFieldInjector.cs" />
+    <Compile Include="TemplateFieldInjector.cs" />
     <Compile Include="InstructionListExtensions.cs" />
     <Compile Include="ModuleWeaver.cs" />
     <Compile Include="..\CommonAssemblyInfo.cs" />
@@ -106,13 +122,13 @@
     <Compile Include="Templates\DataAnnotations\DataAnnotationsTemplateTests.cs" />
     <Compile Include="Templates\DataAnnotations\Model.cs" />
     <Compile Include="Templates\DataAnnotations\ValidationTemplate.cs" />
-    <Compile Include="Templates\FluentValidation\FluentTemplateTests.cs" />
+    <Compile Include="Templates\FluentValidation\TemplateTests.cs" />
     <Compile Include="Templates\FluentValidation\Model.cs" />
     <Compile Include="Templates\FluentValidation\ModelValidator.cs" />
     <Compile Include="Templates\FluentValidation\ValidationTemplate.cs" />
     <Compile Include="Templates\Sandra\Model.cs" />
     <Compile Include="Templates\Sandra\ModelValidator.cs" />
-    <Compile Include="Templates\Sandra\SandraTemplateTests.cs" />
+    <Compile Include="Templates\Sandra\TemplateTests.cs" />
     <Compile Include="Templates\Sandra\ValidationTemplate.cs" />
     <Compile Include="ValidationTemplateFinder.cs" />
     <Compile Include="ValidationTester.cs" />

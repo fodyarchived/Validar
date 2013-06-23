@@ -1,12 +1,12 @@
-    using System;
-    using System.Collections;
-    using System.Collections.Concurrent;
-    using System.ComponentModel;
-    using System.Linq;
-    using Sandra.SimpleValidator;
-    using Scalpel;
+using System;
+using System.Collections;
+using System.Collections.Concurrent;
+using System.ComponentModel;
+using System.Linq;
+using Sandra.SimpleValidator;
+using Scalpel;
 
-namespace Sandra
+namespace Templates.Sandra
 {
 
     [Remove]

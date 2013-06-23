@@ -6,12 +6,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Scalpel;
 
-namespace Templates.DataAnnotations
+namespace TemplatesGeneric.DataAnnotations
 {
     [Remove]
-    public class ValidationTemplate :
+    public class ValidationTemplate<T> :
         IDataErrorInfo, 
         INotifyDataErrorInfo
+        where T: INotifyPropertyChanged
     {
         INotifyPropertyChanged target;
         ValidationContext validationContext;

@@ -8,7 +8,7 @@ public class TemplateFieldInjector
     public ValidationTemplateFinder ValidationTemplateFinder;
     public FieldDefinition ValidationTemplateField;
     public TypeDefinition TargetType;
-    public TypeSystem TypeSystem;
+    public ModuleDefinition ModuleDefinition;
 
     public void AddField()
     {
@@ -44,7 +44,7 @@ public class TemplateFieldInjector
         if (ValidationTemplateFinder.TypeReference.HasGenericParameters)
         {
             var makeGenericInstanceType = ValidationTemplateFinder.TypeDefinition.MakeGenericInstanceType(TargetType);
-            var reference = new MethodReference(".ctor",TypeSystem.Void, makeGenericInstanceType)
+            var reference = new MethodReference(".ctor", ModuleDefinition.TypeSystem.Void, makeGenericInstanceType)
                             {
                                 HasThis = true,
                             };
@@ -54,7 +54,7 @@ public class TemplateFieldInjector
                 reference.Parameters.Add(new ParameterDefinition(parameter.ParameterType));
             }
 
-            templateConstructor = reference;
+            templateConstructor = ModuleDefinition.Import(reference);
         }
         else
         {

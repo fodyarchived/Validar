@@ -3,7 +3,7 @@ using System.Collections;
 using System.ComponentModel;
 using Scalpel;
 
-namespace Sandra
+namespace Templates.Sandra
 {
     [Remove]
     public class Model : 

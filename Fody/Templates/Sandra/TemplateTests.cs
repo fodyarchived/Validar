@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Templates.DataAnnotations
+namespace Templates.Sandra
 {
     [TestFixture]
     public class TemplateTests

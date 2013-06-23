@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using Scalpel;
 
-namespace Templates.DataAnnotations
+namespace TemplatesGeneric.Sandra
 {
     [Remove]
     public class Model : 
@@ -12,13 +11,13 @@ namespace Templates.DataAnnotations
         INotifyPropertyChanged, 
         INotifyDataErrorInfo
     {
-        ValidationTemplate validationTemplate;
-        [Required(ErrorMessage = "'Property1' message.")] public string Property1;
-        [Required(ErrorMessage = "'Property2' message.")] public string Property2;
+        ValidationTemplate<Model> validationTemplate;
+        public string Property1;
+        public string Property2;
 
         public Model()
         {
-            validationTemplate = new ValidationTemplate(this);
+            validationTemplate = new ValidationTemplate<Model>(this);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

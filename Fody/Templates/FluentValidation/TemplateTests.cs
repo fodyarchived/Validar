@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Templates.DataAnnotations
+namespace Templates.FluentValidation
 {
     [TestFixture]
     public class TemplateTests

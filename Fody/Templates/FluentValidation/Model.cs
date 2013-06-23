@@ -3,7 +3,7 @@ using System.Collections;
 using System.ComponentModel;
 using Scalpel;
 
-namespace Fluent
+namespace Templates.FluentValidation
 {
     [Remove]
     public class Model : 

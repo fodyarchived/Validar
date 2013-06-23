@@ -2,7 +2,7 @@
 using Sandra.SimpleValidator.Rules;
 using Scalpel;
 
-namespace Templates.Sandra
+namespace TemplatesGeneric.Sandra
 {
     [Remove]
     public class ModelValidator : 

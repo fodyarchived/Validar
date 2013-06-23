@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Scalpel;
 
-namespace Templates.DataAnnotations
+namespace TemplatesGeneric.DataAnnotations
 {
     [Remove]
     public class Model : 
@@ -12,13 +12,13 @@ namespace Templates.DataAnnotations
         INotifyPropertyChanged, 
         INotifyDataErrorInfo
     {
-        ValidationTemplate validationTemplate;
+        ValidationTemplate<Model> validationTemplate;
         [Required(ErrorMessage = "'Property1' message.")] public string Property1;
         [Required(ErrorMessage = "'Property2' message.")] public string Property2;
 
         public Model()
         {
-            validationTemplate = new ValidationTemplate(this);
+            validationTemplate = new ValidationTemplate<Model>(this);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

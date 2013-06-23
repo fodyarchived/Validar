@@ -42,6 +42,7 @@ public class ValidationTemplateFinder
             TypeDefinition = typeReference.Resolve();
 
             FindConstructor();
+            TemplateConstructor = ModuleDefinition.Import(TemplateConstructor);
         }
 
     }

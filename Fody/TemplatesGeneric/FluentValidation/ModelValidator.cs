@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Scalpel;
 
-namespace Templates.FluentValidation
+namespace TemplatesGeneric.FluentValidation
 {
     [Remove]
     public class ModelValidator : 
