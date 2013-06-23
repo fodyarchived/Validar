@@ -67,11 +67,15 @@ public partial class ModuleWeaver
         {
             return;
         }
-
+        if (typeDefinition.HasGenericParameters)
+        {
+            throw new WeavingException(string.Format("Failed to process '{0}'. Generic models are not supported. Feel free to send a pull request.", typeDefinition.FullName));
+        }
         var templateFieldInjector = new TemplateFieldInjector
                                                       {
                                                           ValidationTemplateFinder = templateFinder,
-                                                          TargetType = typeDefinition
+                                                          TargetType = typeDefinition,
+                                                          TypeSystem = ModuleDefinition.TypeSystem
                                                       };
          templateFieldInjector.AddField();
 
