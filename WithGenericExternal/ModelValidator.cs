@@ -2,9 +2,9 @@ using FluentValidation;
 
 namespace WithGenericExternal
 {
-    public class ModelValidator : AbstractValidator<MyModel>
+    public class MyModelValidator : AbstractValidator<MyModel>
     {
-        public ModelValidator()
+        public MyModelValidator()
         {
             RuleFor(x => x.Property1)
                 .NotEmpty()
