@@ -2,8 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody", "Fody\Fody.csproj", "{C3578A7B-09A6-4444-9383-0DEAFA4958BD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7DEC4E2D-F872-434E-A267-0BAD65299950} = {7DEC4E2D-F872-434E-A267-0BAD65299950}
+		{3256D062-E246-4B58-89CE-3809C6398C99} = {3256D062-E246-4B58-89CE-3809C6398C99}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyToProcessDotNet4", "AssemblyToProcess\AssemblyToProcessDotNet4.csproj", "{7DEC4E2D-F872-434E-A267-0BAD65299950}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyToProcess", "AssemblyToProcess\AssemblyToProcess.csproj", "{7DEC4E2D-F872-434E-A267-0BAD65299950}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuget", "NuGet\Nuget.csproj", "{63786CE5-D899-43DF-AD4E-C2CA3BAC3FC2}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -11,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuget", "NuGet\Nuget.csproj
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceAssembly", "ReferenceAssembly\ReferenceAssembly.csproj", "{B5AEB0E8-28F4-4955-A055-9C200F7113F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyToProcessWithGenericTemplate", "AssemblyToProcessWithGenericTemplate\AssemblyToProcessWithGenericTemplate.csproj", "{3256D062-E246-4B58-89CE-3809C6398C99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +91,21 @@ Global
 		{B5AEB0E8-28F4-4955-A055-9C200F7113F0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B5AEB0E8-28F4-4955-A055-9C200F7113F0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B5AEB0E8-28F4-4955-A055-9C200F7113F0}.Release|x86.ActiveCfg = Release|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Deployable|Any CPU.ActiveCfg = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Deployable|Any CPU.Build.0 = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Deployable|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Deployable|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Deployable|x86.ActiveCfg = Debug|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3256D062-E246-4B58-89CE-3809C6398C99}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

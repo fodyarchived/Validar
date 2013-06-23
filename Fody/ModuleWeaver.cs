@@ -7,7 +7,6 @@ public partial class ModuleWeaver
     NotifyDataErrorInfoFinder notifyDataErrorInfoFinder;
     DataErrorInfoFinder dataErrorInfoFinder;
     ValidationTemplateFinder templateFinder;
-    TemplateFieldInjector templateFieldInjector;
     public Action<string> LogInfo { get; set; }
     public ModuleDefinition ModuleDefinition { get; set; }
     public IAssemblyResolver AssemblyResolver { get; set; }
@@ -27,10 +26,6 @@ public partial class ModuleWeaver
                              };
         templateFinder.Execute();
 
-         templateFieldInjector = new TemplateFieldInjector
-                                 {
-                                     ValidationTemplateFinder = templateFinder
-                                 };
 
         dataErrorInfoFinder = new DataErrorInfoFinder
                                   {
@@ -73,7 +68,12 @@ public partial class ModuleWeaver
             return;
         }
 
-        var validationTemplateField = templateFieldInjector.AddField(typeDefinition);
+        var templateFieldInjector = new TemplateFieldInjector
+                                                      {
+                                                          ValidationTemplateFinder = templateFinder,
+                                                          TargetType = typeDefinition
+                                                      };
+         templateFieldInjector.AddField();
 
         if (dataErrorInfoFinder.Found)
         {
@@ -83,7 +83,7 @@ public partial class ModuleWeaver
                 TypeSystem = ModuleDefinition.TypeSystem,
                 DataErrorInfoFinder = dataErrorInfoFinder,
                 ModuleWeaver = this,
-                ValidationTemplateField = validationTemplateField
+                ValidationTemplateField = templateFieldInjector.ValidationTemplateField
             };
             injector.Execute();
         }
@@ -96,7 +96,7 @@ public partial class ModuleWeaver
                 NotifyDataErrorInfoFinder = notifyDataErrorInfoFinder,
                 TypeSystem= ModuleDefinition.TypeSystem,
                 ModuleWeaver = this,
-                ValidationTemplateField = validationTemplateField
+                ValidationTemplateField = templateFieldInjector.ValidationTemplateField
             };
             injector.Execute();
         }

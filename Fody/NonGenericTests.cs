@@ -3,13 +3,13 @@ using System.Reflection;
 using NUnit.Framework;
 
 [TestFixture]
-public class WeavingTaskTests 
+public class NonGenericTests
 {
     string beforeAssemblyPath;
     string afterAssemblyPath;
     Assembly assembly;
 
-    public WeavingTaskTests()
+    public NonGenericTests()
     {
         AppDomainAssemblyFinder.Attach();
         beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll");

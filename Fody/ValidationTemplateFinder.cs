@@ -21,7 +21,11 @@ public class ValidationTemplateFinder
         {
             LogInfo("Could not find a 'ValidationTemplateAttribute' on the current assembly. Going to search current assembly for 'ValidationTemplate'.");
 
-            TypeDefinition = ModuleDefinition.GetTypes().FirstOrDefault(x => x.Name == "ValidationTemplate");
+            TypeDefinition = ModuleDefinition
+                .GetTypes()
+                .FirstOrDefault(x => 
+                    x.Name == "ValidationTemplate" ||
+                    x.Name == "ValidationTemplate`1");
             if (TypeDefinition == null)
             {
                 throw new WeavingException("Could not find a type named 'ValidationTemplate'");
@@ -38,7 +42,6 @@ public class ValidationTemplateFinder
             TypeDefinition = typeReference.Resolve();
 
             FindConstructor();
-            TemplateConstructor = ModuleDefinition.Import(TemplateConstructor);
         }
 
     }
@@ -50,7 +53,7 @@ public class ValidationTemplateFinder
             .FirstOrDefault(x =>
                 x.IsConstructor &&
                 x.Parameters.Count == 1 &&
-                x.Parameters.First().ParameterType.Name == "INotifyPropertyChanged");
+                x.Parameters.First().ParameterType.ImplementsINotify());
         if (TemplateConstructor == null)
         {
             throw new WeavingException("Found 'ValidationTemplate' but it did not have a constructor that takes 'INotifyPropertyChanged' as a parameter");

@@ -6,41 +6,57 @@ using Mono.Cecil.Rocks;
 public class TemplateFieldInjector
 {
     public ValidationTemplateFinder ValidationTemplateFinder;
+    public FieldDefinition ValidationTemplateField;
+    public TypeDefinition TargetType;
 
-    public FieldDefinition AddField(TypeDefinition targetType)
+    public void AddField()
     {
-        var fieldDefinition = targetType.Fields.FirstOrDefault(x => x.Name == "validationTemplate");
-        if (fieldDefinition != null)
+        ValidationTemplateField = TargetType.Fields.FirstOrDefault(x => x.Name == "validationTemplate");
+        var fieldType = ValidationTemplateFinder.TypeReference;
+        if (fieldType.HasGenericParameters)
         {
-            fieldDefinition.ValidateIsOfType(ValidationTemplateFinder.TypeReference);
-            return fieldDefinition;
+            var genericInstanceType = new GenericInstanceType(fieldType);
+            genericInstanceType.GenericArguments.Add(TargetType);
+            fieldType = genericInstanceType;
         }
-        fieldDefinition = new FieldDefinition("validationTemplate", FieldAttributes.Private, ValidationTemplateFinder.TypeReference);
-        targetType.Fields.Add(fieldDefinition);
-
-        AddConstructor(fieldDefinition, targetType);
-
-        return fieldDefinition;
+        if (ValidationTemplateField != null)
+        {
+            ValidationTemplateField.ValidateIsOfType(fieldType);
+            return;
+        }
+        ValidationTemplateField = new FieldDefinition("validationTemplate", FieldAttributes.Private, fieldType);
+        TargetType.Fields.Add(ValidationTemplateField);
+        AddConstructor();
     }
 
-    void AddConstructor(FieldReference fieldDefinition, TypeDefinition targetType)
+    void AddConstructor()
     {
-        foreach (var constructor in targetType.GetConstructors().Where(c => !c.IsStatic))
+        foreach (var constructor in TargetType.GetConstructors().Where(c => !c.IsStatic))
         {
-            ProcessConstructor(fieldDefinition, constructor);
+            ProcessConstructor(constructor);
         }
     }
 
-    public void ProcessConstructor(FieldReference fieldDefinition, MethodDefinition constructor)
+    public void ProcessConstructor(MethodDefinition targetConstructor)
     {
-        var body = constructor.Body;
+        MethodReference templateConstructor;
+        if (ValidationTemplateFinder.TypeReference.HasGenericParameters)
+        {
+             templateConstructor = ValidationTemplateFinder.TemplateConstructor.MakeGenericInstanceMethod(TargetType);
+        }
+        else
+        {
+            templateConstructor = ValidationTemplateFinder.TemplateConstructor;
+        }
+
+        var body = targetConstructor.Body;
         body.SimplifyMacros();
         body.MakeLastStatementReturn();
         body.Instructions.BeforeLast(
             Instruction.Create(OpCodes.Ldarg_0),
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Newobj, ValidationTemplateFinder.TemplateConstructor),
-            Instruction.Create(OpCodes.Stfld, fieldDefinition)
+            Instruction.Create(OpCodes.Newobj, templateConstructor),
+            Instruction.Create(OpCodes.Stfld, ValidationTemplateField)
             );
         body.OptimizeMacros();
     }
