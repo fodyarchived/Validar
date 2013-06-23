@@ -282,36 +282,27 @@ Note that Sandra.SimpleValidator extracts the model validation into a different 
 ### DataAnnotations
 
 
-    public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
+    public class ValidationTemplate :
+        IDataErrorInfo, 
+        INotifyDataErrorInfo
     {
+        INotifyPropertyChanged target;
         ValidationContext validationContext;
         List<ValidationResult> validationResults;
 
         public ValidationTemplate(INotifyPropertyChanged target)
         {
-            validationContext = GetValidator(target);
+            this.target = target;
+            validationContext = new ValidationContext(target, null, null);
             validationResults = new List<ValidationResult>();
-            Validator.TryValidateObject(this, validationContext, validationResults, true);
+            Validator.TryValidateObject(target, validationContext, validationResults, true);
             target.PropertyChanged += Validate;
-        }
-        static ConcurrentDictionary<RuntimeTypeHandle, ValidationContext> validators = new ConcurrentDictionary<RuntimeTypeHandle, ValidationContext>();
-
-        static ValidationContext GetValidator(object model)
-        {
-            ValidationContext validator;
-            var typeHandle = model.GetType().TypeHandle;
-            if (!validators.TryGetValue(typeHandle, out validator))
-            {
-                validators[typeHandle] = validator = new ValidationContext(model, null, null);
-            }
-
-            return validator;
         }
 
         void Validate(object sender, PropertyChangedEventArgs e)
         {
             validationResults.Clear();
-            Validator.TryValidateObject(this, validationContext, validationResults, true);
+            Validator.TryValidateObject(target, validationContext, validationResults, true);
             var hashSet = new HashSet<string>(validationResults.SelectMany(x => x.MemberNames));
             foreach (var error in hashSet)
             {
@@ -322,7 +313,7 @@ Note that Sandra.SimpleValidator extracts the model validation into a different 
         public IEnumerable GetErrors(string propertyName)
         {
             return validationResults.Where(x => x.MemberNames.Contains(propertyName))
-                                   .Select(x => x.ErrorMessage);
+                                    .Select(x => x.ErrorMessage);
         }
 
         public bool HasErrors
@@ -335,7 +326,7 @@ Note that Sandra.SimpleValidator extracts the model validation into a different 
             get
             {
                 var strings = validationResults.Select(x => x.ErrorMessage)
-                                              .ToArray();
+                                               .ToArray();
                 return string.Join(Environment.NewLine, strings);
             }
         }
@@ -345,8 +336,8 @@ Note that Sandra.SimpleValidator extracts the model validation into a different 
             get
             {
                 var strings = validationResults.Where(x => x.MemberNames.Contains(propertyName))
-                                              .Select(x => x.ErrorMessage)
-                                              .ToArray();
+                                               .Select(x => x.ErrorMessage)
+                                               .ToArray();
                 return string.Join(Environment.NewLine, strings);
             }
         }
