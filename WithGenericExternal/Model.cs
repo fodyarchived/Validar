@@ -4,7 +4,7 @@ using Validar;
 namespace WithGenericExternal
 {
     [InjectValidation]
-    public class Model : INotifyPropertyChanged
+    public class MyModel : INotifyPropertyChanged
     {
 
         public string Property1;
