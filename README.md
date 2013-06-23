@@ -82,7 +82,7 @@ If `ValidationTemplate`  exist in a different assembly You will need to use a `[
 
 You can implement `ValidationTemplate` in any way you want. Here are some suggested implementations that will allow you to leverage common validation libraries. (is you seen any bugs/improvements let me know :) ) 
 
-### FluentValidation
+### [FluentValidation](https://github.com/JeremySkinner/FluentValidation)
 
     Install-Package FluentValidation
 
@@ -178,7 +178,7 @@ Note that FluentValidation extracts the model validation into a different class
         }
     }
 
-### Sandra.SimpleValidator
+### [Sandra.SimpleValidator](https://github.com/phillip-haydon/Sandra.SimpleValidator)
 
     Install-Package Sandra.SimpleValidator
 
@@ -280,8 +280,7 @@ Note that Sandra.SimpleValidator extracts the model validation into a different 
     
 
 
-### DataAnnotations
-
+### [DataAnnotations](http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx)
 
     public class ValidationTemplate :
         IDataErrorInfo, 
