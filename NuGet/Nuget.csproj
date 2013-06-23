@@ -43,11 +43,11 @@
   </Target>
   <ItemGroup>
     <ProjectReference Include="..\Fody\Fody.csproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <Name>Fody</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReferenceAssembly\ReferenceAssembly.csproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <Name>ReferenceAssembly</Name>
     </ProjectReference>
   </ItemGroup>
