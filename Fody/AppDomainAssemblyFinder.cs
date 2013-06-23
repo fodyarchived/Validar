@@ -5,10 +5,14 @@ using Scalpel;
 [Remove]
 public static class AppDomainAssemblyFinder
 {
-
+    static bool attached;
     public static void Attach()
     {
-      //  AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+        if (!attached)
+        {
+            attached = true;
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+        }
     }
 
     static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
