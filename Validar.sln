@@ -146,7 +146,6 @@ Global
 		{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}.Deployable|Any CPU.ActiveCfg = Debug|Any CPU
 		{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}.Deployable|Any CPU.Build.0 = Debug|Any CPU
 		{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}.Deployable|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}.Deployable|Mixed Platforms.Build.0 = Debug|Any CPU
 		{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}.Deployable|x86.ActiveCfg = Debug|Any CPU
 		{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}.Release|Any CPU.Build.0 = Release|Any CPU
