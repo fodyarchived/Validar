@@ -22,7 +22,7 @@ public class GenericExternalTests
     [Test]
     public void DataErrorInfo()
     {
-        var instance = assembly.GetInstance("WithGenericExternal.Model");
+        var instance = assembly.GetInstance("WithGenericExternal.MyModel");
         ValidationTester.TestDataErrorInfo(instance);
     }
     [Test]
@@ -43,7 +43,7 @@ public class GenericExternalTests
     [Test]
     public void NotifyDataErrorInfo()
     {
-        var instance = assembly.GetInstance("WithGenericExternal.Model");
+        var instance = assembly.GetInstance("WithGenericExternal.MyModel");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
     [Test]
