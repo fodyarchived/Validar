@@ -66,6 +66,7 @@ Note that an instance of `ValidationTemplate` has been injected into `Person`
  * Namespace doesn't matter.
  * Must implement either `IDataErrorInfo` or `INotifyDataErrorInfo` or both.
  * Have a instance constructor that takes a `INotifyPropertyChanged`.
+ * Can be generic e.g. `ValidationTemplate<T> where T: INotifyPropertyChanged`
 
 ### Current Assembly
 
