@@ -3,14 +3,6 @@ using Mono.Collections.Generic;
 
 public static class InstructionListExtensions
 {
-    public static void Prepend(this Collection<Instruction> collection, params Instruction[] instructions)
-    {
-        for (var index = 0; index < instructions.Length; index++)
-        {
-            var instruction = instructions[index];
-            collection.Insert(index, instruction);
-        }
-    }
     public static void BeforeLast(this Collection<Instruction> collection, params Instruction[] instructions)
     {
         var index = collection.Count - 1;
