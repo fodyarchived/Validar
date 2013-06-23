@@ -8,7 +8,7 @@ public static class AppDomainAssemblyFinder
 
     public static void Attach()
     {
-        AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+      //  AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
     }
 
     static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

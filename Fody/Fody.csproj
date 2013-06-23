@@ -91,7 +91,7 @@
     <Compile Include="AppDomainAssemblyFinder.cs" />
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="CecilExtensions.cs" />
-    <Compile Include="Copy of NonGenericExternalTests.cs" />
+    <Compile Include="GenericExternalTests.cs" />
     <Compile Include="NonGenericExternalTests.cs" />
     <Compile Include="TemplatesGeneric\DataAnnotations\DataAnnotationsTemplateTests.cs" />
     <Compile Include="TemplatesGeneric\DataAnnotations\Model.cs" />
