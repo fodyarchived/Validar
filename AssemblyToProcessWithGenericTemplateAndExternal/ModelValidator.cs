@@ -1,6 +1,6 @@
 using FluentValidation;
 
-public class ModelValidator : AbstractValidator<Model>
+public class ModelValidator : AbstractValidator<Model2>
 {
     public ModelValidator()
     {

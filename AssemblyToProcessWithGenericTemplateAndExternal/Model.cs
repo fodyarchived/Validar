@@ -2,7 +2,7 @@
 using Validar;
 
 [InjectValidation]
-public class Model : INotifyPropertyChanged
+public class Model2 : INotifyPropertyChanged
 {
 
 	public string Property1;
