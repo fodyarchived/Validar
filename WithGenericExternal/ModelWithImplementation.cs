@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
-using TemplatesGeneric.FluentValidation;
+using Generic;
 using Validar;
 
 namespace WithGenericExternal

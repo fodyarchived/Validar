@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
-using Templates.FluentValidation;
+using NonGeneric;
 using Validar;
 
 namespace WithNonGenericExternal

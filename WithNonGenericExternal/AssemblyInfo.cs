@@ -1,3 +1,3 @@
-﻿using Templates.FluentValidation;
+﻿using NonGeneric;
 
 [assembly: Validar.ValidationTemplate(typeof(ValidationTemplate))]

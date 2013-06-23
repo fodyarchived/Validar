@@ -61,9 +61,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fody\Fody.csproj">
-      <Project>{C3578A7B-09A6-4444-9383-0DEAFA4958BD}</Project>
-      <Name>Fody</Name>
+    <ProjectReference Include="..\ExternalValidation\ExternalValidation.csproj">
+      <Project>{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}</Project>
+      <Name>ExternalValidation</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReferenceAssembly\ReferenceAssembly.csproj">
       <Project>{B5AEB0E8-28F4-4955-A055-9C200F7113F0}</Project>

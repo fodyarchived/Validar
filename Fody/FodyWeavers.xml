@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Weavers>
   <Stamp />
-  <Scalpel RemoveReferences="FluentValidation|System.ComponentModel.DataAnnotations|Sandra.SimpleValidator" />
+  <Scalpel RemoveReferences="FluentValidation|System.ComponentModel.DataAnnotations|Sandra.SimpleValidator|ExternalValidation" />
   <Fielder />
   <PropertyChanged />
 </Weavers>

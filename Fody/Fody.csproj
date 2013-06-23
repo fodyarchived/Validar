@@ -137,6 +137,12 @@
     <Compile Include="WeavingException.cs" />
     <Compile Include="AssemblyTests\NonGenericInternalTests.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExternalValidation\ExternalValidation.csproj">
+      <Project>{beb0322f-1ab0-4e09-bbcb-3fda5fe7655a}</Project>
+      <Name>ExternalValidation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ProjectDir)\..\Tools\Pepita\PepitaGet.targets" />
   <Import Project="Fody.targets" />
