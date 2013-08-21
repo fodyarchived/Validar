@@ -80,7 +80,7 @@ If `ValidationTemplate`  exist in a different assembly You will need to use a `[
     
 ## Validation Template Implementations
 
-You can implement `ValidationTemplate` in any way you want. Here are some suggested implementations that will allow you to leverage common validation libraries. (is you seen any bugs/improvements let me know :) ) 
+You can implement `ValidationTemplate` in any way you want. Here are some suggested implementations that will allow you to leverage common validation libraries. 
 
 ### [FluentValidation](https://github.com/JeremySkinner/FluentValidation)
 
