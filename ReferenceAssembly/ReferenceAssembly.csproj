@@ -57,6 +57,5 @@
     <Compile Include="ValidationTemplateAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="$(SolutionDir)Tools\Pepita\PepitaGet.targets" />
   <Import Project="Fody.targets" />
 </Project>
