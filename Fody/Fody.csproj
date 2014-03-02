@@ -11,7 +11,6 @@
     <AssemblyName>Validar.Fody</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <FodyPath>..\packages\Fody.1.17.4.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,26 +41,27 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Fody.targets" />
     <None Include="NugetAssets\install.ps1" />
     <None Include="NugetAssets\uninstall.ps1" />
     <None Include="NugetAssets\Validar.nuspec">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <Reference Include="FluentValidation, Version=4.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FluentValidation, Version=5.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentValidation.4.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
+      <HintPath>..\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuCore, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuCore.1.1.0.255\lib\FubuCore.dll</HintPath>
+      <HintPath>..\packages\FubuCore.1.3.0.278\lib\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuLocalization">
-      <HintPath>..\packages\FubuLocalization.0.9.5.146\lib\FubuLocalization.dll</HintPath>
+    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuLocalization.1.0.0.174\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuValidation">
-      <HintPath>..\packages\FubuValidation.0.9.11.825\lib\FubuValidation.dll</HintPath>
+    <Reference Include="FubuValidation, Version=0.9.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuValidation.0.9.12.896\lib\FubuValidation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
@@ -80,19 +80,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Cecil\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.41.0.0\Lib\NET35\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.46.0.0\Lib\NET35\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sandra.SimpleValidator, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sandra.SimpleValidator.0.8.0\lib\net40\Sandra.SimpleValidator.dll</HintPath>
+      <HintPath>..\packages\Sandra.SimpleValidator.0.9.0\lib\net40\Sandra.SimpleValidator.dll</HintPath>
     </Reference>
     <Reference Include="Scalpel">
-      <HintPath>..\packages\Scalpel.Fody.0.12.3\Lib\NET35\Scalpel.dll</HintPath>
+      <HintPath>..\packages\Scalpel.Fody.1.0.0.0\Lib\NET35\Scalpel.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -177,5 +178,11 @@
     <Copy SourceFiles="$(OutputPath)Validar.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild" />
     <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(OutputPath)\Validar.Fody.dll" />
   </Target>
-  <Import Project="Fody.targets" />
+  <Import Project="..\packages\Fody.1.21.0\build\Fody.targets" Condition="Exists('..\packages\Fody.1.21.0\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.21.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.21.0\build\Fody.targets'))" />
+  </Target>
 </Project>
