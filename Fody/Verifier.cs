@@ -22,6 +22,7 @@ public static class Verifier
                                             CreateNoWindow = true
                                         });
 
+        // ReSharper disable once PossibleNullReferenceException
         process.WaitForExit(10000);
         var readToEnd = process.StandardOutput.ReadToEnd().Trim();
         Assert.IsTrue(readToEnd.Contains(string.Format("All Classes and Methods in {0} Verified.", assemblyPath2)), readToEnd);
