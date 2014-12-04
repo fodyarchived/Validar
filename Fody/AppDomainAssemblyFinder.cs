@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using Scalpel;
 
@@ -18,13 +19,6 @@ public static class AppDomainAssemblyFinder
     static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
     {
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-        foreach (var assembly in assemblies)
-        {
-            if (assembly.FullName == args.Name)
-            {
-                return assembly;
-            }
-        }
-        return null;
+        return assemblies.FirstOrDefault(assembly => assembly.FullName == args.Name);
     }
 }
