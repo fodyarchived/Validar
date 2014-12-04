@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 
@@ -30,6 +31,13 @@ public class NonGenericExternalTests
     {
         var instance = assembly.GetInstance("WithNonGenericExternal.ModelWithImplementation");
         ValidationTester.TestDataErrorInfo(instance);
+    }
+
+    [Test]
+    public void EnsureReferenceRemoved()
+    {
+        var instance = assembly.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name == "ValidationTemplateAttribute");
+        Assert.IsNull(instance);
     }
 
 #if(DEBUG)
