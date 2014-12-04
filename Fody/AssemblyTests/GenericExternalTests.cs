@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 
@@ -25,6 +26,14 @@ public class GenericExternalTests
         var instance = assembly.GetInstance("WithGenericExternal.MyModel");
         ValidationTester.TestDataErrorInfo(instance);
     }
+
+    [Test]
+    public void EnsureReferenceRemoved()
+    {
+        var instance = assembly.CustomAttributes.FirstOrDefault(x=>x.AttributeType.Name=="ValidationTemplateAttribute");
+        Assert.IsNull(instance);
+    }
+
     [Test]
     public void DataErrorInfoWithImplementation()
     {

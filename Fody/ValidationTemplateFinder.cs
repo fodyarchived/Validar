@@ -43,6 +43,9 @@ public class ValidationTemplateFinder
 
             FindConstructor();
             TemplateConstructor = ModuleDefinition.Import(TemplateConstructor);
+            ModuleDefinition
+                .Assembly
+                .CustomAttributes.Remove(validationTemplateAttribute);
         }
 
     }
