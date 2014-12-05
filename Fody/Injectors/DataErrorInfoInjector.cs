@@ -8,7 +8,12 @@ public class DataErrorInfoInjector
     public TypeSystem TypeSystem;
     public DataErrorInfoFinder DataErrorInfoFinder;
     public ModuleWeaver ModuleWeaver;
-    MethodAttributes MethodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Virtual;
+    MethodAttributes MethodAttributes = 
+        MethodAttributes.Public | 
+        MethodAttributes.HideBySig | 
+        MethodAttributes.SpecialName | 
+        MethodAttributes.NewSlot | 
+        MethodAttributes.Virtual;
     public FieldDefinition ValidationTemplateField;
 
     public void Execute()

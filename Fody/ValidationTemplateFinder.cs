@@ -19,48 +19,50 @@ public class ValidationTemplateFinder
 
         if (validationTemplateAttribute == null)
         {
-            LogInfo("Could not find a 'ValidationTemplateAttribute' on the current assembly. Going to search current assembly for 'ValidationTemplate'.");
-
-            TypeDefinition = ModuleDefinition
-                .GetTypes()
-                .FirstOrDefault(x => 
-                    x.Name == "ValidationTemplate" ||
-                    x.Name == "ValidationTemplate`1");
-            if (TypeDefinition == null)
-            {
-                throw new WeavingException("Could not find a type named 'ValidationTemplate'");
-            }
-            TypeReference = TypeDefinition;
-
-            FindConstructor();
+            ImportInternal();
+            return;
         }
-        else
-        {
-            var typeReference = (TypeReference) validationTemplateAttribute.ConstructorArguments.First().Value;
-
-            TypeReference = typeReference;
-            TypeDefinition = typeReference.Resolve();
-
-            FindConstructor();
-            TemplateConstructor = ModuleDefinition.Import(TemplateConstructor);
-            ModuleDefinition
-                .Assembly
-                .CustomAttributes.Remove(validationTemplateAttribute);
-        }
-
+        ImportExternal(validationTemplateAttribute);
     }
 
-    void FindConstructor()
+    void ImportExternal(CustomAttribute validationTemplateAttribute)
     {
-        TemplateConstructor = TypeDefinition
-            .Methods
+        var typeReference = (TypeReference) validationTemplateAttribute.ConstructorArguments.First().Value;
+        TypeDefinition = typeReference.Resolve();
+        TypeReference = ModuleDefinition.Import(TypeDefinition);
+
+        TemplateConstructor = ModuleDefinition.Import(FindConstructor(TypeDefinition));
+        ModuleDefinition
+            .Assembly
+            .CustomAttributes.Remove(validationTemplateAttribute);
+    }
+
+    void ImportInternal()
+    {
+        LogInfo("Could not find a 'ValidationTemplateAttribute' on the current assembly. Going to search current assembly for 'ValidationTemplate'.");
+
+        TypeDefinition = ModuleDefinition
+            .GetTypes()
             .FirstOrDefault(x =>
-                x.IsConstructor &&
-                x.Parameters.Count == 1 &&
-                x.Parameters.First().ParameterType.ImplementsINotify());
-        if (TemplateConstructor == null)
+                x.Name == "ValidationTemplate" ||
+                x.Name == "ValidationTemplate`1");
+        if (TypeDefinition == null)
+        {
+            throw new WeavingException("Could not find a type named 'ValidationTemplate'");
+        }
+        TypeReference = TypeDefinition;
+
+        TemplateConstructor = FindConstructor(TypeDefinition);
+    }
+
+    MethodDefinition FindConstructor(TypeDefinition typeDefinition)
+    {
+        var templateConstructor = typeDefinition.Methods.FirstOrDefault(x => x.IsConstructor && x.Parameters.Count == 1 && x.Parameters.First().ParameterType.ImplementsINotify());
+        if (templateConstructor == null)
         {
             throw new WeavingException("Found 'ValidationTemplate' but it did not have a constructor that takes 'INotifyPropertyChanged' as a parameter");
         }
+
+        return templateConstructor;
     }
 }
