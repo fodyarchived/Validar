@@ -33,6 +33,7 @@ public partial class ModuleWeaver
                                       ModuleDefinition = ModuleDefinition,
                                   };
         dataErrorInfoFinder.Execute();
+
         notifyDataErrorInfoFinder = new NotifyDataErrorInfoFinder
                                         {
                                             ValidationTemplateFinder = templateFinder,
@@ -53,28 +54,34 @@ public partial class ModuleWeaver
     {
         foreach (var type in ModuleDefinition.GetTypes().Where(x => x.IsClass))
         {
-            if (!type.ImplementsINotify())
-            {
-                LogInfo(string.Format("Skipping '{0}' because it does not implement INotifyPropertyChanged.", type.Name));
-                continue;
-            }
             ProcessType(type);
         }
     }
-    public void ProcessType(TypeDefinition typeDefinition)
+    public void ProcessType(TypeDefinition type)
     {
-        if (!typeDefinition.CustomAttributes.ContainsValidationAttribute())
+        var containsValidationAttribute = type.CustomAttributes.ContainsValidationAttribute();
+        if (!type.ImplementsINotify())
+        {
+            if (containsValidationAttribute)
+            {
+                throw new WeavingException(string.Format("Found [InjectValidationAttribute] on '{0}' but it doesnt implement INotifyPropertyChanged so cannot inject.", type.Name));
+            }
+            LogInfo(string.Format("Skipping '{0}' because it does not implement INotifyPropertyChanged.", type.Name));
+
+            return;
+        }
+        if (!containsValidationAttribute)
         {
             return;
         }
-        if (typeDefinition.HasGenericParameters)
+        if (type.HasGenericParameters)
         {
-            throw new WeavingException(string.Format("Failed to process '{0}'. Generic models are not supported. Feel free to send a pull request.", typeDefinition.FullName));
+            throw new WeavingException(string.Format("Failed to process '{0}'. Generic models are not supported. Feel free to send a pull request.", type.FullName));
         }
         var templateFieldInjector = new TemplateFieldInjector
                                                       {
                                                           ValidationTemplateFinder = templateFinder,
-                                                          TargetType = typeDefinition,
+                                                          TargetType = type,
                                                           ModuleDefinition = ModuleDefinition
                                                       };
          templateFieldInjector.AddField();
@@ -83,7 +90,7 @@ public partial class ModuleWeaver
         {
             var injector = new DataErrorInfoInjector
             {
-                TypeDefinition = typeDefinition,
+                TypeDefinition = type,
                 TypeSystem = ModuleDefinition.TypeSystem,
                 DataErrorInfoFinder = dataErrorInfoFinder,
                 ModuleWeaver = this,
@@ -96,7 +103,7 @@ public partial class ModuleWeaver
         {
             var injector = new NotifyDataErrorInfoInjector
             {
-                TypeDefinition = typeDefinition,
+                TypeDefinition = type,
                 NotifyDataErrorInfoFinder = notifyDataErrorInfoFinder,
                 TypeSystem= ModuleDefinition.TypeSystem,
                 ModuleWeaver = this,
