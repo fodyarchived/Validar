@@ -8,9 +8,12 @@ Injects [IDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componen
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
-## Nuget package
 
-http://nuget.org/packages/Validar.Fody 
+## The nuget package  [![NuGet Status](http://img.shields.io/nuget/v/Validar.Fody.svg?style=flat)](https://www.nuget.org/packages/Validar.Fody/)
+
+https://nuget.org/packages/Validar.Fody/
+
+    PM> Install-Package Validar.Fody
 
 ## Your Model Code
 
