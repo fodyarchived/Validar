@@ -66,8 +66,6 @@ public partial class ModuleWeaver
             {
                 throw new WeavingException(string.Format("Found [InjectValidationAttribute] on '{0}' but it doesnt implement INotifyPropertyChanged so cannot inject.", type.Name));
             }
-            LogInfo(string.Format("Skipping '{0}' because it does not implement INotifyPropertyChanged.", type.Name));
-
             return;
         }
         if (!containsValidationAttribute)
