@@ -25,16 +25,16 @@ public class NotifyDataErrorInfoFinder
             return;
         }
         var interfaceType = InterfaceRef.Resolve();
-        InterfaceRef = ModuleDefinition.Import(InterfaceRef);
+        InterfaceRef = ModuleDefinition.ImportReference(InterfaceRef);
 
         GetErrorsMethodDef = interfaceType.Methods.First(x => x.Name == "GetErrors");
-        GetErrorsMethodRef = ModuleDefinition.Import(GetErrorsMethodDef);
+        GetErrorsMethodRef = ModuleDefinition.ImportReference(GetErrorsMethodDef);
         ErrorsChangedEvent = interfaceType.Events.First(x => x.Name == "ErrorsChanged");
-        ErrorsChangedEventType = ModuleDefinition.Import(ErrorsChangedEvent.EventType);
-        ErrorsChangedAddMethod = ModuleDefinition.Import(ErrorsChangedEvent.AddMethod);
-        ErrorsChangedRemoveMethod = ModuleDefinition.Import(ErrorsChangedEvent.RemoveMethod);
+        ErrorsChangedEventType = ModuleDefinition.ImportReference(ErrorsChangedEvent.EventType);
+        ErrorsChangedAddMethod = ModuleDefinition.ImportReference(ErrorsChangedEvent.AddMethod);
+        ErrorsChangedRemoveMethod = ModuleDefinition.ImportReference(ErrorsChangedEvent.RemoveMethod);
 
-        GetHasErrorsMethod = ModuleDefinition.Import(interfaceType.Methods.First(x => x.Name == "get_HasErrors"));
+        GetHasErrorsMethod = ModuleDefinition.ImportReference(interfaceType.Methods.First(x => x.Name == "get_HasErrors"));
     }
 
 }

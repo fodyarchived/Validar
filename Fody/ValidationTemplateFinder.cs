@@ -29,9 +29,9 @@ public class ValidationTemplateFinder
     {
         var typeReference = (TypeReference) validationTemplateAttribute.ConstructorArguments.First().Value;
         TypeDefinition = typeReference.Resolve();
-        TypeReference = ModuleDefinition.Import(TypeDefinition);
+        TypeReference = ModuleDefinition.ImportReference(TypeDefinition);
 
-        TemplateConstructor = ModuleDefinition.Import(FindConstructor(TypeDefinition));
+        TemplateConstructor = ModuleDefinition.ImportReference(FindConstructor(TypeDefinition));
         ModuleDefinition
             .Assembly
             .CustomAttributes.Remove(validationTemplateAttribute);

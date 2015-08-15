@@ -20,10 +20,10 @@ public class DataErrorInfoFinder
             return;
         }
         var interfaceType = InterfaceRef.Resolve();
-        InterfaceRef = ModuleDefinition.Import(InterfaceRef);
-        
-        GetErrorMethod = ModuleDefinition.Import(interfaceType.Methods.First(x => x.Name == "get_Error"));
-        GetItemMethod = ModuleDefinition.Import(interfaceType.Methods.First(x => x.Name == "get_Item"));
+        InterfaceRef = ModuleDefinition.ImportReference(InterfaceRef);
+
+        GetErrorMethod = ModuleDefinition.ImportReference(interfaceType.Methods.First(x => x.Name == "get_Error"));
+        GetItemMethod = ModuleDefinition.ImportReference(interfaceType.Methods.First(x => x.Name == "get_Item"));
     }
 
 }

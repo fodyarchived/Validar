@@ -54,7 +54,7 @@ public class TemplateFieldInjector
                 reference.Parameters.Add(new ParameterDefinition(parameter.ParameterType));
             }
 
-            templateConstructor = ModuleDefinition.Import(reference);
+            templateConstructor = ModuleDefinition.ImportReference(reference);
         }
         else
         {
