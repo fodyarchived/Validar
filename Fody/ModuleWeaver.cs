@@ -64,7 +64,7 @@ public partial class ModuleWeaver
         {
             if (containsValidationAttribute)
             {
-                throw new WeavingException(string.Format("Found [InjectValidationAttribute] on '{0}' but it doesnt implement INotifyPropertyChanged so cannot inject.", type.Name));
+                throw new WeavingException($"Found [InjectValidationAttribute] on '{type.Name}' but it doesnt implement INotifyPropertyChanged so cannot inject.");
             }
             return;
         }
@@ -74,7 +74,7 @@ public partial class ModuleWeaver
         }
         if (type.HasGenericParameters)
         {
-            throw new WeavingException(string.Format("Failed to process '{0}'. Generic models are not supported. Feel free to send a pull request.", type.FullName));
+            throw new WeavingException($"Failed to process '{type.FullName}'. Generic models are not supported. Feel free to send a pull request.");
         }
         var templateFieldInjector = new TemplateFieldInjector
                                                       {

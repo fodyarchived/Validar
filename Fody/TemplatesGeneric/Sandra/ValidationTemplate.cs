@@ -42,10 +42,7 @@ namespace TemplatesGeneric.Sandra
                                    .Select(x => x.Message);
         }
 
-        public bool HasErrors
-        {
-            get { return validationResult.IsInvalid; }
-        }
+        public bool HasErrors => validationResult.IsInvalid;
 
         public string Error
         {
@@ -73,10 +70,7 @@ namespace TemplatesGeneric.Sandra
         void RaiseErrorsChanged(string propertyName)
         {
             var handler = ErrorsChanged;
-            if (handler != null)
-            {
-                handler(this, new DataErrorsChangedEventArgs(propertyName));
-            }
+            handler?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
     }
 }

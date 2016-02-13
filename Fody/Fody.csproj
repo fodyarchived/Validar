@@ -45,7 +45,6 @@
     <NoWarn>67</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="NugetAssets\dotnet.targets" />
     <None Include="NugetAssets\install.ps" />
     <None Include="NugetAssets\uninstall.ps" />
     <None Include="NugetAssets\Validar.Fody.nuspec">
@@ -178,7 +177,6 @@
     <Copy SourceFiles="$(ProjectDir)NugetAssets\Validar.Fody.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild" />
     <Copy SourceFiles="$(ProjectDir)NugetAssets\install.ps" DestinationFiles="$(SolutionDir)NuGetBuild\Tools\install.ps1" />
     <Copy SourceFiles="$(ProjectDir)NugetAssets\uninstall.ps" DestinationFiles="$(SolutionDir)NuGetBuild\Tools\uninstall.ps1" />
-    <Copy SourceFiles="$(ProjectDir)NugetAssets\dotnet.targets" DestinationFiles="$(SolutionDir)NuGetBuild\build\dotnet\Validar.Fody.targets" />
     <Copy SourceFiles="$(SolutionDir)ReferenceAssembly\bin\$(Configuration)\Validar.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40" />
     <Copy SourceFiles="$(SolutionDir)ReferenceAssembly\bin\$(Configuration)\Validar.xml" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40" />
     <Copy SourceFiles="$(SolutionDir)ReferenceAssembly\bin\$(Configuration)\Validar.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\dotnet" />

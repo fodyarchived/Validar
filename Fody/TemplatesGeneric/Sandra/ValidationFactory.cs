@@ -18,7 +18,7 @@ namespace GenericTemplates.Sandra
             var typeHandle = modelType.TypeHandle;
             if (!validators.TryGetValue(typeHandle, out validator))
             {
-                var validatorTypeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
+                var validatorTypeName = $"{modelType.Namespace}.{modelType.Name}Validator";
                 var validatorType = modelType.Assembly.GetType(validatorTypeName, true);
                 validators[typeHandle] = validator = (IModelValidator)Activator.CreateInstance(validatorType);
             }

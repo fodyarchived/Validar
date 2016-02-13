@@ -22,25 +22,16 @@ namespace Templates.Sandra
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string this[string columnName]
-        {
-            get { return validationTemplate[columnName]; }
-        }
+        public string this[string columnName] => validationTemplate[columnName];
 
-        public string Error
-        {
-            get { return validationTemplate.Error; }
-        }
+        public string Error => validationTemplate.Error;
 
         public IEnumerable GetErrors(string propertyName)
         {
             return validationTemplate.GetErrors(propertyName);
         }
 
-        bool INotifyDataErrorInfo.HasErrors
-        {
-            get { return validationTemplate.HasErrors; }
-        }
+        bool INotifyDataErrorInfo.HasErrors => validationTemplate.HasErrors;
 
         event EventHandler<DataErrorsChangedEventArgs> INotifyDataErrorInfo.ErrorsChanged
         {

@@ -33,7 +33,7 @@ namespace Templates.Sandra
             IModelValidator validator;
             if (!validators.TryGetValue(modelType.TypeHandle, out validator))
             {
-                var typeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
+                var typeName = $"{modelType.Namespace}.{modelType.Name}Validator";
                 var type = modelType.Assembly.GetType(typeName, true);
                 validators[modelType.TypeHandle] = validator = (IModelValidator) Activator.CreateInstance(type);
             }
@@ -56,10 +56,7 @@ namespace Templates.Sandra
                                    .Select(x => x.Message);
         }
 
-        public bool HasErrors
-        {
-            get { return validationResult.IsInvalid; }
-        }
+        public bool HasErrors => validationResult.IsInvalid;
 
         public string Error
         {
@@ -87,10 +84,7 @@ namespace Templates.Sandra
         void RaiseErrorsChanged(string propertyName)
         {
             var handler = ErrorsChanged;
-            if (handler != null)
-            {
-                handler(this, new DataErrorsChangedEventArgs(propertyName));
-            }
+            handler?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
     }
 }

@@ -23,7 +23,7 @@ public static class CecilExtensions
         {
             return;
         }
-        var message = string.Format("Field '{0}' could not be re-used because it is not the correct type. Expected '{1}'.", targetReference.FullName, expectedType.FullName);
+        var message = $"Field '{targetReference.FullName}' could not be re-used because it is not the correct type. Expected '{expectedType.FullName}'.";
         throw new WeavingException(message);
     }
 }

@@ -17,18 +17,13 @@ namespace WithGenericInternal
             validationTemplate = new ValidationTemplate<ModelWithImplementation>(this);
         }
 
-        public string this[string columnName]
-        {
-            get { return validationTemplate[columnName]; }
-        }
+        public string this[string columnName] => validationTemplate[columnName];
+
         public IEnumerable GetErrors(string propertyName)
         {
             return validationTemplate.GetErrors(propertyName);
         }
-        public bool HasErrors
-        {
-            get { return validationTemplate.HasErrors; }
-        }
+        public bool HasErrors => validationTemplate.HasErrors;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged
         {
@@ -36,10 +31,7 @@ namespace WithGenericInternal
             remove { validationTemplate.ErrorsChanged -= value; }
         }
 
-        public string Error
-        {
-            get { return validationTemplate.Error; }
-        }
+        public string Error => validationTemplate.Error;
 
         string property1;
 
@@ -74,10 +66,7 @@ namespace WithGenericInternal
         void OnPropertyChanged(string propertyName)
         {
             var propertyChanged = PropertyChanged;
-            if (propertyChanged != null)
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            propertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -32,7 +32,7 @@ namespace Templates.FluentValidation
             IValidator validator;
             if (!validators.TryGetValue(modelType.TypeHandle, out validator))
             {
-                var typeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
+                var typeName = $"{modelType.Namespace}.{modelType.Name}Validator";
                 var type = modelType.Assembly.GetType(typeName, true);
                 validators[modelType.TypeHandle] = validator = (IValidator) Activator.CreateInstance(type);
             }
@@ -56,10 +56,7 @@ namespace Templates.FluentValidation
                                    .Select(x => x.ErrorMessage);
         }
 
-        public bool HasErrors
-        {
-            get { return validationResult.Errors.Count > 0; }
-        }
+        public bool HasErrors => validationResult.Errors.Count > 0;
 
         public string Error
         {
@@ -87,10 +84,7 @@ namespace Templates.FluentValidation
         void RaiseErrorsChanged(string propertyName)
         {
             var handler = ErrorsChanged;
-            if (handler != null)
-            {
-                handler(this, new DataErrorsChangedEventArgs(propertyName));
-            }
+            handler?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
     }
 }

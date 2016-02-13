@@ -17,7 +17,7 @@ namespace WithGenericInternal
             var modelTypeHandle = modelType.TypeHandle;
             if (!validators.TryGetValue(modelTypeHandle, out validator))
             {
-                var typeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
+                var typeName = $"{modelType.Namespace}.{modelType.Name}Validator";
                 var type = modelType.Assembly.GetType(typeName, true);
                 validators[modelTypeHandle] = validator = (IValidator) Activator.CreateInstance(type);
             }

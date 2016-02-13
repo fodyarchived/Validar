@@ -43,10 +43,7 @@ namespace Templates.DataAnnotations
                                     .Select(x => x.ErrorMessage);
         }
 
-        public bool HasErrors
-        {
-            get { return validationResults.Count > 0; }
-        }
+        public bool HasErrors => validationResults.Count > 0;
 
         public string Error
         {
@@ -74,10 +71,7 @@ namespace Templates.DataAnnotations
         void RaiseErrorsChanged(string propertyName)
         {
             var handler = ErrorsChanged;
-            if (handler != null)
-            {
-                handler(this, new DataErrorsChangedEventArgs(propertyName));
-            }
+            handler?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
     }
 }

@@ -20,7 +20,7 @@ public class DataErrorInfoInjector
     {
         if (TypeDefinition.Interfaces.Any(x => x.Name == DataErrorInfoFinder.InterfaceRef.Name))
         {
-            var message = string.Format("Skipped '{0}' because it already implements '{1}'.", TypeDefinition.Name, DataErrorInfoFinder.InterfaceRef.Name);
+            var message = $"Skipped '{TypeDefinition.Name}' because it already implements '{DataErrorInfoFinder.InterfaceRef.Name}'.";
             ModuleWeaver.LogInfo(message);
             return;
         }

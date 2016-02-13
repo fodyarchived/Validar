@@ -41,10 +41,7 @@ namespace WithGenericInternal
                                    .Select(x => x.ErrorMessage);
         }
 
-        public bool HasErrors
-        {
-            get { return validationResult.Errors.Count > 0; }
-        }
+        public bool HasErrors => validationResult.Errors.Count > 0;
 
         public string Error
         {
@@ -72,10 +69,7 @@ namespace WithGenericInternal
         void RaiseErrorsChanged(string propertyName)
         {
             var handler = ErrorsChanged;
-            if (handler != null)
-            {
-                handler(this, new DataErrorsChangedEventArgs(propertyName));
-            }
+            handler?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
     }
 }
