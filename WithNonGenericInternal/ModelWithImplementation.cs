@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Validar;
 
 namespace WithNonGenericInternal
@@ -43,7 +44,7 @@ namespace WithNonGenericInternal
                 if (value != property1)
                 {
                     property1 = value;
-                    OnPropertyChanged("Property1");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -58,15 +59,14 @@ namespace WithNonGenericInternal
                 if (value != property2)
                 {
                     property2 = value;
-                    OnPropertyChanged("Property2");
+                    OnPropertyChanged();
                 }
             }
         }
 
-        void OnPropertyChanged(string propertyName)
+        void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var propertyChanged = PropertyChanged;
-            propertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

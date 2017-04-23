@@ -18,7 +18,8 @@ public class NotifyDataErrorInfoFinder
     public void Execute()
     {
         var interfaces = ValidationTemplateFinder.TypeDefinition.Interfaces;
-        InterfaceRef = interfaces.FirstOrDefault(x => x.Name == "INotifyDataErrorInfo");
+        InterfaceRef = interfaces.Select(x => x.InterfaceType)
+            .FirstOrDefault(x => x.Name == "INotifyDataErrorInfo");
         if (InterfaceRef == null)
         {
             Found = false;

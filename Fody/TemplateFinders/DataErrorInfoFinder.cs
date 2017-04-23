@@ -13,7 +13,8 @@ public class DataErrorInfoFinder
     public void Execute()
     {
         var interfaces = ValidationTemplateFinder.TypeDefinition.Interfaces;
-         InterfaceRef = interfaces.FirstOrDefault(x => x.Name == "IDataErrorInfo");
+        InterfaceRef = interfaces.Select(x=>x.InterfaceType)
+            .FirstOrDefault(x => x.Name == "IDataErrorInfo");
         if (InterfaceRef == null)
         {
             Found = false;

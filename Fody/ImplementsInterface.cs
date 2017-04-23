@@ -19,7 +19,7 @@ public static class ImplementsInterface
             return true;
         }
         var typeDefinition = typeReference.Resolve();
-        if (typeDefinition.Interfaces.Any(x=>x.Name=="INotifyPropertyChanged"))
+        if (typeDefinition.Interfaces.Any(x => x.InterfaceType.Name=="INotifyPropertyChanged"))
         {
             return true;
         }

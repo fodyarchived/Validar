@@ -11,7 +11,8 @@
     <AssemblyName>Validar.Fody</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>ee3a2af8</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,87 +55,32 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuCore, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuCore.1.3.0.278\lib\FubuCore.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuLocalization, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuLocalization.1.1.0.182\lib\FubuLocalization.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuValidation, Version=0.9.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuValidation.0.9.12.896\lib\FubuValidation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\FodyCecil.1.29.2\lib\net40\Mono.Cecil.dll</HintPath>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\packages\FodyCecil.2.0.0\lib\net40\Mono.Cecil.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\FodyCecil.1.29.2\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>..\packages\FodyCecil.2.0.0\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\FodyCecil.1.29.2\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>..\packages\FodyCecil.2.0.0\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\FodyCecil.1.29.2\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
+    <Reference Include="Mono.Cecil.Rocks">
+      <HintPath>..\packages\FodyCecil.2.0.0\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="PropertyChanged, Version=1.50.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
-      <HintPath>..\packages\PropertyChanged.Fody.1.50.3\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Sandra.SimpleValidator, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sandra.SimpleValidator.0.9.0\lib\net40\Sandra.SimpleValidator.dll</HintPath>
-    </Reference>
-    <Reference Include="Scalpel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=1d3f964f81f300dd, processorArchitecture=MSIL">
-      <HintPath>..\packages\Scalpel.Fody.1.0.3.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\Scalpel.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <None Include="FodyWeavers.xml">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppDomainAssemblyFinder.cs" />
-    <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="CecilExtensions.cs" />
-    <Compile Include="AssemblyTests\GenericExternalTests.cs" />
-    <Compile Include="AssemblyTests\NonGenericExternalTests.cs" />
-    <Compile Include="TemplatesGeneric\DataAnnotations\DataAnnotationsTemplateTests.cs" />
-    <Compile Include="TemplatesGeneric\DataAnnotations\Model.cs" />
-    <Compile Include="TemplatesGeneric\DataAnnotations\ValidationTemplate.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\ValidationFactory.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\FluentTemplateTests.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\Model.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\ModelValidator.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\ValidationTemplate.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\Model.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\ModelValidator.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\SandraTemplateTests.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\ValidationFactory.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\ValidationTemplate.cs" />
-    <Compile Include="AssemblyTests\GenericInternalTests.cs" />
     <Compile Include="ImplementsInterface.cs" />
     <Compile Include="Injectors\DataErrorInfoInjector.cs" />
-    <Compile Include="MockAssemblyResolver.cs" />
     <Compile Include="ReferenceCleaner.cs" />
     <Compile Include="ReturnFixer.cs" />
     <Compile Include="TemplateFieldInjector.cs" />
@@ -144,29 +90,8 @@
     <Compile Include="Injectors\NotifyDataErrorInfoInjector.cs" />
     <Compile Include="TemplateFinders\NotifyDataErrorInfoFinder.cs" />
     <Compile Include="TemplateFinders\DataErrorInfoFinder.cs" />
-    <Compile Include="Templates\DataAnnotations\DataAnnotationsTemplateTests.cs" />
-    <Compile Include="Templates\DataAnnotations\Model.cs" />
-    <Compile Include="Templates\DataAnnotations\ValidationTemplate.cs" />
-    <Compile Include="Templates\FluentValidation\TemplateTests.cs" />
-    <Compile Include="Templates\FluentValidation\Model.cs" />
-    <Compile Include="Templates\FluentValidation\ModelValidator.cs" />
-    <Compile Include="Templates\FluentValidation\ValidationTemplate.cs" />
-    <Compile Include="Templates\Sandra\Model.cs" />
-    <Compile Include="Templates\Sandra\ModelValidator.cs" />
-    <Compile Include="Templates\Sandra\TemplateTests.cs" />
-    <Compile Include="Templates\Sandra\ValidationTemplate.cs" />
     <Compile Include="ValidationTemplateFinder.cs" />
-    <Compile Include="ValidationTester.cs" />
-    <Compile Include="Verifier.cs" />
-    <Compile Include="WeaverHelper.cs" />
     <Compile Include="WeavingException.cs" />
-    <Compile Include="AssemblyTests\NonGenericInternalTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ExternalValidation\ExternalValidation.csproj">
-      <Project>{beb0322f-1ab0-4e09-bbcb-3fda5fe7655a}</Project>
-      <Name>ExternalValidation</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
@@ -191,8 +116,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\PepitaPackage.1.21.4\build\PepitaPackage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PepitaPackage.1.21.4\build\PepitaPackage.targets'))" />
-    <Error Condition="!Exists('..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
   </Target>
   <Import Project="..\packages\PepitaPackage.1.21.4\build\PepitaPackage.targets" Condition="Exists('..\packages\PepitaPackage.1.21.4\build\PepitaPackage.targets')" />
-  <Import Project="..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
 </Project>

@@ -7,7 +7,7 @@ using FluentValidation.Results;
 
 namespace Generic
 {
-    public class ValidationTemplate<T> : 
+    public class ValidationTemplate<T> :
         IDataErrorInfo, 
         INotifyDataErrorInfo
             where T : INotifyPropertyChanged
