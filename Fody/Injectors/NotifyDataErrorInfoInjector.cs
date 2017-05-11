@@ -9,7 +9,7 @@ public class NotifyDataErrorInfoInjector
     public ModuleWeaver ModuleWeaver;
     public TypeSystem TypeSystem;
     public NotifyDataErrorInfoFinder NotifyDataErrorInfoFinder;
-    MethodAttributes MethodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Virtual;
+    MethodAttributes MethodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Virtual | MethodAttributes.Final;
     public FieldDefinition ValidationTemplateField;
 
     public void Execute()
