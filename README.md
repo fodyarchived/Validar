@@ -1,4 +1,8 @@
+[![Chat on Gitter Status](https://img.shields.io/gitter/room/fody/fody.svg?style=flat)](https://gitter.im/Fody)
+[![NuGet Status](http://img.shields.io/nuget/v/Validar.Fody.svg?style=flat)](https://www.nuget.org/packages/Validar.Fody/)
+
 ![Icon](https://raw.github.com/Fody/Validar/master/Icons/package_icon.png)
+
 
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
@@ -9,7 +13,7 @@ Injects [IDataErrorInfo](http://msdn.microsoft.com/en-us/library/system.componen
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
 
-## The nuget package  [![NuGet Status](http://img.shields.io/nuget/v/Validar.Fody.svg?style=flat)](https://www.nuget.org/packages/Validar.Fody/)
+## The nuget package
 
 https://nuget.org/packages/Validar.Fody/
 
@@ -28,6 +32,7 @@ For example
         public string GivenNames { get; set; }
         public string FamilyName { get; set; }
     }
+
 
 ### Your validation template code
 
@@ -71,19 +76,23 @@ Note that an instance of `ValidationTemplate` has been injected into `Person`
  * Have a instance constructor that takes a `INotifyPropertyChanged`.
  * Can be generic e.g. `ValidationTemplate<T> where T: INotifyPropertyChanged`
 
+
 ### Current Assembly
 
 If `ValidationTemplate`  exist in the current assembly they will be picked up automatically.
+
 
 ### Other Assembly
 
 If `ValidationTemplate`  exist in a different assembly You will need to use a `[ValidationTemplateAttribute]` to tell Validar where to look.
 
     [assembly: ValidationTemplateAttribute(typeof(MyUtilsLibrary.ValidationTemplate))]
-    
+
+
 ## Validation Template Implementations
 
 You can implement `ValidationTemplate` in any way you want. Here are some suggested implementations that will allow you to leverage common validation libraries. 
+
 
 ### [FluentValidation](https://github.com/JeremySkinner/FluentValidation)
 
@@ -180,6 +189,7 @@ Note that FluentValidation extracts the model validation into a different class
             }
         }
     }
+
 
 ### [Sandra.SimpleValidator](https://github.com/phillip-haydon/Sandra.SimpleValidator)
 
@@ -280,7 +290,6 @@ Note that Sandra.SimpleValidator extracts the model validation into a different 
             }
         }
     }
-    
 
 
 ### [DataAnnotations](http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx)
@@ -357,7 +366,7 @@ Note that Sandra.SimpleValidator extracts the model validation into a different 
         }
     }
 
+
 ## Icon
 
 <a href="http://thenounproject.com/noun/check-mark/#icon-No6407" target="_blank">Check Mark</a> designed by <a href="http://thenounproject.com/mateozlatar" target="_blank">Mateo Zlatar</a> from The Noun Project
-
