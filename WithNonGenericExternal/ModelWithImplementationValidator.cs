@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace WithNonGenericExternal
 {
-    public class ModelWithImplementationValidator : 
+    public class ModelWithImplementationValidator :
         AbstractValidator<ModelWithImplementation>
     {
         public ModelWithImplementationValidator()

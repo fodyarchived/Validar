@@ -7,14 +7,14 @@ using FluentValidation.Results;
 
 namespace WithGenericInternal
 {
-    public class ValidationTemplate<T> : 
-        IDataErrorInfo, 
+    public class ValidationTemplate<T> :
+        IDataErrorInfo,
         INotifyDataErrorInfo
             where T : INotifyPropertyChanged
     {
         INotifyPropertyChanged target;
         IValidator validator;
-        ValidationResult validationResult; 
+        ValidationResult validationResult;
 
         public ValidationTemplate(T target)
         {
@@ -23,7 +23,6 @@ namespace WithGenericInternal
             validationResult = validator.Validate(target);
             target.PropertyChanged += Validate;
         }
-
 
         void Validate(object sender, PropertyChangedEventArgs e)
         {

@@ -8,14 +8,12 @@ public class NonGenericExternalTests
 {
     string afterAssemblyPath;
     Assembly assembly;
+    string beforeAssemblyPath;
 
     public NonGenericExternalTests()
     {
         AppDomainAssemblyFinder.Attach();
-        var beforeAssemblyPath = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\WithNonGenericExternal\bin\Debug\WithNonGenericExternal.dll"));
-#if (!DEBUG)
-        beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
-#endif
+        beforeAssemblyPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "WithNonGenericExternal.dll");
         afterAssemblyPath = WeaverHelper.Weave(beforeAssemblyPath);
         assembly = Assembly.LoadFile(afterAssemblyPath);
     }
@@ -26,6 +24,7 @@ public class NonGenericExternalTests
         var instance = assembly.GetInstance("WithNonGenericExternal.Model");
         ValidationTester.TestDataErrorInfo(instance);
     }
+
     [Test]
     public void DataErrorInfoWithImplementation()
     {
@@ -40,13 +39,11 @@ public class NonGenericExternalTests
         Assert.IsNull(instance);
     }
 
-#if(DEBUG)
     [Test]
     public void PeVerify()
     {
-        Verifier.Verify(afterAssemblyPath);
+        Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
     }
-#endif
 
     [Test]
     public void NotifyDataErrorInfo()
@@ -54,11 +51,11 @@ public class NonGenericExternalTests
         var instance = assembly.GetInstance("WithNonGenericExternal.Model");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
+
     [Test]
     public void NotifyDataErrorInfoWithImplementation()
     {
         var instance = assembly.GetInstance("WithNonGenericExternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
-
 }

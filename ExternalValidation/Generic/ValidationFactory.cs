@@ -11,11 +11,9 @@ namespace Generic
 
         public static IValidator<T> GetValidator<T>()
             where T : INotifyPropertyChanged
-        {
-            IValidator validator;
-            var modelType = typeof (T);
+        {            var modelType = typeof (T);
             var modelTypeHandle = modelType.TypeHandle;
-            if (!validators.TryGetValue(modelTypeHandle, out validator))
+            if (!validators.TryGetValue(modelTypeHandle, out var validator))
             {
                 var typeName = $"{modelType.Namespace}.{modelType.Name}Validator";
                 var type = modelType.Assembly.GetType(typeName, true);

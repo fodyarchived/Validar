@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 
 namespace Templates.FluentValidation
 {
-
     public class Model :
         IDataErrorInfo,
         INotifyPropertyChanged,
@@ -16,7 +15,7 @@ namespace Templates.FluentValidation
         string property2;
         public string Property1
         {
-            get { return property1; }
+            get => property1;
             set
             {
                 property1 = value;
@@ -25,7 +24,7 @@ namespace Templates.FluentValidation
         }
         public string Property2
         {
-            get { return property2; }
+            get => property2;
             set
             {
                 property2 = value;
@@ -57,8 +56,8 @@ namespace Templates.FluentValidation
 
         event EventHandler<DataErrorsChangedEventArgs> INotifyDataErrorInfo.ErrorsChanged
         {
-            add { validationTemplate.ErrorsChanged += value; }
-            remove { validationTemplate.ErrorsChanged -= value; }
+            add => validationTemplate.ErrorsChanged += value;
+            remove => validationTemplate.ErrorsChanged -= value;
         }
     }
 

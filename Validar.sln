@@ -1,16 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 14.0.22823.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody", "Fody\Fody.csproj", "{C3578A7B-09A6-4444-9383-0DEAFA4958BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validar.Fody", "Validar.Fody\Validar.Fody.csproj", "{C3578A7B-09A6-4444-9383-0DEAFA4958BD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7DEC4E2D-F872-434E-A267-0BAD65299950} = {7DEC4E2D-F872-434E-A267-0BAD65299950}
 		{3256D062-E246-4B58-89CE-3809C6398C99} = {3256D062-E246-4B58-89CE-3809C6398C99}
 		{B5AEB0E8-28F4-4955-A055-9C200F7113F0} = {B5AEB0E8-28F4-4955-A055-9C200F7113F0}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceAssembly", "ReferenceAssembly\ReferenceAssembly.csproj", "{B5AEB0E8-28F4-4955-A055-9C200F7113F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validar", "Validar\Validar.csproj", "{B5AEB0E8-28F4-4955-A055-9C200F7113F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithGenericExternal", "WithGenericExternal\WithGenericExternal.csproj", "{68655477-ACC8-4A10-8C59-DC7644AE5303}"
 EndProject
@@ -119,5 +119,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8938CB6-E5FC-4233-BCC4-DA6E72E9C0AA}
 	EndGlobalSection
 EndGlobal

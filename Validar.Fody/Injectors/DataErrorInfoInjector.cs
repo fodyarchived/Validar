@@ -76,6 +76,4 @@ public class DataErrorInfoInjector
 
         TypeDefinition.Properties.Add(property);
     }
-
-
 }

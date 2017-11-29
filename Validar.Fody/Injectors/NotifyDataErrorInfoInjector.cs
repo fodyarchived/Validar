@@ -2,7 +2,6 @@ using System.Linq;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-
 public class NotifyDataErrorInfoInjector
 {
     public TypeDefinition TypeDefinition;
@@ -121,5 +120,4 @@ public class NotifyDataErrorInfoInjector
     {
         TypeDefinition.Interfaces.Add(new InterfaceImplementation(NotifyDataErrorInfoFinder.InterfaceRef));
     }
-
 }

@@ -4,7 +4,6 @@ using Mono.Cecil.Pdb;
 
 public static class WeaverHelper
 {
-
     public static string Weave(string assemblyPath)
     {
         var newAssembly = assemblyPath.Replace(".dll", "2.dll");

@@ -17,9 +17,10 @@ public static class ValidationTester
         Assert.IsEmpty(dataErrorInfo["GivenNames"]);
         Assert.IsEmpty(dataErrorInfo["FamilyName"]);
     }
+
     public static void TestNotifyDataErrorInfo(dynamic instance)
     {
-        var dataErrorInfo = (INotifyDataErrorInfo) instance;
+        var dataErrorInfo = (INotifyDataErrorInfo)instance;
         var errorsChangedCalled = false;
         dataErrorInfo.ErrorsChanged += (o, args) => { errorsChangedCalled = true; };
         Assert.IsTrue(dataErrorInfo.HasErrors);
@@ -32,6 +33,4 @@ public static class ValidationTester
         Assert.IsEmpty(dataErrorInfo.GetErrors("GivenNames").Cast<string>().ToList());
         Assert.IsEmpty(dataErrorInfo.GetErrors("FamilyName").Cast<string>().ToList());
     }
-
-     
 }

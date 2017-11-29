@@ -7,9 +7,9 @@ using Validar;
 namespace WithGenericInternal
 {
     [InjectValidation]
-    public class ModelWithImplementation : 
-        INotifyPropertyChanged, 
-        IDataErrorInfo, 
+    public class ModelWithImplementation :
+        INotifyPropertyChanged,
+        IDataErrorInfo,
         INotifyDataErrorInfo
     {
         ValidationTemplate<ModelWithImplementation> validationTemplate;
@@ -28,8 +28,8 @@ namespace WithGenericInternal
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged
         {
-            add { validationTemplate.ErrorsChanged += value; }
-            remove { validationTemplate.ErrorsChanged -= value; }
+            add => validationTemplate.ErrorsChanged += value;
+            remove => validationTemplate.ErrorsChanged -= value;
         }
 
         public string Error => validationTemplate.Error;
@@ -38,7 +38,7 @@ namespace WithGenericInternal
 
         public string Property1
         {
-            get { return property1; }
+            get => property1;
             set
             {
                 if (value != property1)
@@ -53,7 +53,7 @@ namespace WithGenericInternal
 
         public string Property2
         {
-            get { return property2; }
+            get => property2;
             set
             {
                 if (value != property2)

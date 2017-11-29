@@ -13,24 +13,27 @@ namespace TemplatesGeneric.FluentValidation
         ValidationTemplate<Model> validationTemplate;
         string property1;
         string property2;
+
         public string Property1
         {
-            get { return property1; }
+            get => property1;
             set
             {
                 property1 = value;
                 OnPropertyChanged();
             }
         }
+
         public string Property2
         {
-            get { return property2; }
+            get => property2;
             set
             {
                 property2 = value;
                 OnPropertyChanged();
             }
         }
+
         void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -56,9 +59,8 @@ namespace TemplatesGeneric.FluentValidation
 
         event EventHandler<DataErrorsChangedEventArgs> INotifyDataErrorInfo.ErrorsChanged
         {
-            add { validationTemplate.ErrorsChanged += value; }
-            remove { validationTemplate.ErrorsChanged -= value; }
+            add => validationTemplate.ErrorsChanged += value;
+            remove => validationTemplate.ErrorsChanged -= value;
         }
     }
-
 }

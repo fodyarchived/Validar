@@ -5,7 +5,6 @@ namespace Templates.DataAnnotations
     [TestFixture]
     public class TemplateTests
     {
-
         [Test]
         public void DataErrorInfo()
         {
@@ -17,6 +16,5 @@ namespace Templates.DataAnnotations
         {
             ValidationTester.TestNotifyDataErrorInfo(new Model());
         }
-
     }
 }

@@ -14,7 +14,7 @@ namespace TemplatesGeneric.FluentValidation
     {
         INotifyPropertyChanged target;
         IValidator validator;
-        ValidationResult validationResult; 
+        ValidationResult validationResult;
 
         public ValidationTemplate(T target)
         {

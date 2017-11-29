@@ -8,7 +8,7 @@ using System.Linq;
 namespace Templates.DataAnnotations
 {
     public class ValidationTemplate :
-        IDataErrorInfo, 
+        IDataErrorInfo,
         INotifyDataErrorInfo
     {
         INotifyPropertyChanged target;

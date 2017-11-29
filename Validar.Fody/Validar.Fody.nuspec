@@ -10,12 +10,12 @@
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://github.com/Fody/Validar</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://raw.github.com/Fody/Validar/master/Icons/package_icon.png</iconUrl>
+    <iconUrl>https://raw.github.com/Fody/Validar/master/package_icon.png</iconUrl>
     <description>Fody add-in for validation in XAML bindings.</description>
     <language>en-AU</language>
     <tags>Validation, ILWeaving, Fody, Cecil, IDataErrorInfo, INotifyDataErrorInfo, WPF, XAML</tags>
     <dependencies>
-      <dependency id="Fody" version="2.0.0"/>
+      <dependency id="Fody" version="2.2.1"/>
     </dependencies>
   </metadata>
 </package>

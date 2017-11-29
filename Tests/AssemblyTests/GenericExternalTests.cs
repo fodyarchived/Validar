@@ -8,14 +8,12 @@ public class GenericExternalTests
 {
     string afterAssemblyPath;
     Assembly assembly;
+    string beforeAssemblyPath;
 
     public GenericExternalTests()
     {
         AppDomainAssemblyFinder.Attach();
-        var beforeAssemblyPath = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\WithGenericExternal\bin\Debug\WithGenericExternal.dll"));
-#if (!DEBUG)
-        beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
-#endif
+        beforeAssemblyPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "WithGenericExternal.dll");
         afterAssemblyPath = WeaverHelper.Weave(beforeAssemblyPath);
         assembly = Assembly.LoadFile(afterAssemblyPath);
     }
@@ -30,7 +28,7 @@ public class GenericExternalTests
     [Test]
     public void EnsureReferenceRemoved()
     {
-        var instance = assembly.CustomAttributes.FirstOrDefault(x=>x.AttributeType.Name=="ValidationTemplateAttribute");
+        var instance = assembly.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name == "ValidationTemplateAttribute");
         Assert.IsNull(instance);
     }
 
@@ -41,13 +39,11 @@ public class GenericExternalTests
         ValidationTester.TestDataErrorInfo(instance);
     }
 
-#if(DEBUG)
     [Test]
     public void PeVerify()
     {
-        Verifier.Verify(afterAssemblyPath);
+        Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
     }
-#endif
 
     [Test]
     public void NotifyDataErrorInfo()
@@ -55,11 +51,11 @@ public class GenericExternalTests
         var instance = assembly.GetInstance("WithGenericExternal.MyModel");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
+
     [Test]
     public void NotifyDataErrorInfoWithImplementation()
     {
         var instance = assembly.GetInstance("WithGenericExternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
-
 }

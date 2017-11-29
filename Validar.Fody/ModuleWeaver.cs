@@ -18,27 +18,26 @@ public partial class ModuleWeaver
 
     public void Execute()
     {
-        
         templateFinder = new ValidationTemplateFinder
-                             {
-                                 LogInfo = LogInfo,
-                                 ModuleDefinition = ModuleDefinition,
-                             };
+        {
+            LogInfo = LogInfo,
+            ModuleDefinition = ModuleDefinition,
+        };
         templateFinder.Execute();
 
 
         dataErrorInfoFinder = new DataErrorInfoFinder
-                                  {
-                                      ValidationTemplateFinder = templateFinder,
-                                      ModuleDefinition = ModuleDefinition,
-                                  };
+        {
+            ValidationTemplateFinder = templateFinder,
+            ModuleDefinition = ModuleDefinition,
+        };
         dataErrorInfoFinder.Execute();
 
         notifyDataErrorInfoFinder = new NotifyDataErrorInfoFinder
-                                        {
-                                            ValidationTemplateFinder = templateFinder,
-                                            ModuleDefinition = ModuleDefinition,
-                                        };
+        {
+            ValidationTemplateFinder = templateFinder,
+            ModuleDefinition = ModuleDefinition,
+        };
         notifyDataErrorInfoFinder.Execute();
 
 
@@ -46,6 +45,7 @@ public partial class ModuleWeaver
         {
             throw new WeavingException("Found ValidationTemplate but it did not implement INotifyDataErrorInfo or IDataErrorInfo");
         }
+
         ProcessTypes();
         RemoveReference();
     }
@@ -57,6 +57,7 @@ public partial class ModuleWeaver
             ProcessType(type);
         }
     }
+
     public void ProcessType(TypeDefinition type)
     {
         var containsValidationAttribute = type.CustomAttributes.ContainsValidationAttribute();
@@ -66,23 +67,27 @@ public partial class ModuleWeaver
             {
                 throw new WeavingException($"Found [InjectValidationAttribute] on '{type.Name}' but it doesnt implement INotifyPropertyChanged so cannot inject.");
             }
+
             return;
         }
+
         if (!containsValidationAttribute)
         {
             return;
         }
+
         if (type.HasGenericParameters)
         {
             throw new WeavingException($"Failed to process '{type.FullName}'. Generic models are not supported. Feel free to send a pull request.");
         }
+
         var templateFieldInjector = new TemplateFieldInjector
-                                                      {
-                                                          ValidationTemplateFinder = templateFinder,
-                                                          TargetType = type,
-                                                          ModuleDefinition = ModuleDefinition
-                                                      };
-         templateFieldInjector.AddField();
+        {
+            ValidationTemplateFinder = templateFinder,
+            TargetType = type,
+            ModuleDefinition = ModuleDefinition
+        };
+        templateFieldInjector.AddField();
 
         if (dataErrorInfoFinder.Found)
         {
@@ -103,7 +108,7 @@ public partial class ModuleWeaver
             {
                 TypeDefinition = type,
                 NotifyDataErrorInfoFinder = notifyDataErrorInfoFinder,
-                TypeSystem= ModuleDefinition.TypeSystem,
+                TypeSystem = ModuleDefinition.TypeSystem,
                 ModuleWeaver = this,
                 ValidationTemplateField = templateFieldInjector.ValidationTemplateField
             };

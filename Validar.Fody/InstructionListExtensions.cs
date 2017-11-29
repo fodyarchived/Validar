@@ -12,6 +12,7 @@ public static class InstructionListExtensions
             index++;
         }
     }
+
     public static void Append(this Collection<Instruction> collection, params Instruction[] instructions)
     {
         for (var index = 0; index < instructions.Length; index++)

@@ -8,7 +8,6 @@ namespace Validar
     [AttributeUsage(AttributeTargets.Assembly)]
     public class ValidationTemplateAttribute : Attribute
     {
-
         /// <summary>
         /// Construct a new instance of <see cref="ValidationTemplateAttribute"/>
         /// </summary>
@@ -16,7 +15,6 @@ namespace Validar
         // ReSharper disable once UnusedParameter.Local
         public ValidationTemplateAttribute(Type validationTemplate)
         {
-            
         }
     }
 }

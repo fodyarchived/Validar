@@ -7,12 +7,13 @@ using Validar;
 namespace WithNonGenericInternal
 {
     [InjectValidation]
-    public class ModelWithImplementation : 
-        INotifyPropertyChanged, 
-        IDataErrorInfo, 
+    public class ModelWithImplementation :
+        INotifyPropertyChanged,
+        IDataErrorInfo,
         INotifyDataErrorInfo
     {
         ValidationTemplate validationTemplate;
+
         public ModelWithImplementation()
         {
             validationTemplate = new ValidationTemplate(this);
@@ -24,12 +25,13 @@ namespace WithNonGenericInternal
         {
             return validationTemplate.GetErrors(propertyName);
         }
+
         public bool HasErrors => validationTemplate.HasErrors;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged
         {
-            add { validationTemplate.ErrorsChanged += value; }
-            remove { validationTemplate.ErrorsChanged -= value; }
+            add => validationTemplate.ErrorsChanged += value;
+            remove => validationTemplate.ErrorsChanged -= value;
         }
 
         public string Error => validationTemplate.Error;
@@ -38,7 +40,7 @@ namespace WithNonGenericInternal
 
         public string Property1
         {
-            get { return property1; }
+            get => property1;
             set
             {
                 if (value != property1)
@@ -53,7 +55,7 @@ namespace WithNonGenericInternal
 
         public string Property2
         {
-            get { return property2; }
+            get => property2;
             set
             {
                 if (value != property2)

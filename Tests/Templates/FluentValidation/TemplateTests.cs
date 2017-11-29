@@ -5,7 +5,6 @@ namespace Templates.FluentValidation
     [TestFixture]
     public class TemplateTests
     {
-
         [Test]
         public void DataErrorInfo()
         {
@@ -17,6 +16,5 @@ namespace Templates.FluentValidation
         {
             ValidationTester.TestNotifyDataErrorInfo(new Model());
         }
-
     }
 }

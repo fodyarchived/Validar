@@ -72,5 +72,4 @@ public class TemplateFieldInjector
             );
         body.OptimizeMacros();
     }
-
 }

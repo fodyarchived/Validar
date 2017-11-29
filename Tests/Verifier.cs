@@ -1,28 +1,54 @@
 ﻿using System;
 using System.Diagnostics;
-using NUnit.Framework;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using NUnit.Framework;
 
 public static class Verifier
 {
-    public static void Verify(string assemblyPath2)
+    static string exePath;
+
+    static Verifier()
     {
-        var exePath = Environment.ExpandEnvironmentVariables(@"%programfiles(x86)%\Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\PEVerify.exe");
-
-        if (!File.Exists(exePath))
+        var windowsSdk = Environment.ExpandEnvironmentVariables(@"%programfiles(x86)%\Microsoft SDKs\Windows\");
+        exePath = Directory.EnumerateFiles(windowsSdk, "PEVerify.exe", SearchOption.AllDirectories)
+            .OrderByDescending(x =>
+            {
+                var fileVersionInfo = FileVersionInfo.GetVersionInfo(x);
+                return new Version(fileVersionInfo.FileMajorPart, fileVersionInfo.FileMinorPart, fileVersionInfo.FileBuildPart);
+            })
+            .FirstOrDefault();
+        if (exePath == null)
         {
-            exePath = Environment.ExpandEnvironmentVariables(@"%programfiles(x86)%\Microsoft SDKs\Windows\v8.0A\Bin\NETFX 4.0 Tools\PEVerify.exe");
+            throw new Exception("Could not find path to PEVerify");
         }
-        var process = Process.Start(new ProcessStartInfo(exePath, $"\"{assemblyPath2}\" /IGNORE=0x80070002")
-                                        {
-                                            RedirectStandardOutput = true,
-                                            UseShellExecute = false,
-                                            CreateNoWindow = true
-                                        });
+    }
 
-        // ReSharper disable once PossibleNullReferenceException
-        process.WaitForExit(10000);
-        var readToEnd = process.StandardOutput.ReadToEnd().Trim();
-        Assert.IsTrue(readToEnd.Contains($"All Classes and Methods in {assemblyPath2} Verified."), readToEnd);
+    public static void Verify(string beforeAssemblyPath, string afterAssemblyPath)
+    {
+        var before = Validate(beforeAssemblyPath);
+        var after = Validate(afterAssemblyPath);
+        var message = $"Failed processing {Path.GetFileName(afterAssemblyPath)}\r\n{after}";
+        Assert.AreEqual(TrimLineNumbers(before), TrimLineNumbers(after), message);
+    }
+
+    static string Validate(string assemblyPath2)
+    {
+        using (var process = Process.Start(new ProcessStartInfo(exePath, $"\"{assemblyPath2}\"")
+        {
+            RedirectStandardOutput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        }))
+        {
+            process.WaitForExit(10000);
+            return process.StandardOutput.ReadToEnd().Trim().Replace(assemblyPath2, "");
+        }
+    }
+
+    static string TrimLineNumbers(string foo)
+    {
+        return Regex.Replace(foo, "0x.*]", "");
     }
 }

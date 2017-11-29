@@ -1,9 +1,8 @@
-using System;
 using System.IO;
 using System.Reflection;
 using Mono.Cecil;
 
-public class MockAssemblyResolver : 
+public class MockAssemblyResolver :
     IAssemblyResolver
 {
     public AssemblyDefinition Resolve(AssemblyNameReference name)

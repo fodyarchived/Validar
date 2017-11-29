@@ -8,13 +8,13 @@ using FluentValidation.Results;
 namespace Generic
 {
     public class ValidationTemplate<T> :
-        IDataErrorInfo, 
+        IDataErrorInfo,
         INotifyDataErrorInfo
             where T : INotifyPropertyChanged
     {
         INotifyPropertyChanged target;
         IValidator validator;
-        ValidationResult validationResult; 
+        ValidationResult validationResult;
 
         public ValidationTemplate(T target)
         {

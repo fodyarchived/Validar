@@ -9,7 +9,7 @@ using FluentValidation.Results;
 namespace Templates.FluentValidation
 {
     public class ValidationTemplate :
-        IDataErrorInfo, 
+        IDataErrorInfo,
         INotifyDataErrorInfo
     {
         INotifyPropertyChanged target;
@@ -27,8 +27,7 @@ namespace Templates.FluentValidation
 
         static IValidator GetValidator(Type modelType)
         {
-            IValidator validator;
-            if (!validators.TryGetValue(modelType.TypeHandle, out validator))
+            if (!validators.TryGetValue(modelType.TypeHandle, out var validator))
             {
                 var typeName = $"{modelType.Namespace}.{modelType.Name}Validator";
                 var type = modelType.Assembly.GetType(typeName, true);

@@ -8,8 +8,8 @@ using FluentValidation.Results;
 
 namespace NonGeneric
 {
-    public class ValidationTemplate : 
-        IDataErrorInfo, 
+    public class ValidationTemplate :
+        IDataErrorInfo,
         INotifyDataErrorInfo
     {
         INotifyPropertyChanged target;
@@ -27,8 +27,7 @@ namespace NonGeneric
 
         static IValidator GetValidator(Type modelType)
         {
-            IValidator validator;
-            if (!validators.TryGetValue(modelType.TypeHandle, out validator))
+            if (!validators.TryGetValue(modelType.TypeHandle, out var validator))
             {
                 var typeName = $"{modelType.Namespace}.{modelType.Name}Validator";
                 var type = modelType.Assembly.GetType(typeName, true);

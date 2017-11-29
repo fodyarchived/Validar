@@ -1,133 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D9CE7424-74B3-42B2-A3A8-84447FC2D362}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tests</RootNamespace>
-    <AssemblyName>Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFrameworks>net452;netcoreapp2.0</TargetFrameworks>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FubuCore, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuCore.1.4.0.294\lib\FubuCore.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FubuLocalization, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuLocalization.1.1.0.184\lib\FubuLocalization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FubuValidation, Version=0.9.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuValidation.0.9.12.896\lib\FubuValidation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <HintPath>..\packages\FodyCecil.2.0.0\lib\net40\Mono.Cecil.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil.Mdb, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <HintPath>..\packages\FodyCecil.2.0.0\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil.Pdb, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <HintPath>..\packages\FodyCecil.2.0.0\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil.Rocks, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <HintPath>..\packages\FodyCecil.2.0.0\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sandra.SimpleValidator, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sandra.SimpleValidator.0.9.0\lib\net40\Sandra.SimpleValidator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="FodyCecil" Version="2.*" />
+    <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.*" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.*" />
+    <PackageReference Include="FluentValidation" Version="7.*" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.*" />
+    <ProjectReference Include="..\Validar.Fody\Validar.Fody.csproj" />
+    <ProjectReference Include="..\Validar\Validar.csproj" />
+    <ProjectReference Include="..\ExternalValidation\ExternalValidation.csproj" />
+    <ProjectReference Include="..\WithGenericExternal\WithGenericExternal.csproj" />
+    <ProjectReference Include="..\WithGenericInternal\WithGenericInternal.csproj" />
+    <ProjectReference Include="..\WithNonGenericExternal\WithNonGenericExternal.csproj" />
+    <ProjectReference Include="..\WithNonGenericInternal\WithNonGenericInternal.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AppDomainAssemblyFinder.cs" />
-    <Compile Include="AssemblyExtensions.cs" />
-    <Compile Include="AssemblyTests\GenericExternalTests.cs" />
-    <Compile Include="AssemblyTests\GenericInternalTests.cs" />
-    <Compile Include="AssemblyTests\NonGenericExternalTests.cs" />
-    <Compile Include="AssemblyTests\NonGenericInternalTests.cs" />
-    <Compile Include="MockAssemblyResolver.cs" />
-    <Compile Include="TemplatesGeneric\DataAnnotations\DataAnnotationsTemplateTests.cs" />
-    <Compile Include="TemplatesGeneric\DataAnnotations\Model.cs" />
-    <Compile Include="TemplatesGeneric\DataAnnotations\ValidationTemplate.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\FluentTemplateTests.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\Model.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\ModelValidator.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\ValidationFactory.cs" />
-    <Compile Include="TemplatesGeneric\FluentValidation\ValidationTemplate.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\Model.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\ModelValidator.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\SandraTemplateTests.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\ValidationFactory.cs" />
-    <Compile Include="TemplatesGeneric\Sandra\ValidationTemplate.cs" />
-    <Compile Include="Templates\DataAnnotations\DataAnnotationsTemplateTests.cs" />
-    <Compile Include="Templates\DataAnnotations\Model.cs" />
-    <Compile Include="Templates\DataAnnotations\ValidationTemplate.cs" />
-    <Compile Include="Templates\FluentValidation\Model.cs" />
-    <Compile Include="Templates\FluentValidation\ModelValidator.cs" />
-    <Compile Include="Templates\FluentValidation\TemplateTests.cs" />
-    <Compile Include="Templates\FluentValidation\ValidationTemplate.cs" />
-    <Compile Include="Templates\Sandra\Model.cs" />
-    <Compile Include="Templates\Sandra\ModelValidator.cs" />
-    <Compile Include="Templates\Sandra\TemplateTests.cs" />
-    <Compile Include="Templates\Sandra\ValidationTemplate.cs" />
-    <Compile Include="ValidationTester.cs" />
-    <Compile Include="Verifier.cs" />
-    <Compile Include="WeaverHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ExternalValidation\ExternalValidation.csproj">
-      <Project>{beb0322f-1ab0-4e09-bbcb-3fda5fe7655a}</Project>
-      <Name>ExternalValidation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fody\Fody.csproj">
-      <Project>{c3578a7b-09a6-4444-9383-0deafa4958bd}</Project>
-      <Name>Fody</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
