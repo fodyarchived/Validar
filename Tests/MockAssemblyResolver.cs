@@ -38,8 +38,6 @@ public class MockAssemblyResolver :
         }
     }
 
-
-    public string Directory;
     public void Dispose()
     {
     }
