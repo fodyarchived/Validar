@@ -12,11 +12,8 @@ public static class WeaverHelper
         File.Copy(assemblyPath, newAssembly, true);
         File.Copy(oldPdb, newPdb, true);
 
-        var assemblyResolver = new MockAssemblyResolver
-        {
-            Directory = Path.GetDirectoryName(assemblyPath)
-        };
-
+        var assemblyResolver = new DefaultAssemblyResolver();
+        assemblyResolver.AddSearchDirectory(Path.GetDirectoryName(assemblyPath));
         using (var symbolStream = File.OpenRead(newPdb))
         {
             var readerParameters = new ReaderParameters
