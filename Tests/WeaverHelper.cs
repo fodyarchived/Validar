@@ -12,30 +12,32 @@ public static class WeaverHelper
         File.Copy(assemblyPath, newAssembly, true);
         File.Copy(oldPdb, newPdb, true);
 
-        var assemblyResolver = new DefaultAssemblyResolver();
-        assemblyResolver.AddSearchDirectory(Path.GetDirectoryName(assemblyPath));
-        using (var symbolStream = File.OpenRead(newPdb))
+        using (var assemblyResolver = new DefaultAssemblyResolver())
         {
-            var readerParameters = new ReaderParameters
+            assemblyResolver.AddSearchDirectory(Path.GetDirectoryName(assemblyPath));
+            using (var symbolStream = File.OpenRead(newPdb))
             {
-                ReadSymbols = true,
-                SymbolStream = symbolStream,
-                SymbolReaderProvider = new PdbReaderProvider(),
-                AssemblyResolver = assemblyResolver
-            };
-            using (var moduleDefinition = ModuleDefinition.ReadModule(assemblyPath, readerParameters))
-            {
-                var weavingTask = new ModuleWeaver
+                var readerParameters = new ReaderParameters
                 {
-                    ModuleDefinition = moduleDefinition,
+                    ReadSymbols = true,
+                    SymbolStream = symbolStream,
+                    SymbolReaderProvider = new PdbReaderProvider(),
                     AssemblyResolver = assemblyResolver
                 };
+                using (var moduleDefinition = ModuleDefinition.ReadModule(assemblyPath, readerParameters))
+                {
+                    var weavingTask = new ModuleWeaver
+                    {
+                        ModuleDefinition = moduleDefinition,
+                        AssemblyResolver = assemblyResolver
+                    };
 
-                weavingTask.Execute();
-                moduleDefinition.Write(newAssembly);
+                    weavingTask.Execute();
+                    moduleDefinition.Write(newAssembly);
+                }
+
+                return newAssembly;
             }
-
-            return newAssembly;
         }
     }
 }
