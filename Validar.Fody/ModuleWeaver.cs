@@ -1,22 +1,15 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Fody;
 using Mono.Cecil;
 
-public partial class ModuleWeaver
+public class ModuleWeaver: BaseModuleWeaver
 {
     NotifyDataErrorInfoFinder notifyDataErrorInfoFinder;
     DataErrorInfoFinder dataErrorInfoFinder;
     ValidationTemplateFinder templateFinder;
-    public Action<string> LogInfo { get; set; }
-    public ModuleDefinition ModuleDefinition { get; set; }
-    public IAssemblyResolver AssemblyResolver { get; set; }
 
-    public ModuleWeaver()
-    {
-        LogInfo = s => { };
-    }
-
-    public void Execute()
+    public override void Execute()
     {
         templateFinder = new ValidationTemplateFinder
         {
@@ -24,7 +17,6 @@ public partial class ModuleWeaver
             ModuleDefinition = ModuleDefinition,
         };
         templateFinder.Execute();
-
 
         dataErrorInfoFinder = new DataErrorInfoFinder
         {
@@ -47,8 +39,14 @@ public partial class ModuleWeaver
         }
 
         ProcessTypes();
-        RemoveReference();
     }
+
+    public override IEnumerable<string> GetAssembliesForScanning()
+    {
+        return Enumerable.Empty<string>();
+    }
+
+    public override bool ShouldCleanReference => true;
 
     public void ProcessTypes()
     {

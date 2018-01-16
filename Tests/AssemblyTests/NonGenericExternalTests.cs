@@ -1,61 +1,51 @@
-﻿using System.IO;
-using System.Linq;
-using System.Reflection;
-using NUnit.Framework;
+﻿using System.Linq;
+using Fody;
+using Xunit;
+#pragma warning disable 618
 
-[TestFixture]
 public class NonGenericExternalTests
 {
-    string afterAssemblyPath;
-    Assembly assembly;
-    string beforeAssemblyPath;
+    static TestResult testResult;
 
-    public NonGenericExternalTests()
+    static NonGenericExternalTests()
     {
-        AppDomainAssemblyFinder.Attach();
-        beforeAssemblyPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "WithNonGenericExternal.dll");
-        afterAssemblyPath = WeaverHelper.Weave(beforeAssemblyPath);
-        assembly = Assembly.LoadFile(afterAssemblyPath);
+        var weavingTask = new ModuleWeaver();
+        testResult = weavingTask.ExecuteTestRun("WithNonGenericExternal.dll",
+            ignoreCodes:new []{ "0x80131869" });
     }
 
-    [Test]
+    [Fact]
     public void DataErrorInfo()
     {
-        var instance = assembly.GetInstance("WithNonGenericExternal.Model");
+        var instance = testResult.GetInstance("WithNonGenericExternal.Model");
         ValidationTester.TestDataErrorInfo(instance);
     }
 
-    [Test]
+    [Fact]
     public void DataErrorInfoWithImplementation()
     {
-        var instance = assembly.GetInstance("WithNonGenericExternal.ModelWithImplementation");
+        var instance = testResult.GetInstance("WithNonGenericExternal.ModelWithImplementation");
         ValidationTester.TestDataErrorInfo(instance);
     }
 
-    [Test]
+    [Fact]
     public void EnsureReferenceRemoved()
     {
-        var instance = assembly.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name == "ValidationTemplateAttribute");
-        Assert.IsNull(instance);
+        var instance = testResult.Assembly.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name == "ValidationTemplateAttribute");
+        Assert.Null(instance);
     }
 
-    [Test]
-    public void PeVerify()
-    {
-        Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
-    }
-
-    [Test]
+    [Fact]
     public void NotifyDataErrorInfo()
     {
-        var instance = assembly.GetInstance("WithNonGenericExternal.Model");
+        var instance = testResult.GetInstance("WithNonGenericExternal.Model");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
 
-    [Test]
+    [Fact]
     public void NotifyDataErrorInfoWithImplementation()
     {
-        var instance = assembly.GetInstance("WithNonGenericExternal.ModelWithImplementation");
+        var instance = testResult.GetInstance("WithNonGenericExternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
 }

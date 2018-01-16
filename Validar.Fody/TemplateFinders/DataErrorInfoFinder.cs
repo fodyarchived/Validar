@@ -26,5 +26,4 @@ public class DataErrorInfoFinder
         GetErrorMethod = ModuleDefinition.ImportReference(interfaceType.Methods.First(x => x.Name == "get_Error"));
         GetItemMethod = ModuleDefinition.ImportReference(interfaceType.Methods.First(x => x.Name == "get_Item"));
     }
-
 }

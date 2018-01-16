@@ -1,17 +1,16 @@
-﻿using NUnit.Framework;
-
-namespace Templates.FluentValidation
+﻿namespace Templates.FluentValidation
 {
-    [TestFixture]
+    using Xunit;
+
     public class TemplateTests
     {
-        [Test]
+        [Fact]
         public void DataErrorInfo()
         {
             ValidationTester.TestDataErrorInfo(new Model());
         }
 
-        [Test]
+        [Fact]
         public void NotifyDataErrorInfo()
         {
             ValidationTester.TestNotifyDataErrorInfo(new Model());

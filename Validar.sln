@@ -1,28 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 14.0.22823.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validar.Fody", "Validar.Fody\Validar.Fody.csproj", "{C3578A7B-09A6-4444-9383-0DEAFA4958BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validar.Fody", "Validar.Fody\Validar.Fody.csproj", "{C3578A7B-09A6-4444-9383-0DEAFA4958BD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7DEC4E2D-F872-434E-A267-0BAD65299950} = {7DEC4E2D-F872-434E-A267-0BAD65299950}
 		{3256D062-E246-4B58-89CE-3809C6398C99} = {3256D062-E246-4B58-89CE-3809C6398C99}
 		{B5AEB0E8-28F4-4955-A055-9C200F7113F0} = {B5AEB0E8-28F4-4955-A055-9C200F7113F0}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validar", "Validar\Validar.csproj", "{B5AEB0E8-28F4-4955-A055-9C200F7113F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validar", "Validar\Validar.csproj", "{B5AEB0E8-28F4-4955-A055-9C200F7113F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithGenericExternal", "WithGenericExternal\WithGenericExternal.csproj", "{68655477-ACC8-4A10-8C59-DC7644AE5303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithGenericExternal", "WithGenericExternal\WithGenericExternal.csproj", "{68655477-ACC8-4A10-8C59-DC7644AE5303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithGenericInternal", "WithGenericInternal\WithGenericInternal.csproj", "{3256D062-E246-4B58-89CE-3809C6398C99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithGenericInternal", "WithGenericInternal\WithGenericInternal.csproj", "{3256D062-E246-4B58-89CE-3809C6398C99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithNonGenericExternal", "WithNonGenericExternal\WithNonGenericExternal.csproj", "{6228ADCD-EC03-4ECB-AFAD-F1B484C1CA19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithNonGenericExternal", "WithNonGenericExternal\WithNonGenericExternal.csproj", "{6228ADCD-EC03-4ECB-AFAD-F1B484C1CA19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithNonGenericInternal", "WithNonGenericInternal\WithNonGenericInternal.csproj", "{7DEC4E2D-F872-434E-A267-0BAD65299950}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithNonGenericInternal", "WithNonGenericInternal\WithNonGenericInternal.csproj", "{7DEC4E2D-F872-434E-A267-0BAD65299950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalValidation", "ExternalValidation\ExternalValidation.csproj", "{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalValidation", "ExternalValidation\ExternalValidation.csproj", "{BEB0322F-1AB0-4E09-BBCB-3FDA5FE7655A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D9CE7424-74B3-42B2-A3A8-84447FC2D362}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{D9CE7424-74B3-42B2-A3A8-84447FC2D362}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5853776D-89F0-489F-BD58-D5B88D9F8A11}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

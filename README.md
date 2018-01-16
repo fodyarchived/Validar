@@ -1,7 +1,7 @@
-[![Chat on Gitter](https://img.shields.io/gitter/room/fody/fody.svg?style=flat)](https://gitter.im/Fody/Fody)
-[![NuGet Status](http://img.shields.io/nuget/v/Validar.Fody.svg?style=flat)](https://www.nuget.org/packages/Validar.Fody/)
+[![Chat on Gitter](https://img.shields.io/gitter/room/fody/fody.svg?style=flat&max-age=86400)](https://gitter.im/Fody/Fody)
+[![NuGet Status](http://img.shields.io/nuget/v/Validar.Fody.svg?style=flat&max-age=86400)](https://www.nuget.org/packages/Validar.Fody/)
 
-![Icon](https://raw.github.com/Fody/Validar/master/package_icon.png)
+![Icon](https://raw.githubusercontent.com/Fody/Validar/master/package_icon.png)
 
 
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 

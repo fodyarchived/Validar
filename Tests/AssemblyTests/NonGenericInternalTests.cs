@@ -1,53 +1,43 @@
-﻿using System.IO;
-using System.Reflection;
-using NUnit.Framework;
+﻿using Fody;
+using Xunit;
+#pragma warning disable 618
 
-[TestFixture]
 public class NonGenericInternalTests
 {
-    string afterAssemblyPath;
-    Assembly assembly;
-    string beforeAssemblyPath;
+    static TestResult testResult;
 
-    public NonGenericInternalTests()
+    static NonGenericInternalTests()
     {
-        AppDomainAssemblyFinder.Attach();
-        beforeAssemblyPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "WithNonGenericInternal.dll");
-        afterAssemblyPath = WeaverHelper.Weave(beforeAssemblyPath);
-        assembly = Assembly.LoadFile(afterAssemblyPath);
+        var weavingTask = new ModuleWeaver();
+        testResult = weavingTask.ExecuteTestRun("WithNonGenericInternal.dll",
+            ignoreCodes: new[] { "0x80131869" });
     }
 
-    [Test]
+    [Fact]
     public void DataErrorInfo()
     {
-        var instance = assembly.GetInstance("WithNonGenericInternal.Model");
+        var instance = testResult.GetInstance("WithNonGenericInternal.Model");
         ValidationTester.TestDataErrorInfo(instance);
     }
 
-    [Test]
+    [Fact]
     public void DataErrorInfoWithImplementation()
     {
-        var instance = assembly.GetInstance("WithNonGenericInternal.ModelWithImplementation");
+        var instance = testResult.GetInstance("WithNonGenericInternal.ModelWithImplementation");
         ValidationTester.TestDataErrorInfo(instance);
     }
 
-    [Test]
-    public void PeVerify()
-    {
-        Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
-    }
-
-    [Test]
+    [Fact]
     public void NotifyDataErrorInfo()
     {
-        var instance = assembly.GetInstance("WithNonGenericInternal.Model");
+        var instance = testResult.GetInstance("WithNonGenericInternal.Model");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
 
-    [Test]
+    [Fact]
     public void NotifyDataErrorInfoWithImplementation()
     {
-        var instance = assembly.GetInstance("WithNonGenericInternal.ModelWithImplementation");
+        var instance = testResult.GetInstance("WithNonGenericInternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
 }

@@ -37,5 +37,4 @@ public class NotifyDataErrorInfoFinder
 
         GetHasErrorsMethod = ModuleDefinition.ImportReference(interfaceType.Methods.First(x => x.Name == "get_HasErrors"));
     }
-
 }

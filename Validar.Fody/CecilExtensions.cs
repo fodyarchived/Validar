@@ -1,11 +1,10 @@
 using System.Linq;
+using Fody;
 using Mono.Cecil;
-
 using Mono.Collections.Generic;
 
 public static class CecilExtensions
 {
-
     public static bool ContainsValidationAttribute(this Collection<CustomAttribute> attributes)
     {
         var firstOrDefault = attributes.FirstOrDefault(x => x.Constructor.DeclaringType.Name == "InjectValidationAttribute");

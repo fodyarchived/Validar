@@ -66,7 +66,6 @@ public class NotifyDataErrorInfoInjector
         TypeDefinition.Properties.Add(property);
     }
 
-
     void AddErrorsChanged()
     {
         var eventDefinition = new EventDefinition(NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".ErrorsChanged", EventAttributes.SpecialName, NotifyDataErrorInfoFinder.ErrorsChangedEventType)

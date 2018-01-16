@@ -5,8 +5,12 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <Authors>Simon Cropp</Authors>
+    <Description>Fody add-in for validation in XAML bindings.</Description>
+    <PackageTags>Validation, ILWeaving, Fody, Cecil, IDataErrorInfo, INotifyDataErrorInfo, WPF, XAML</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs" />
+    <PackageReference Include="Fody" Version="2.3.20" PrivateAssets="None" />
+    <PackageReference Include="FodyPackaging" Version="2.3.20" PrivateAssets="All" />
   </ItemGroup>
 </Project>

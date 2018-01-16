@@ -1,53 +1,43 @@
-﻿using System.IO;
-using System.Reflection;
-using NUnit.Framework;
+﻿using Fody;
+using Xunit;
+#pragma warning disable 618
 
-[TestFixture]
 public class GenericInternalTests
 {
-    string afterAssemblyPath;
-    Assembly assembly;
-    string beforeAssemblyPath;
+    static TestResult testResult;
 
-    public GenericInternalTests()
+    static GenericInternalTests()
     {
-        AppDomainAssemblyFinder.Attach();
-        beforeAssemblyPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "WithGenericInternal.dll");
-        afterAssemblyPath = WeaverHelper.Weave(beforeAssemblyPath);
-        assembly = Assembly.LoadFile(afterAssemblyPath);
+        var weavingTask = new ModuleWeaver();
+        testResult = weavingTask.ExecuteTestRun("WithGenericInternal.dll",
+            ignoreCodes: new[] { "0x80131869" });
     }
 
-    [Test]
+    [Fact]
     public void DataErrorInfo()
     {
-        var instance = assembly.GetInstance("WithGenericInternal.Model");
+        var instance = testResult.GetInstance("WithGenericInternal.Model");
         ValidationTester.TestDataErrorInfo(instance);
     }
 
-    [Test]
+    [Fact]
     public void DataErrorInfoWithImplementation()
     {
-        var instance = assembly.GetInstance("WithGenericInternal.ModelWithImplementation");
+        var instance = testResult.GetInstance("WithGenericInternal.ModelWithImplementation");
         ValidationTester.TestDataErrorInfo(instance);
     }
 
-    [Test]
-    public void PeVerify()
-    {
-        Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
-    }
-
-    [Test]
+    [Fact]
     public void NotifyDataErrorInfo()
     {
-        var instance = assembly.GetInstance("WithGenericInternal.Model");
+        var instance = testResult.GetInstance("WithGenericInternal.Model");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
 
-    [Test]
+    [Fact]
     public void NotifyDataErrorInfoWithImplementation()
     {
-        var instance = assembly.GetInstance("WithGenericInternal.ModelWithImplementation");
+        var instance = testResult.GetInstance("WithGenericInternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
     }
 }
