@@ -1,6 +1,7 @@
 using System.Linq;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
+using TypeSystem = Fody.TypeSystem;
 
 public class DataErrorInfoInjector
 {
@@ -31,7 +32,8 @@ public class DataErrorInfoInjector
 
     void AddGetError()
     {
-        var method = new MethodDefinition(DataErrorInfoFinder.InterfaceRef.FullName + ".get_Error", MethodAttributes, TypeSystem.String)
+        var methodName = DataErrorInfoFinder.InterfaceRef.FullName + ".get_Error";
+        var method = new MethodDefinition(methodName, MethodAttributes, TypeSystem.StringReference)
                          {
                              IsGetter = true,
                              IsPrivate = true
@@ -43,7 +45,8 @@ public class DataErrorInfoInjector
             Instruction.Create(OpCodes.Callvirt, DataErrorInfoFinder.GetErrorMethod),
             Instruction.Create(OpCodes.Ret)
             );
-        var property = new PropertyDefinition(DataErrorInfoFinder.InterfaceRef.FullName + ".Error", PropertyAttributes.None, TypeSystem.String)
+        var propertyName = DataErrorInfoFinder.InterfaceRef.FullName + ".Error";
+        var property = new PropertyDefinition(propertyName, PropertyAttributes.None, TypeSystem.StringReference)
                            {
                                GetMethod = method
                            };
@@ -53,14 +56,15 @@ public class DataErrorInfoInjector
 
     void AddGetItem()
     {
-        var method = new MethodDefinition(DataErrorInfoFinder.InterfaceRef.FullName + ".get_Item", MethodAttributes, TypeSystem.String)
+        var methodName = DataErrorInfoFinder.InterfaceRef.FullName + ".get_Item";
+        var method = new MethodDefinition(methodName, MethodAttributes, TypeSystem.StringReference)
                              {
                                  IsGetter = true,
                                  IsPrivate = true,
                                  SemanticsAttributes = MethodSemanticsAttributes.Getter,
                              };
         method.Overrides.Add(DataErrorInfoFinder.GetItemMethod);
-        method.Parameters.Add(new ParameterDefinition(TypeSystem.String));
+        method.Parameters.Add(new ParameterDefinition(TypeSystem.StringReference));
 
         method.Body.Instructions.Append(
             Instruction.Create(OpCodes.Ldarg_0),
@@ -68,7 +72,8 @@ public class DataErrorInfoInjector
             Instruction.Create(OpCodes.Ldarg_1),
             Instruction.Create(OpCodes.Callvirt, DataErrorInfoFinder.GetItemMethod),
             Instruction.Create(OpCodes.Ret));
-        var property = new PropertyDefinition(DataErrorInfoFinder.InterfaceRef.FullName + ".Item", PropertyAttributes.None, TypeSystem.String)
+        var propertyName = DataErrorInfoFinder.InterfaceRef.FullName + ".Item";
+        var property = new PropertyDefinition(propertyName, PropertyAttributes.None, TypeSystem.StringReference)
                            {
                                GetMethod = method,
                            };

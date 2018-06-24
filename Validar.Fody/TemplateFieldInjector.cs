@@ -9,6 +9,7 @@ public class TemplateFieldInjector
     public FieldDefinition ValidationTemplateField;
     public TypeDefinition TargetType;
     public ModuleDefinition ModuleDefinition;
+    public Fody.TypeSystem TypeSystem;
 
     public void AddField()
     {
@@ -44,7 +45,7 @@ public class TemplateFieldInjector
         if (ValidationTemplateFinder.TypeReference.HasGenericParameters)
         {
             var makeGenericInstanceType = ValidationTemplateFinder.TypeDefinition.MakeGenericInstanceType(TargetType);
-            var reference = new MethodReference(".ctor", ModuleDefinition.TypeSystem.Void, makeGenericInstanceType)
+            var reference = new MethodReference(".ctor", TypeSystem.VoidReference, makeGenericInstanceType)
                             {
                                 HasThis = true,
                             };

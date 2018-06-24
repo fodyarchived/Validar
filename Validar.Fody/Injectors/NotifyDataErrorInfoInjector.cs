@@ -1,6 +1,7 @@
 using System.Linq;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
+using TypeSystem = Fody.TypeSystem;
 
 public class NotifyDataErrorInfoInjector
 {
@@ -26,13 +27,14 @@ public class NotifyDataErrorInfoInjector
 
     void AddGetErrors()
     {
-        var method = new MethodDefinition(NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".GetErrors", MethodAttributes, NotifyDataErrorInfoFinder.GetErrorsMethodRef.ReturnType)
+        var name = NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".GetErrors";
+        var method = new MethodDefinition(name, MethodAttributes, NotifyDataErrorInfoFinder.GetErrorsMethodRef.ReturnType)
                          {
                              IsPrivate = true,
                          };
         method.Overrides.Add(NotifyDataErrorInfoFinder.GetErrorsMethodRef);
 
-        method.Parameters.Add(new ParameterDefinition(TypeSystem.String));
+        method.Parameters.Add(new ParameterDefinition(TypeSystem.StringReference));
 
         method.Body.Instructions.Append(
             Instruction.Create(OpCodes.Ldarg_0),
@@ -46,7 +48,8 @@ public class NotifyDataErrorInfoInjector
 
     void AddHasErrors()
     {
-        var method = new MethodDefinition(NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".get_HasErrors", MethodAttributes, TypeSystem.Boolean)
+        var methodName = NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".get_HasErrors";
+        var method = new MethodDefinition(methodName, MethodAttributes, TypeSystem.BooleanReference)
                          {
                              IsGetter = true,
                              IsPrivate = true,
@@ -58,7 +61,8 @@ public class NotifyDataErrorInfoInjector
             Instruction.Create(OpCodes.Callvirt, NotifyDataErrorInfoFinder.GetHasErrorsMethod),
             Instruction.Create(OpCodes.Ret)
             );
-        var property = new PropertyDefinition(NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".HasErrors", PropertyAttributes.None, TypeSystem.Boolean)
+        var propertyName = NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".HasErrors";
+        var property = new PropertyDefinition(propertyName, PropertyAttributes.None, TypeSystem.BooleanReference)
                            {
                                GetMethod = method,
                            };
@@ -68,7 +72,8 @@ public class NotifyDataErrorInfoInjector
 
     void AddErrorsChanged()
     {
-        var eventDefinition = new EventDefinition(NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".ErrorsChanged", EventAttributes.SpecialName, NotifyDataErrorInfoFinder.ErrorsChangedEventType)
+        var name = NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".ErrorsChanged";
+        var eventDefinition = new EventDefinition(name, EventAttributes.SpecialName, NotifyDataErrorInfoFinder.ErrorsChangedEventType)
                                   {
                                       AddMethod = GetAdd(),
                                       RemoveMethod = GetRemove(),
@@ -79,7 +84,8 @@ public class NotifyDataErrorInfoInjector
 
     MethodDefinition GetAdd()
     {
-        var add = new MethodDefinition(NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".add_ErrorsChanged", MethodAttributes, TypeSystem.Void)
+        var name = NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".add_ErrorsChanged";
+        var add = new MethodDefinition(name, MethodAttributes, TypeSystem.VoidReference)
                       {
                           SemanticsAttributes = MethodSemanticsAttributes.AddOn,
                           IsPrivate = true,
@@ -98,7 +104,8 @@ public class NotifyDataErrorInfoInjector
 
     MethodDefinition GetRemove()
     {
-        var remove = new MethodDefinition(NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".remove_ErrorsChanged", MethodAttributes, TypeSystem.Void)
+        var name = NotifyDataErrorInfoFinder.InterfaceRef.FullName + ".remove_ErrorsChanged";
+        var remove = new MethodDefinition(name, MethodAttributes, TypeSystem.VoidReference)
                          {
                              SemanticsAttributes = MethodSemanticsAttributes.RemoveOn,
                              IsPrivate = true

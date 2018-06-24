@@ -63,7 +63,7 @@ public class ModuleWeaver: BaseModuleWeaver
         {
             if (containsValidationAttribute)
             {
-                throw new WeavingException($"Found [InjectValidationAttribute] on '{type.Name}' but it doesnt implement INotifyPropertyChanged so cannot inject.");
+                throw new WeavingException($"Found [InjectValidationAttribute] on '{type.Name}' but it doesn't implement INotifyPropertyChanged so cannot inject.");
             }
 
             return;
@@ -83,7 +83,8 @@ public class ModuleWeaver: BaseModuleWeaver
         {
             ValidationTemplateFinder = templateFinder,
             TargetType = type,
-            ModuleDefinition = ModuleDefinition
+            ModuleDefinition = ModuleDefinition,
+            TypeSystem = TypeSystem
         };
         templateFieldInjector.AddField();
 
@@ -92,7 +93,7 @@ public class ModuleWeaver: BaseModuleWeaver
             var injector = new DataErrorInfoInjector
             {
                 TypeDefinition = type,
-                TypeSystem = ModuleDefinition.TypeSystem,
+                TypeSystem = TypeSystem,
                 DataErrorInfoFinder = dataErrorInfoFinder,
                 ModuleWeaver = this,
                 ValidationTemplateField = templateFieldInjector.ValidationTemplateField
@@ -106,7 +107,7 @@ public class ModuleWeaver: BaseModuleWeaver
             {
                 TypeDefinition = type,
                 NotifyDataErrorInfoFinder = notifyDataErrorInfoFinder,
-                TypeSystem = ModuleDefinition.TypeSystem,
+                TypeSystem = TypeSystem,
                 ModuleWeaver = this,
                 ValidationTemplateField = templateFieldInjector.ValidationTemplateField
             };
