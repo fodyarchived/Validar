@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 14.0.22823.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validar.Fody", "Validar.Fody\Validar.Fody.csproj", "{C3578A7B-09A6-4444-9383-0DEAFA4958BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validar", "Validar\Validar.csproj", "{B5AEB0E8-28F4-4955-A055-9C200F7113F0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C3578A7B-09A6-4444-9383-0DEAFA4958BD} = {C3578A7B-09A6-4444-9383-0DEAFA4958BD}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithGenericExternal", "WithGenericExternal\WithGenericExternal.csproj", "{68655477-ACC8-4A10-8C59-DC7644AE5303}"
 EndProject
