@@ -7,10 +7,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="FodyHelpers" Version="3.2.13" />
-    <PackageReference Include="xunit" Version="2.4.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="FluentValidation" Version="8.0.100" />
+    <PackageReference Include="FodyHelpers" Version="3.3.3" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+    <PackageReference Include="FluentValidation" Version="8.0.101" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <ProjectReference Include="..\Validar.Fody\Validar.Fody.csproj" />
     <ProjectReference Include="..\Validar\Validar.csproj" />
