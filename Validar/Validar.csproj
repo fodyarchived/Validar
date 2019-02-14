@@ -8,6 +8,7 @@
     <Authors>Simon Cropp</Authors>
     <Description>Fody add-in for validation in XAML bindings.</Description>
     <PackageTags>Validation, ILWeaving, Fody, Cecil, IDataErrorInfo, INotifyDataErrorInfo, WPF, XAML</PackageTags>
+    <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FodyPackaging" Version="4.0.2" PrivateAssets="All" />
