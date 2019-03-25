@@ -11,7 +11,7 @@
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FodyPackaging" Version="4.1.0" PrivateAssets="All" />
+    <PackageReference Include="FodyPackaging" Version="4.2.0" PrivateAssets="All" />
     <PackageReference Include="Fody" Version="4.1.0" PrivateAssets="None" />
   </ItemGroup>
 </Project>
