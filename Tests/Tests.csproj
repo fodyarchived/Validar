@@ -10,7 +10,7 @@
     <PackageReference Include="FodyHelpers" Version="4.2.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
-    <PackageReference Include="FluentValidation" Version="8.2.0" />
+    <PackageReference Include="FluentValidation" Version="8.2.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <ProjectReference Include="..\Validar.Fody\Validar.Fody.csproj" />
     <ProjectReference Include="..\Validar\Validar.csproj" />
