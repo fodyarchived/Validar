@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using Fody;
 using Xunit;
-#pragma warning disable 618
+using Xunit.Abstractions;
 
-public class NonGenericExternalTests
+public class NonGenericExternalTests :
+    XunitLoggingBase
 {
     static TestResult testResult;
 
@@ -47,5 +48,10 @@ public class NonGenericExternalTests
     {
         var instance = testResult.GetInstance("WithNonGenericExternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
+    }
+
+    public NonGenericExternalTests(ITestOutputHelper output) : 
+        base(output)
+    {
     }
 }
