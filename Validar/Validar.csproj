@@ -9,9 +9,11 @@
     <Description>Fody add-in for validation in XAML bindings.</Description>
     <PackageTags>Validation, ILWeaving, Fody, Cecil, IDataErrorInfo, INotifyDataErrorInfo, WPF, XAML</PackageTags>
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
+    <PackageIconUrl>https://raw.githubusercontent.com/Fody/Validar/master/package_icon.png</PackageIconUrl>
+    <PackageProjectUrl>http://github.com/Fody/Validar</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FodyPackaging" Version="5.0.0-beta.9" PrivateAssets="All" />
-    <PackageReference Include="Fody" Version="5.0.0-beta.9" PrivateAssets="None" />
+    <PackageReference Include="FodyPackaging" Version="5.0.0-beta.11" PrivateAssets="All" />
+    <PackageReference Include="Fody" Version="5.0.0-beta.11" PrivateAssets="None" />
   </ItemGroup>
 </Project>
