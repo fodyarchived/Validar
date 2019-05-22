@@ -10,7 +10,7 @@
     <PackageTags>Validation, ILWeaving, Fody, Cecil, IDataErrorInfo, INotifyDataErrorInfo, WPF, XAML</PackageTags>
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
     <PackageIconUrl>https://raw.githubusercontent.com/Fody/Validar/master/package_icon.png</PackageIconUrl>
-    <PackageProjectUrl>http://github.com/Fody/Validar</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Fody/Validar</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FodyPackaging" Version="5.0.6" PrivateAssets="All" />
