@@ -39,7 +39,7 @@ Add `<Validar/>` to [FodyWeavers.xml](https://github.com/Fody/Home/blob/master/p
 ```
 
 
-## Your Model Code
+## Model Code
 
  * Must implement `INotifyPropertyChanged` (in this case implementation excluded for brevity).
  * Contain a `[InjectValidation]` attribute.
@@ -56,18 +56,18 @@ public class Person : INotifyPropertyChanged
 ```
 
 
-### Your validation template code
+### Validation template code
 
 ```c#
 public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
 {
     public ValidationTemplate(INotifyPropertyChanged target)
     {
-        // Provide your own implementation
+        // Provide an implementation
     }
 
-    // Your implementation of IDataErrorInfo
-    // Your implementation of INotifyDataErrorInfo
+    // implementation of IDataErrorInfo
+    // implementation of INotifyDataErrorInfo
 }
 ```
 
@@ -88,8 +88,8 @@ public class Person : INotifyPropertyChanged, IDataErrorInfo, INotifyDataErrorIn
         validationTemplate = new ValidationTemplate(this);
     }
 
-    // Your implementation of IDataErrorInfo
-    // Your implementation of INotifyDataErrorInfo
+    // implementation of IDataErrorInfo
+    // implementation of INotifyDataErrorInfo
 }
 ```
 
@@ -110,7 +110,7 @@ If `ValidationTemplate`  exist in the current assembly they will be picked up au
 
 ### Other Assembly
 
-If `ValidationTemplate`  exist in a different assembly You will need to use a `[ValidationTemplateAttribute]` to tell Validar where to look.
+If `ValidationTemplate` exist in a different assembly add a `[ValidationTemplateAttribute]` to tell Validar where to look.
 
 ```c#
 [assembly: ValidationTemplateAttribute(typeof(MyUtilsLibrary.ValidationTemplate))]
@@ -119,7 +119,7 @@ If `ValidationTemplate`  exist in a different assembly You will need to use a `[
 
 ## Validation Template Implementations
 
-You can implement `ValidationTemplate` in any way you want. Here are some suggested implementations that will allow you to leverage common validation libraries. 
+Custom `ValidationTemplate` implementations are supported. Here are some suggested implementations that enable common validation libraries.
 
 
 ### [FluentValidation](https://github.com/JeremySkinner/FluentValidation)
@@ -325,11 +325,12 @@ public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
 }
 ```
 
+
 ### [DataAnnotations](http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx)
 
 ```c#
 public class ValidationTemplate :
-    IDataErrorInfo, 
+    IDataErrorInfo,
     INotifyDataErrorInfo
 {
     INotifyPropertyChanged target;
@@ -404,4 +405,4 @@ public class ValidationTemplate :
 
 ## Icon
 
-<a href="http://thenounproject.com/noun/check-mark/#icon-No6407" target="_blank">Check Mark</a> designed by <a href="http://thenounproject.com/mateozlatar" target="_blank">Mateo Zlatar</a> from The Noun Project
+[Check Mark](https://thenounproject.com/noun/check-mark/#icon-No6407) designed by [Mateo Zlatar](https://thenounproject.com/mateozlatar) from [The Noun Project](https://thenounproject.com).
