@@ -36,6 +36,6 @@ public static class ImplementsInterface
 
     public static bool ImplementsINotify(this GenericParameter typeReference)
     {
-        return typeReference.Constraints.Any(constraint => constraint.ImplementsINotify());
+        return typeReference.Constraints.Any(constraint => constraint.ConstraintType.ImplementsINotify());
     }
 }
