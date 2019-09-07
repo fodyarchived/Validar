@@ -4,7 +4,7 @@
     using Xunit.Abstractions;
 
     public class TemplateTests :
-        XunitLoggingBase
+        XunitApprovalBase
     {
         [Fact]
         public void DataErrorInfo()

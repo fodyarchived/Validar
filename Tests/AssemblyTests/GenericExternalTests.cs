@@ -4,7 +4,7 @@ using Xunit;
 using Xunit.Abstractions;
 
 public class GenericExternalTests :
-    XunitLoggingBase
+    XunitApprovalBase
 {
     static TestResult testResult;
 
