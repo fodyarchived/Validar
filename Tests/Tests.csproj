@@ -11,7 +11,7 @@
     <PackageReference Include="XunitLogger" Version="3.0.6" />
     <PackageReference Include="Xunit.ApprovalTests" Version="3.0.6" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
     <PackageReference Include="FluentValidation" Version="8.4.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <ProjectReference Include="..\Validar.Fody\Validar.Fody.csproj" />
