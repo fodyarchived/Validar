@@ -1,10 +1,11 @@
 ﻿using System.Linq;
 using Fody;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class NonGenericExternalTests :
-    XunitApprovalBase
+    VerifyBase
 {
     static TestResult testResult;
 

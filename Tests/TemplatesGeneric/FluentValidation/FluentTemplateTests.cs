@@ -1,10 +1,11 @@
 ﻿namespace TemplatesGeneric.FluentValidation
 {
+    using VerifyXunit;
     using Xunit;
     using Xunit.Abstractions;
 
     public class TemplateTests :
-        XunitApprovalBase
+        VerifyBase
     {
         [Fact]
         public void DataErrorInfo()
