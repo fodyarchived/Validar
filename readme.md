@@ -1,5 +1,5 @@
-[![Chat on Gitter](https://img.shields.io/gitter/room/fody/fody.svg?style=flat&max-age=86400)](https://gitter.im/Fody/Fody)
-[![NuGet Status](https://img.shields.io/nuget/v/Validar.Fody.svg?style=flat&max-age=86400)](https://www.nuget.org/packages/Validar.Fody/)
+[![Chat on Gitter](https://img.shields.io/gitter/room/fody/fody.svg)](https://gitter.im/Fody/Fody)
+[![NuGet Status](https://img.shields.io/nuget/v/Validar.Fody.svg)](https://www.nuget.org/packages/Validar.Fody/)
 
 ![Icon](https://raw.githubusercontent.com/Fody/Validar/master/package_icon.png)
 
