@@ -16,7 +16,7 @@ public class NotifyDataErrorInfoInjector
     {
         if (TypeDefinition.Interfaces.Any(x => x.InterfaceType.Name == NotifyDataErrorInfoFinder.InterfaceRef.Name))
         {
-            ModuleWeaver.LogInfo($"Skipped '{TypeDefinition.Name}' because it already implements '{NotifyDataErrorInfoFinder.InterfaceRef.Name}'.");
+            ModuleWeaver.WriteInfo($"Skipped '{TypeDefinition.Name}' because it already implements '{NotifyDataErrorInfoFinder.InterfaceRef.Name}'.");
             return;
         }
         AddInterface();

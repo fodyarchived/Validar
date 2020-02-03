@@ -17,7 +17,7 @@ public class DataErrorInfoInjector
         if (TypeDefinition.Interfaces.Any(x => x.InterfaceType.Name == DataErrorInfoFinder.InterfaceRef.Name))
         {
             var message = $"Skipped '{TypeDefinition.Name}' because it already implements '{DataErrorInfoFinder.InterfaceRef.Name}'.";
-            ModuleWeaver.LogInfo(message);
+            ModuleWeaver.WriteInfo(message);
             return;
         }
         AddInterface();

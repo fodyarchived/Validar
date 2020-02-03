@@ -13,7 +13,7 @@ public class ModuleWeaver: BaseModuleWeaver
     {
         templateFinder = new ValidationTemplateFinder
         {
-            LogInfo = LogInfo,
+            LogInfo = x => base.WriteInfo(x),
             ModuleDefinition = ModuleDefinition,
         };
         templateFinder.Execute();
