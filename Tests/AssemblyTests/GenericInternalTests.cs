@@ -1,10 +1,7 @@
 ﻿using Fody;
-using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class GenericInternalTests :
-    VerifyBase
+public class GenericInternalTests
 {
     static TestResult testResult;
 
@@ -41,10 +38,5 @@ public class GenericInternalTests :
     {
         var instance = testResult.GetInstance("WithGenericInternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
-    }
-
-    public GenericInternalTests(ITestOutputHelper output) :
-        base(output)
-    {
     }
 }

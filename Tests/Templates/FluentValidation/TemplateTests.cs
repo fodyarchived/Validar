@@ -1,11 +1,8 @@
 ﻿namespace Templates.FluentValidation
 {
-    using VerifyXunit;
     using Xunit;
-    using Xunit.Abstractions;
 
-    public class TemplateTests :
-        VerifyBase
+    public class TemplateTests
     {
         [Fact]
         public void DataErrorInfo()
@@ -17,11 +14,6 @@
         public void NotifyDataErrorInfo()
         {
             ValidationTester.TestNotifyDataErrorInfo(new Model());
-        }
-
-        public TemplateTests(ITestOutputHelper output) :
-            base(output)
-        {
         }
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System.Linq;
 using Fody;
-using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class GenericExternalTests :
-    VerifyBase
+public class GenericExternalTests
 {
     static TestResult testResult;
 
@@ -49,10 +46,5 @@ public class GenericExternalTests :
     {
         var instance = testResult.GetInstance("WithGenericExternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
-    }
-
-    public GenericExternalTests(ITestOutputHelper output) : 
-        base(output)
-    {
     }
 }

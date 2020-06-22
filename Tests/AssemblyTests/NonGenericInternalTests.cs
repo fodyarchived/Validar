@@ -1,10 +1,7 @@
 ﻿using Fody;
-using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class NonGenericInternalTests :
-    VerifyBase
+public class NonGenericInternalTests
 {
     static TestResult testResult;
 
@@ -41,10 +38,5 @@ public class NonGenericInternalTests :
     {
         var instance = testResult.GetInstance("WithNonGenericInternal.ModelWithImplementation");
         ValidationTester.TestNotifyDataErrorInfo(instance);
-    }
-
-    public NonGenericInternalTests(ITestOutputHelper output) :
-        base(output)
-    {
     }
 }
