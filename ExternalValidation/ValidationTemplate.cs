@@ -1,46 +1,34 @@
 using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Linq;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace NonGeneric
+namespace Generic
 {
-    public class ValidationTemplate :
+    public class ValidationTemplate<T> :
         IDataErrorInfo,
         INotifyDataErrorInfo
+            where T : INotifyPropertyChanged
     {
-        INotifyPropertyChanged target;
         IValidator validator;
-        ValidationResult validationResult;
-        static ConcurrentDictionary<RuntimeTypeHandle, IValidator> validators = new ConcurrentDictionary<RuntimeTypeHandle, IValidator>();
+        ValidationResult result;
+        ValidationContext<T> context;
 
-        public ValidationTemplate(INotifyPropertyChanged target)
+        public ValidationTemplate(T target)
         {
-            this.target = target;
-            validator = GetValidator(target.GetType());
-            validationResult = validator.Validate(target);
+            validator = ValidationFactory.GetValidator<T>();
+            context = new ValidationContext<T>(target);
+            result = validator.Validate(context);
             target.PropertyChanged += Validate;
         }
 
-        static IValidator GetValidator(Type modelType)
-        {
-            if (!validators.TryGetValue(modelType.TypeHandle, out var validator))
-            {
-                var typeName = $"{modelType.Namespace}.{modelType.Name}Validator";
-                var type = modelType.Assembly.GetType(typeName, true);
-                validators[modelType.TypeHandle] = validator = (IValidator) Activator.CreateInstance(type);
-            }
-
-            return validator;
-        }
 
         void Validate(object sender, PropertyChangedEventArgs e)
         {
-            validationResult = validator.Validate(target);
-            foreach (var error in validationResult.Errors)
+            result = validator.Validate(context);
+            foreach (var error in result.Errors)
             {
                 RaiseErrorsChanged(error.PropertyName);
             }
@@ -48,18 +36,18 @@ namespace NonGeneric
 
         public IEnumerable GetErrors(string propertyName)
         {
-            return validationResult.Errors
+            return result.Errors
                                    .Where(x => x.PropertyName == propertyName)
                                    .Select(x => x.ErrorMessage);
         }
 
-        public bool HasErrors => validationResult.Errors.Count > 0;
+        public bool HasErrors => result.Errors.Count > 0;
 
         public string Error
         {
             get
             {
-                var strings = validationResult.Errors.Select(x => x.ErrorMessage)
+                var strings = result.Errors.Select(x => x.ErrorMessage)
                                               .ToArray();
                 return string.Join(Environment.NewLine, strings);
             }
@@ -69,7 +57,7 @@ namespace NonGeneric
         {
             get
             {
-                var strings = validationResult.Errors.Where(x => x.PropertyName == propertyName)
+                var strings = result.Errors.Where(x => x.PropertyName == propertyName)
                                               .Select(x => x.ErrorMessage)
                                               .ToArray();
                 return string.Join(Environment.NewLine, strings);

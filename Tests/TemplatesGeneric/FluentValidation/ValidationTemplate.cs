@@ -10,24 +10,23 @@ namespace TemplatesGeneric.FluentValidation
     public class ValidationTemplate<T> :
         IDataErrorInfo,
         INotifyDataErrorInfo
-            where T : INotifyPropertyChanged
+        where T : INotifyPropertyChanged
     {
-        INotifyPropertyChanged target;
         IValidator validator;
         ValidationResult validationResult;
+        ValidationContext<T> context;
 
         public ValidationTemplate(T target)
         {
-            this.target = target;
             validator = ValidationFactory.GetValidator<T>();
-            validationResult = validator.Validate(target);
+            context = new ValidationContext<T>(target);
+            validationResult = validator.Validate(context);
             target.PropertyChanged += Validate;
         }
 
-
         void Validate(object sender, PropertyChangedEventArgs e)
         {
-            validationResult = validator.Validate(target);
+            validationResult = validator.Validate(context);
             foreach (var error in validationResult.Errors)
             {
                 RaiseErrorsChanged(error.PropertyName);
@@ -36,9 +35,10 @@ namespace TemplatesGeneric.FluentValidation
 
         public IEnumerable GetErrors(string propertyName)
         {
-            return validationResult.Errors
-                                   .Where(x => x.PropertyName == propertyName)
-                                   .Select(x => x.ErrorMessage);
+            return validationResult
+                .Errors
+                .Where(x => x.PropertyName == propertyName)
+                .Select(x => x.ErrorMessage);
         }
 
         public bool HasErrors => validationResult.Errors.Count > 0;
@@ -47,8 +47,8 @@ namespace TemplatesGeneric.FluentValidation
         {
             get
             {
-                var strings = validationResult.Errors.Select(x => x.ErrorMessage)
-                                              .ToArray();
+                var strings = validationResult.Errors
+                    .Select(x => x.ErrorMessage);
                 return string.Join(Environment.NewLine, strings);
             }
         }
@@ -57,9 +57,10 @@ namespace TemplatesGeneric.FluentValidation
         {
             get
             {
-                var strings = validationResult.Errors.Where(x => x.PropertyName == propertyName)
-                                              .Select(x => x.ErrorMessage)
-                                              .ToArray();
+                var strings = validationResult
+                    .Errors
+                    .Where(x => x.PropertyName == propertyName)
+                    .Select(x => x.ErrorMessage);
                 return string.Join(Environment.NewLine, strings);
             }
         }

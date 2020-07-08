@@ -18,7 +18,5 @@
     <ProjectReference Include="..\ExternalValidation\ExternalValidation.csproj" />
     <ProjectReference Include="..\WithGenericExternal\WithGenericExternal.csproj" />
     <ProjectReference Include="..\WithGenericInternal\WithGenericInternal.csproj" />
-    <ProjectReference Include="..\WithNonGenericExternal\WithNonGenericExternal.csproj" />
-    <ProjectReference Include="..\WithNonGenericInternal\WithNonGenericInternal.csproj" />
   </ItemGroup>
 </Project>
