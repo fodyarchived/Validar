@@ -5,7 +5,7 @@
     <DisableFody>true</DisableFody>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="9.0.1" />
+    <PackageReference Include="FluentValidation" Version="9.1.1" />
     <ProjectReference Include="..\Validar\Validar.csproj" />
     <ProjectReference Include="..\ExternalValidation\ExternalValidation.csproj" />
   </ItemGroup>
