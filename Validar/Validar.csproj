@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://github.com/Fody/Validar</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FodyPackaging" Version="6.3.0" PrivateAssets="All" />
+    <PackageReference Include="FodyPackaging" Version="6.4.0" PrivateAssets="All" />
     <PackageReference Include="Fody" Version="6.3.0" PrivateAssets="none" />
   </ItemGroup>
 </Project>
