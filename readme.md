@@ -142,18 +142,20 @@ public class PersonValidator : AbstractValidator<Person>
     }
 }
 
-public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
+public class ValidationTemplate<T> : IDataErrorInfo, INotifyDataErrorInfo where T : INotifyPropertyChanged
 {
-    INotifyPropertyChanged target;
+    T target;
     IValidator validator;
     ValidationResult validationResult;
+    ValidationContext<T> context;
     static ConcurrentDictionary<RuntimeTypeHandle, IValidator> validators = new ConcurrentDictionary<RuntimeTypeHandle, IValidator>();
 
-    public ValidationTemplate(INotifyPropertyChanged target)
+    public ValidationTemplate(T target)
     {
         this.target = target;
         validator = GetValidator(target.GetType());
-        validationResult = validator.Validate(target);
+        context = new ValidationContext<T>(target);
+        validationResult = validator.Validate(context);
         target.PropertyChanged += Validate;
     }
 
@@ -170,7 +172,7 @@ public class ValidationTemplate : IDataErrorInfo, INotifyDataErrorInfo
 
     void Validate(object sender, PropertyChangedEventArgs e)
     {
-        validationResult = validator.Validate(target);
+        validationResult = validator.Validate(context);
         foreach (var error in validationResult.Errors)
         {
             RaiseErrorsChanged(error.PropertyName);
