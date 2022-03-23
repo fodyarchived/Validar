@@ -4,57 +4,65 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
-namespace Templates.DataAnnotations
+namespace Templates.DataAnnotations;
+
+public class Model :
+    IDataErrorInfo,
+    INotifyPropertyChanged,
+    INotifyDataErrorInfo
 {
-    public class Model :
-        IDataErrorInfo,
-        INotifyPropertyChanged,
-        INotifyDataErrorInfo
+    ValidationTemplate validationTemplate;
+    string property1;
+    string property2;
+
+    [Required(ErrorMessage = "'Property1' message.")]
+    public string Property1
     {
-        ValidationTemplate validationTemplate;
-        string property1;
-        string property2;
-
-        [Required(ErrorMessage = "'Property1' message.")]        public string Property1        {
-            get => property1;            set
-            {
-                property1 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        [Required(ErrorMessage = "'Property2' message.")]        public string Property2        {
-            get => property2;            set
-            {
-                property2 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Model()
+        get => property1;
+        set
         {
-            validationTemplate = new ValidationTemplate(this);
+            property1 = value;
+            OnPropertyChanged();
         }
+    }
 
-        public string this[string columnName] => validationTemplate[columnName];
-
-        public string Error => validationTemplate.Error;
-
-        public IEnumerable GetErrors(string propertyName)
+    [Required(ErrorMessage = "'Property2' message.")]
+    public string Property2
+    {
+        get => property2;
+        set
         {
-            return validationTemplate.GetErrors(propertyName);
+            property2 = value;
+            OnPropertyChanged();
         }
+    }
 
-        bool INotifyDataErrorInfo.HasErrors => validationTemplate.HasErrors;
+    public Model()
+    {
+        validationTemplate = new ValidationTemplate(this);
+    }
 
-        event EventHandler<DataErrorsChangedEventArgs> INotifyDataErrorInfo.ErrorsChanged        {
-            add => validationTemplate.ErrorsChanged += value;            remove => validationTemplate.ErrorsChanged -= value;        }
+    public string this[string columnName] => validationTemplate[columnName];
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    public string Error => validationTemplate.Error;
 
-        void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+    public IEnumerable GetErrors(string propertyName)
+    {
+        return validationTemplate.GetErrors(propertyName);
+    }
+
+    bool INotifyDataErrorInfo.HasErrors => validationTemplate.HasErrors;
+
+    event EventHandler<DataErrorsChangedEventArgs> INotifyDataErrorInfo.ErrorsChanged
+    {
+        add => validationTemplate.ErrorsChanged += value;
+        remove => validationTemplate.ErrorsChanged -= value;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

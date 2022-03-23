@@ -1,19 +1,18 @@
-﻿namespace Templates.DataAnnotations
+﻿namespace Templates.DataAnnotations;
+
+using Xunit;
+
+public class TemplateTests
 {
-    using Xunit;
-
-    public class TemplateTests
+    [Fact]
+    public void DataErrorInfo()
     {
-        [Fact]
-        public void DataErrorInfo()
-        {
-            ValidationTester.TestDataErrorInfo(new Model());
-        }
+        ValidationTester.TestDataErrorInfo(new Model());
+    }
 
-        [Fact]
-        public void NotifyDataErrorInfo()
-        {
-            ValidationTester.TestNotifyDataErrorInfo(new Model());
-        }
+    [Fact]
+    public void NotifyDataErrorInfo()
+    {
+        ValidationTester.TestNotifyDataErrorInfo(new Model());
     }
 }
