@@ -7,7 +7,7 @@ namespace TemplatesGeneric.FluentValidation;
 
 public static class ValidationFactory
 {
-    static ConcurrentDictionary<RuntimeTypeHandle, IValidator> validators = new ConcurrentDictionary<RuntimeTypeHandle, IValidator>();
+    static ConcurrentDictionary<RuntimeTypeHandle, IValidator> validators = new();
 
     public static IValidator<T> GetValidator<T>()
         where T : INotifyPropertyChanged
