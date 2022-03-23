@@ -14,8 +14,8 @@ public static class ValidationTester
         instance.Property1 = "foo";
         instance.Property2 = "foo";
         Assert.Empty(dataErrorInfo.Error);
-        Assert.Empty(dataErrorInfo["GivenNames"]);
-        Assert.Empty(dataErrorInfo["FamilyName"]);
+        Assert.Empty(dataErrorInfo["Property1"]);
+        Assert.Empty(dataErrorInfo["Property2"]);
     }
 
     public static void TestNotifyDataErrorInfo(dynamic instance)
@@ -30,7 +30,7 @@ public static class ValidationTester
         instance.Property2 = "foo";
         Assert.False(dataErrorInfo.HasErrors);
         Assert.True(errorsChangedCalled);
-        Assert.Empty(dataErrorInfo.GetErrors("GivenNames").Cast<string>().ToList());
-        Assert.Empty(dataErrorInfo.GetErrors("FamilyName").Cast<string>().ToList());
+        Assert.Empty(dataErrorInfo.GetErrors("Property1").Cast<string>().ToList());
+        Assert.Empty(dataErrorInfo.GetErrors("Property2").Cast<string>().ToList());
     }
 }
